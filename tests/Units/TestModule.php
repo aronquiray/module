@@ -8,7 +8,9 @@ class TestModule extends TestCase
 {
     public function testCreateUpdate()
     {
-        $this->artisan('module:make');
+        $this->artisan('module:make', [
+            'name' => 'test'
+        ]);
         $this->assertEquals('Module test'."\n", \Artisan::output());
     }
 }
