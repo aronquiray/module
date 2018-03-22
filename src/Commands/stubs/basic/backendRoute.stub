@@ -8,6 +8,6 @@ Route::group([
 ], function () {
         Route::post('dummy-class/table', 'DummyClassesTableController')->name('dummy-class.table');
         Route::get('dummy-class/disabled', 'DummyClassStatusController@disabled')->name('dummy-class.disabled');
-        Route::patch('dummy-class/{dummy-class}/status', 'DummyClassStatusController')->name('dummy-class.status');
+        Route::patch('dummy-class/{dummyClass}/status', 'DummyClassStatusController')->name('dummy-class.status');
         Route::resource('dummy-class', 'DummyClassesController');
 });
