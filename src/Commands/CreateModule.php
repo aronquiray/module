@@ -56,8 +56,9 @@ class CreateModule extends GeneratorCommand
     {
         // stub | direction path
         return [
-            'basic/model.stub' => 'app/Models/Core/DummyClass.php',
+            // controllers
             'basic/DummyClassesController.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
+            'basic/DummyClassesController.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesTableController.php',
 
             // views
             'basic/resources/views/backend/create.stub' => 'resources/views/backend/core/dummyClass/create.blade.php',
@@ -67,6 +68,9 @@ class CreateModule extends GeneratorCommand
 
             // route
             'basic/backendRoute.stub' => 'routes/backend/core/dummyClass.php',
+
+            // model
+            'basic/model.stub' => 'app/Models/Core/DummyClass.php',
         ];
     }
 

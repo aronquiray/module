@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Http\Controllers\Backend\Core\DummyClass;
+
+use Illuminate\Http\Request;
+use HalcyonLaravel\Base\Controllers\BaseController as Controller;
+use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
+use App\Models\Core\DummyClass as Model;
+use DataTables;
+
+/**
+ * Class DummyClassTableController.
+ */
+class DummyClassesTableController extends Controller
+{
+    /**
+     * @var BlockRepository
+     */
+    protected $repo;
+
+    /**
+     * @param BlockRepository $repo
+     */
+    public function __construct()
+    {
+        $this->repo = new Repository(new Model);        
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function __invoke(Request $request)
+    {
+
+        $user = auth()->user();
+        return DataTables::of($this->repo->table())
+            ->addColumn('name', function ($model) {
+                return $model->name;
+            })
+            ->addColumn('content', function ($model) {
+                return $model->content;
+            })
+            ->addColumn('description', function ($model) {
+                return $model->description;
+            })
+            ->editColumn('updated_at', function ($model) {
+                return $model->updated_at->format('d M, Y h:m A');
+            })
+            ->addColumn('actions', function ($model) {
+                return $model->actions('backend');
+            })
+            ->make(true);
+    }
+}
