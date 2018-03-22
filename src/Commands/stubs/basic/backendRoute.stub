@@ -2,7 +2,6 @@
 
 Route::group([
         'namespace' => 'Core\DummyClass',
-        'prefix' => 'admin',
         'as' => 'admin.',
         'middleware' => 'admin'
 ], function () {
