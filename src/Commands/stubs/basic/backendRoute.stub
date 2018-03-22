@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-        'namespace' => 'Backend\Core\DummyClass',
+        'namespace' => 'Core\DummyClass',
         'prefix' => 'admin',
         'as' => 'admin.',
         'middleware' => 'admin'
