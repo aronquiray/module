@@ -56,14 +56,14 @@ class CreateModule extends GeneratorCommand
     {
         // stub | direction path
         return [
-            'basic/DummyClass.php' => 'app/Models/Core/DummyClass.php',
-            'basic/DummyClassesController.php' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
+            'basic/DummyClass.stub' => 'app/Models/Core/DummyClass.php',
+            'basic/DummyClassesController.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
 
             // views
-            'basic/resources/views/backend/create.blade.php' => 'resources/views/backend/dummyClass/create.blade.php',
-            'basic/resources/views/backend/edit.blade.php' => 'resources/views/backend/dummyClass/edit.blade.php',
-            'basic/resources/views/backend/index.blade.php' => 'resources/views/backend/dummyClass/index.blade.php',
-            'basic/resources/views/backend/show.blade.php' => 'resources/views/backend/dummyClass/show.blade.php',
+            'basic/resources/views/backend/create.stub' => 'resources/views/backend/dummyClass/create.blade.php',
+            'basic/resources/views/backend/edit.stub' => 'resources/views/backend/dummyClass/edit.blade.php',
+            'basic/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
+            'basic/resources/views/backend/show.stub' => 'resources/views/backend/dummyClass/show.blade.php',
         ];
     }
 
