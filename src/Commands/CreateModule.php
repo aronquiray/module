@@ -60,10 +60,10 @@ class CreateModule extends GeneratorCommand
             'basic/DummyClassesController.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
 
             // views
-            'basic/resources/views/backend/create.stub' => 'resources/views/backend/dummyClass/create.blade.php',
-            'basic/resources/views/backend/edit.stub' => 'resources/views/backend/dummyClass/edit.blade.php',
-            'basic/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
-            'basic/resources/views/backend/show.stub' => 'resources/views/backend/dummyClass/show.blade.php',
+            'basic/resources/views/backend/create.stub' => 'resources/views/backend/core/dummyClass/create.blade.php',
+            'basic/resources/views/backend/edit.stub' => 'resources/views/backend/core/dummyClass/edit.blade.php',
+            'basic/resources/views/backend/index.stub' => 'resources/views/backend/core/dummyClass/index.blade.php',
+            'basic/resources/views/backend/show.stub' => 'resources/views/backend/core/dummyClass/show.blade.php',
         ];
     }
 
