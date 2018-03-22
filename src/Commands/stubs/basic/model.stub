@@ -20,7 +20,7 @@ class DummyClass extends Model
     ];
 
 
-    public const moduleName         = 'dummyClass';
+    public const moduleName         = 'dummy class';
     public const viewBackendPath    = 'backend.core.dummyClass';
     public const viewFrontendPath   = 'frontend.core.dummyClass';
     public const routeAdminPath     = 'admin.dummy-class';
@@ -35,7 +35,7 @@ class DummyClass extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => 'name'
             ]
         ];
     }
@@ -53,7 +53,7 @@ class DummyClass extends Model
     public function baseable() : array
     {
         return [
-            'source' => 'title'
+            'source' => 'name'
         ];
     }
 
@@ -64,7 +64,7 @@ class DummyClass extends Model
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('title')
+            ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
 }

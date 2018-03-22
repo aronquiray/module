@@ -54,6 +54,7 @@ class CreateModule extends GeneratorCommand
 
     protected function basic()
     {
+        $migrationFileName = now()->format('Y_m_d_hms') . '_create_dummy_classes_table';
         // stub | direction path
         return [
             // controllers
@@ -71,6 +72,9 @@ class CreateModule extends GeneratorCommand
 
             // model
             'basic/model.stub' => 'app/Models/Core/DummyClass.php',
+
+            // migration
+            'basic/migration.stub' => "database/migrations/$migrationFileName.php",
         ];
     }
 
