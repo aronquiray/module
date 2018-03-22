@@ -24,8 +24,8 @@ class DummyClass extends Model
     public const moduleName         = 'dummyClass';
     public const viewBackendPath    = 'backend.core.dummyClass';
     public const viewFrontendPath   = 'frontend.core.dummyClass';
-    public const routeAdminPath     = 'admin.dummyClass';
-    public const routeFrontendPath  = 'frontend.dummyClass';
+    public const routeAdminPath     = 'admin.dummy-class';
+    public const routeFrontendPath  = 'frontend.dummy-class';
 
     /**
      * Return the sluggable configuration array for this model.
