@@ -1,16 +1,9 @@
 {
         "name": "halcyon-laravel/module",
         "description": "Module.",
-        "repositories": [{
-            "type": "vcs",
-             "url": "git@bitbucket.org:halcyonlaravel/base.git"
-        }],
         "require": {
-            "halcyon-laravel/base": "dev-develop"
         },
         "require-dev": {
-            "orchestra/testbench": "~3.3.0|~3.4.2|^3.5.0",
-            "phpunit/phpunit" : "^5.7|6.2|^7.0",
             "friendsofphp/php-cs-fixer": "^2.10"
         },
         "autoload": {
@@ -20,8 +13,6 @@
         },
         "autoload-dev": {
             "psr-4": {
-                "HalcyonLaravel\\Module\\Tests\\": "tests/",
-                "App\\": "tests/App/"
             }
         },
         "extra": {
@@ -32,13 +23,8 @@
             }
         },
         "scripts": { 
-            "phpunit": [
-                "./vendor/bin/phpunit --verbose > output.txt -d memory_limit=2048M"
-            ],
-            "test": "./vendor/bin/phpunit --verbose",
             "format": [
-                "./vendor/bin/php-cs-fixer fix src/ --show-progress=estimating",
-                "./vendor/bin/php-cs-fixer fix tests/ --show-progress=estimating"
+                "./vendor/bin/php-cs-fixer fix src/ --show-progress=estimating"
             ]
         }
     }

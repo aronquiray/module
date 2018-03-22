@@ -38,139 +38,85 @@ class CreateModule extends GeneratorCommand
      */
     protected function getStub()
     {
-        $stub = null;
-
-        if ($this->option('parent')) {
-            $stub = '/stubs/controller.nested.stub';
-        } elseif ($this->option('model')) {
-            $stub = '/stubs/controller.model.stub';
-        } elseif ($this->option('resource')) {
-            $stub = '/stubs/controller.stub';
-        }
-
-        if ($this->option('api') && is_null($stub)) {
-            $stub = '/stubs/controller.api.stub';
-        } elseif ($this->option('api') && ! is_null($stub)) {
-            $stub = str_replace('.stub', '.api.stub', $stub);
-        }
-
-        $stub = $stub ?? '/stubs/controller.plain.stub';
-
-        return __DIR__.$stub;
     }
 
     public function handle()
     {
+        $modules = null;
         $this->info('Module test');
+
+    
+        $modules = $modules ?: $this->basic();
+
+        $this->generate($modules);
+        $this->info('Module test done');
     }
 
-    /**
-     * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
-     * @return string
-     */
-    protected function getDefaultNamespace($rootNamespace)
+    protected function basic()
     {
-        return $rootNamespace.'\Http\Controllers';
-    }
-
-    /**
-     * Build the class with the given name.
-     *
-     * Remove the base controller import if we are already in base namespace.
-     *
-     * @param  string  $name
-     * @return string
-     */
-    protected function buildClass($name)
-    {
-        $controllerNamespace = $this->getNamespace($name);
-
-        $replace = [];
-
-        if ($this->option('parent')) {
-            $replace = $this->buildParentReplacements();
-        }
-
-        if ($this->option('model')) {
-            $replace = $this->buildModelReplacements($replace);
-        }
-
-        $replace["use {$controllerNamespace}\Controller;\n"] = '';
-
-        return str_replace(
-            array_keys($replace),
-            array_values($replace),
-            parent::buildClass($name)
-        );
-    }
-
-    /**
-     * Build the replacements for a parent controller.
-     *
-     * @return array
-     */
-    protected function buildParentReplacements()
-    {
-        $parentModelClass = $this->parseModel($this->option('parent'));
-
-        if (! class_exists($parentModelClass)) {
-            if ($this->confirm("A {$parentModelClass} model does not exist. Do you want to generate it?", true)) {
-                $this->call('make:model', ['name' => $parentModelClass]);
-            }
-        }
-
+        // stub | direction path
         return [
-            'ParentDummyFullModelClass' => $parentModelClass,
-            'ParentDummyModelClass' => class_basename($parentModelClass),
-            'ParentDummyModelVariable' => lcfirst(class_basename($parentModelClass)),
+            'basic/DummyClass.php' => 'app/Models/Core/DummyClass.php',
+            'basic/DummyClassesController.php' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
+
+            // views
+            'basic/resources/views/backend/create.blade.php' => 'resources/views/backend/dummyClass/create.blade.php',
+            'basic/resources/views/backend/edit.blade.php' => 'resources/views/backend/dummyClass/edit.blade.php',
+            'basic/resources/views/backend/index.blade.php' => 'resources/views/backend/dummyClass/index.blade.php',
+            'basic/resources/views/backend/show.blade.php' => 'resources/views/backend/dummyClass/show.blade.php',
         ];
     }
 
-    /**
-     * Build the model replacement values.
-     *
-     * @param  array  $replace
-     * @return array
-     */
-    protected function buildModelReplacements(array $replace)
+
+    protected function generate($modules)
     {
-        $modelClass = $this->parseModel($this->option('model'));
-
-        if (! class_exists($modelClass)) {
-            if ($this->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
-                $this->call('make:model', ['name' => $modelClass]);
-            }
+        foreach ($modules as $stub => $path) {
+            $stub = $this->files->get(__DIR__ . '/stubs/' . $stub);
+            $stub = $this->replaceName($stub, $this->getNameInput());
+            $path = $this->replaceName($path, $this->getNameInput());
+            
+            $this->makeDirectory($path);
+            $this->files->put($path, $stub);
         }
-
-        return array_merge($replace, [
-            'DummyFullModelClass' => $modelClass,
-            'DummyModelClass' => class_basename($modelClass),
-            'DummyModelVariable' => lcfirst(class_basename($modelClass)),
-        ]);
     }
 
     /**
-     * Get the fully-qualified model class name.
+     * Replace the name for the given stub.
      *
-     * @param  string  $model
+     * @param  string  $stub
+     * @param  string  $name
      * @return string
      */
-    protected function parseModel($model)
+    public function replaceName($stub, $name)
     {
-        if (preg_match('([^A-Za-z0-9_/\\\\])', $model)) {
-            throw new InvalidArgumentException('Model name contains invalid characters.');
-        }
+        // lloric code
+        // Small case
+        $stub = str_replace('dummy classes', str_replace('-', ' ', str_slug(str_plural($name))), $stub); // llorics | lloric codes
+        $stub = str_replace('dummy class', str_replace('-', ' ', str_slug($name)), $stub); // lloric | lloric code
 
-        $model = trim(str_replace('/', '\\', $model), '\\');
+        $stub = str_replace('dummyclasses', str_replace('-', '', str_slug(str_plural($name))), $stub); // llorics | lloriccodes
+        $stub = str_replace('dummyclass', str_replace('-', '', str_slug($name)), $stub); // lloric | lloriccode
 
-        if (! Str::startsWith($model, $rootNamespace = $this->laravel->getNamespace())) {
-            $model = $rootNamespace.$model;
-        }
+        $stub = str_replace('dummy_classes', snake_case(str_plural($name)), $stub); // llorics | lloric_codes
+        $stub = str_replace('dummy_class', snake_case($name), $stub); // lloric | lloric_code
 
-        return $model;
+        $stub = str_replace('dummy-classes', str_slug(str_plural($name)), $stub); // llorics | lloric-codes
+        $stub = str_replace('dummy-class', str_slug($name), $stub); // lloric | lloric-code
+
+        $stub = str_replace('dummy.classes', str_replace('-', '.', str_slug(str_plural($name))), $stub); // llorics | lloric.codes
+        $stub = str_replace('dummy.class', str_replace('-', '.', str_slug($name)), $stub); // lloric | lloric.code
+
+        $stub = str_replace('dummyClasses', camel_case(str_plural($name)), $stub); // llorics | lloricCodes
+        $stub = str_replace('dummyClass', camel_case($name), $stub); // lloric | lloricCode
+        // Big Cases
+        $stub = str_replace('Dummy Classes', ucwords(str_plural($name)), $stub); // Llorics | Lloric Codes
+        $stub = str_replace('Dummy Class', ucwords(str_replace('-', ' ', str_slug($name))), $stub); // Lloric | Lloric Code
+
+        $stub = str_replace('DummyClasses', ucfirst(studly_case(str_plural($name))), $stub); // Llorics | LloricCodes
+        $stub = str_replace('DummyClass', ucfirst(studly_case($name)), $stub); // Lloric | LloricCode
+        return $stub;
     }
+
 
     /**
      * Get the console command options.
