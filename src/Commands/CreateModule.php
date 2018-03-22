@@ -58,7 +58,7 @@ class CreateModule extends GeneratorCommand
         return [
             // controllers
             'basic/DummyClassesController.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
-            'basic/DummyClassesController.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesTableController.php',
+            'basic/DummyClassesTableController.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesTableController.php',
 
             // views
             'basic/resources/views/backend/create.stub' => 'resources/views/backend/core/dummyClass/create.blade.php',
