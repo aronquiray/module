@@ -53,7 +53,7 @@ class TestBasicBread extends TestCase
         ]);
 
         $dummy =  DummyClass::latest()->first();
-        // dd($response);
+       
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been created.')
