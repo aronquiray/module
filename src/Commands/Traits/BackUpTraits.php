@@ -33,6 +33,23 @@ trait BackUpTraits
         $this->_writeFile(array_merge((array) $oldData, $newData));
     }
 
+    public function udpateDeleteData($moduleName)
+    {
+        $oldData = $this->getBackupFile($moduleName);
+
+        $updatedData = [$this->getNameInput() => [
+                'status' => 'inactive',
+                'created_at' => $oldData->created_at,
+                'updated_at' => $oldData->updated_at,
+                'deleted_at' => now()->format('Y-m-d H:i:s'),
+                'types' => $oldData->types,
+                'datas' => $oldData->datas]
+        ];
+
+        $this->_writeFile(array_merge((array) $this->getBackupFile(), $updatedData));
+    }
+
+
     private function _writeFile(array $datas)
     {
         // $json = json_encode($datas, JSON_PRETTY_PRINT);

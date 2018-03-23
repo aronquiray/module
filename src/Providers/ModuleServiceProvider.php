@@ -5,6 +5,7 @@ namespace HalcyonLaravel\Module\Providers;
 use Illuminate\Support\ServiceProvider;
 use  HalcyonLaravel\Module\Commands\ModuleCreateCommand;
 use  HalcyonLaravel\Module\Commands\ModuleStatusCommand;
+use  HalcyonLaravel\Module\Commands\ModuleDeleteCommand;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,7 @@ class ModuleServiceProvider extends ServiceProvider
             $this->commands([
                 ModuleCreateCommand::class,
                 ModuleStatusCommand::class,
+                ModuleDeleteCommand::class,
             ]);
         }
     }
