@@ -35,8 +35,8 @@ trait BackUpTraits
 
     private function _writeFile(array $datas)
     {
-        $json = json_encode($datas, JSON_PRETTY_PRINT);
-        // $json = json_encode($datas);
+        // $json = json_encode($datas, JSON_PRETTY_PRINT);
+        $json = json_encode($datas);
         (new Filesystem)->put($this->_fileName, $json);
     }
 

@@ -76,6 +76,7 @@ class ModuleStatusCommand extends GeneratorCommand
     {
         $header = [
             'Module Name',
+            'Type',
             'Status',
             'File Count',
             'created at',
@@ -88,6 +89,7 @@ class ModuleStatusCommand extends GeneratorCommand
             $countFile = count($value->datas);
             $datas[]   = [
                 $module,
+                $value->types,
                 $value->status,
                 $countFile,
                 $value->created_at,
