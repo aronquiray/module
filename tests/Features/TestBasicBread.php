@@ -10,41 +10,11 @@ use HalcyonLaravel\Base\Events\BaseStoredEvent;
 use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
 use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
 use Route;
+use View;
 use App\Models\Core\DummyClass;
 
 class TestBasicBread extends TestCase
 {
-
-    // public function setUp()
-    // {
-    //     parent::setUp();
-    //     $this->artisan('module:make',[
-    //         'name' => 'dummy class'
-    //     ]);
-    //     Route::group([
-    //         'namespace' => 'App\Http\Controllers\Backend',
-    //         'prefix' => 'admin.',
-    //     ], function () {
-    //         include_once __DIR__ . '/../tmp/routes/backend/core/dummyClass.php';
-    //     });
-
-    //     include_once __DIR__ . '/../../src/Commands/stubs/basic/migration.stub';
-
-    //     shell_exec('composer dumpautoload -o');
-    //     (new \CreateDummyClassesTable)->up();
-    // }
-
-
-    // public function tearDown()
-    // {
-    //     parent::tearDown();
-    //     shell_exec('rm -rf tests/tmp//app');
-    //     shell_exec('rm -rf tests/tmp/resources');
-    //     shell_exec('rm -rf tests/tmp/routes');
-    //     shell_exec('rm -rf tests/tmp/database');
-    // }
-
-
     public function testStore()
     {
         $this->artisan('module:make', [
@@ -61,6 +31,7 @@ class TestBasicBread extends TestCase
 
         shell_exec('composer dumpautoload -o');
         (new \CreateDummyClassesTable)->up();
+        View::addLocation(__DIR__.'/../tmp/resources/views/');
 
 
         $this->actingAs($this->admin);
@@ -133,12 +104,23 @@ class TestBasicBread extends TestCase
 
         /**
          * ==================================================================================================================
+         * RESOURCES
          */
 
 
 
-
-
+        $this->json('GET', route('admin.dummy-class.index'))
+            ->assertStatus(200);
+ 
+        $this->json('GET', route('admin.dummy-class.create'))
+            ->assertStatus(200);
+ 
+        $this->json('GET', route('admin.dummy-class.show', $dummy))
+            ->assertStatus(200);
+  
+        $this->json('GET', route('admin.dummy-class.edit', $dummy))
+            ->assertStatus(200);
+ 
 
         /**
          * ==================================================================================================================
