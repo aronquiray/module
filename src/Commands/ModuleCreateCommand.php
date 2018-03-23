@@ -7,9 +7,11 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
+use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
 
-class CreateModule extends GeneratorCommand
+class ModuleCreateCommand extends GeneratorCommand
 {
+    use BackUpTraits;
     /**
          * The console command name.
          *
@@ -31,6 +33,8 @@ class CreateModule extends GeneratorCommand
      */
     protected $type = 'Module';
 
+
+    protected $options;
     /**
      * Get the stub file for the generator.
      *
@@ -38,18 +42,29 @@ class CreateModule extends GeneratorCommand
      */
     protected function getStub()
     {
+        $modules = null;
+
+        if ($this->option('softdelete')) {
+            $this->options[] = 'softdelete';
+        }
+    
+        return $modules ?: $this->basic();
     }
 
     public function handle()
     {
-        $modules = null;
-        $this->info('Module test');
+        $this->options = [];
+        $this->generatedFiles = [];
+        $this->line("<fg=yellow>Generating {$this->type} '" . $this->getNameInput() . '\' ...</>');
 
-    
-        $modules = $modules ?: $this->basic();
+        $this->generate($this->getStub());
 
-        $this->generate($modules);
-        $this->info('Module test done');
+
+        $this->line('<fg=yellow>Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
+        $this->generatingFile($this->options);
+        $this->line('<fg=green>Done Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
+
+        $this->info("Done Generating {$this->type} '" . $this->getNameInput() . '\'.');
     }
 
     protected function basic()
@@ -82,13 +97,37 @@ class CreateModule extends GeneratorCommand
     protected function generate($modules)
     {
         foreach ($modules as $stub => $path) {
-            $stub = $this->files->get(__DIR__ . '/stubs/' . $stub);
+            $this->line("<fg=yellow>Excecuting $stub ...</>");
+            
+            $stub = $this->files->get(__DIR__ .'/stubs/' . $stub);
             $stub = $this->replaceName($stub, $this->getNameInput());
             $path = $this->replaceName($path, $this->getNameInput());
+
+            $path = $this->getStubByEnvironment($path);
             
-            $this->makeDirectory($path);
+            if ($this->files->exists($path, $stub)) {
+                $this->error($this->type . ' already exists!');
+                exit();
+            }
+            
             $this->files->put($path, $stub);
+            $this->line('<fg=green>Generated:</> ' . $path);
         }
+    }
+
+    protected function getStubByEnvironment($path)
+    {
+        $dir = '';
+        
+        if (app()->environment() == 'testing') {
+            $dir = 'tests/tmp/';
+        } else {
+            $this->generatedFiles[] = $this->removeProjectDir($path);
+        }
+
+        $path = $dir . $path;
+        $this->makeDirectory($path);
+        return $path;
     }
 
     /**
