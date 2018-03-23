@@ -38,17 +38,18 @@ class CreateModule extends GeneratorCommand
      */
     protected function getStub()
     {
+        $modules = null;
+
+    
+        return $modules ?: $this->basic();
     }
 
     public function handle()
     {
-        $modules = null;
         $this->info('Module test');
+        
 
-    
-        $modules = $modules ?: $this->basic();
-
-        $this->generate($modules);
+        $this->generate($this->getStub());
         $this->info('Module test done');
     }
 
@@ -82,13 +83,25 @@ class CreateModule extends GeneratorCommand
     protected function generate($modules)
     {
         foreach ($modules as $stub => $path) {
-            $stub = $this->files->get(__DIR__ . '/stubs/' . $stub);
+            $stub = $this->files->get(__DIR__ .'/stubs/' . $stub);
             $stub = $this->replaceName($stub, $this->getNameInput());
             $path = $this->replaceName($path, $this->getNameInput());
             
-            $this->makeDirectory($path);
-            $this->files->put($path, $stub);
+            $this->files->put($this->getStubByEnvironment($path), $stub);
         }
+    }
+
+    protected function getStubByEnvironment($path)
+    {
+        $dir = '';
+        
+        if (app()->environment() == 'testing') {
+            $dir = 'tests/tmp/';
+        }
+
+        $path = $dir . $path;
+        $this->makeDirectory($path);
+        return $path;
     }
 
     /**
