@@ -130,5 +130,6 @@ class TestBasicBread extends TestCase
         shell_exec('rm -rf tests/tmp/resources');
         shell_exec('rm -rf tests/tmp/routes');
         shell_exec('rm -rf tests/tmp/database');
+        shell_exec('rm .module.cache');
     }
 }
