@@ -7,9 +7,11 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
+use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
 
 class CreateModule extends GeneratorCommand
 {
+    use BackUpTraits;
     /**
          * The console command name.
          *
@@ -31,6 +33,8 @@ class CreateModule extends GeneratorCommand
      */
     protected $type = 'Module';
 
+
+    protected $options;
     /**
      * Get the stub file for the generator.
      *
@@ -40,17 +44,27 @@ class CreateModule extends GeneratorCommand
     {
         $modules = null;
 
+        if ($this->option('softdelete')) {
+            $this->options[] = 'softdelete';
+        }
     
         return $modules ?: $this->basic();
     }
 
     public function handle()
     {
-        $this->info('Module test');
-        
+        $this->options = [];
+        $this->generatedFiles = [];
+        $this->line("<fg=yellow>Generating {$this->type} '" . $this->getNameInput() . '\' ...</>');
 
         $this->generate($this->getStub());
-        $this->info('Module test done');
+
+
+        $this->line('<fg=yellow>Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
+        $this->generatingFile($this->options);
+        $this->line('<fg=green>Done Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
+
+        $this->info("Done Generating {$this->type} '" . $this->getNameInput() . '\'.');
     }
 
     protected function basic()
@@ -83,11 +97,14 @@ class CreateModule extends GeneratorCommand
     protected function generate($modules)
     {
         foreach ($modules as $stub => $path) {
+            $this->line("<fg=yellow>Excecuting $stub ...</>");
+            
             $stub = $this->files->get(__DIR__ .'/stubs/' . $stub);
             $stub = $this->replaceName($stub, $this->getNameInput());
             $path = $this->replaceName($path, $this->getNameInput());
             
             $this->files->put($this->getStubByEnvironment($path), $stub);
+            $this->line('<fg=green>Generated:</> ' . $path);
         }
     }
 
@@ -97,6 +114,8 @@ class CreateModule extends GeneratorCommand
         
         if (app()->environment() == 'testing') {
             $dir = 'tests/tmp/';
+        } else {
+            $this->generatedFiles[] = $this->removeProjectDir($path);
         }
 
         $path = $dir . $path;
