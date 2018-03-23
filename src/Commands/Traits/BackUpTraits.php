@@ -15,15 +15,19 @@ trait BackUpTraits
 
     public function generatingFile($options = null)
     {
-        $oldData = $this->_getFile();
+        $oldData = $this->getBackupFile();
 
-        $newData = [$this->getNameInput() => [
+        $newData =
+        [
+            $this->getNameInput() =>
+            [
                 'status' => 'active',
                 'created_at' => now()->format('Y-m-d H:i:s'),
                 'updated_at' => now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
                 'types' => $options ?: 'basic',
-                'datas' => $this->generatedFiles]
+                'datas' => $this->generatedFiles
+            ]
         ];
 
         $this->_writeFile(array_merge((array) $oldData, $newData));
@@ -31,12 +35,12 @@ trait BackUpTraits
 
     private function _writeFile(array $datas)
     {
-        // $json = json_encode($datas, JSON_PRETTY_PRINT);
-        $json = json_encode($datas);
+        $json = json_encode($datas, JSON_PRETTY_PRINT);
+        // $json = json_encode($datas);
         (new Filesystem)->put($this->_fileName, $json);
     }
 
-    private function _getFile()
+    private function getBackupFile($moduleName = null)
     {
         if (!file_exists($this->_fileName)) {
             $this->_writeFile([]);
@@ -46,6 +50,14 @@ trait BackUpTraits
         try {
             $data = json_decode((new Filesystem)->get($this->_fileName));
         } catch (FileNotFoundException $exception) {
+        }
+
+        if (!is_null($moduleName)) {
+            if (isset($data->$moduleName)) {
+                return $data->$moduleName;
+            } else {
+                return null;
+            }
         }
         return $data;
     }

@@ -9,7 +9,7 @@ use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
 use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
 
-class CreateModule extends GeneratorCommand
+class ModuleCreateCommand extends GeneratorCommand
 {
     use BackUpTraits;
     /**
@@ -102,8 +102,15 @@ class CreateModule extends GeneratorCommand
             $stub = $this->files->get(__DIR__ .'/stubs/' . $stub);
             $stub = $this->replaceName($stub, $this->getNameInput());
             $path = $this->replaceName($path, $this->getNameInput());
+
+            $path = $this->getStubByEnvironment($path);
             
-            $this->files->put($this->getStubByEnvironment($path), $stub);
+            if ($this->files->exists($path, $stub)) {
+                $this->error($this->type . ' already exists!');
+                exit();
+            }
+            
+            $this->files->put($path, $stub);
             $this->line('<fg=green>Generated:</> ' . $path);
         }
     }

@@ -3,7 +3,8 @@
 namespace HalcyonLaravel\Module\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use  HalcyonLaravel\Module\Commands\CreateModule;
+use  HalcyonLaravel\Module\Commands\ModuleCreateCommand;
+use  HalcyonLaravel\Module\Commands\ModuleStatusCommand;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -11,7 +12,8 @@ class ModuleServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                CreateModule::class,
+                ModuleCreateCommand::class,
+                ModuleStatusCommand::class,
             ]);
         }
     }
