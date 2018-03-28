@@ -84,6 +84,7 @@ class ModuleCreateCommand extends GeneratorCommand
 
             // route
             'basic/backendRoute.stub' => 'routes/backend/core/dummyClass.php',
+            'basic/breadCrumbs.stub' => 'routes/breadcrumbs/backend/core/dummyClass.php',
 
             // model
             'basic/model.stub' => 'app/Models/Core/DummyClass.php',
