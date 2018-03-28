@@ -9,6 +9,3 @@
         </div>
     </div>
 </div>
-@push('after-scripts')
-    {!! script(mix('js/plugins/ckeditor/app.js')) !!}
-@endpush
