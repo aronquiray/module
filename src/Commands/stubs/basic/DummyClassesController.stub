@@ -68,7 +68,7 @@ class DummyClassesController extends Controller
     {
         $table = $this->model->getTable();
         return [
-            'title' => "required|max:255|unique:$table,name,{$model->id}",
+            'title' => "required|max:255|unique:$table,title,{$model->id}",
         ];
     }
 
