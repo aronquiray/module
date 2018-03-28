@@ -1,10 +1,6 @@
  <div class="col">
  	<hr />
  	<div class="form-group">
- 		<strong>Template : </strong> {{ ucfirst($model->template) }}
- 	</div>
- 	<div class="form-group">
-	 	<strong>Content : </strong>
-	 	<p>{!! $model->content !!}</p>
+ 		<strong>Title : </strong> {{ $model->title }}
  	</div>
 </div>
