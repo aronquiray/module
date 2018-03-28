@@ -15,6 +15,7 @@ class DummyClass extends Model
      */
     protected $fillable = [
         'title',
+        'slug',
     ];
 
 

@@ -14,7 +14,7 @@ use DataTables;
 class DummyClassesTableController extends Controller
 {
     /**
-     * @var BlockRepository
+     * @var BaseRepository
      */
     protected $repo;
 
@@ -33,7 +33,6 @@ class DummyClassesTableController extends Controller
      */
     public function __invoke(Request $request)
     {
-
         $user = auth()->user();
         return DataTables::of($this->repo->table())
             ->addColumn('name', function ($model) {
@@ -49,7 +48,7 @@ class DummyClassesTableController extends Controller
                 return $model->updated_at->format('d M, Y h:m A');
             })
             ->addColumn('actions', function ($model) {
-                return $model->actions('backend');
+                return $model->actions('backend', ['show', 'edit']);
             })
             ->make(true);
     }
