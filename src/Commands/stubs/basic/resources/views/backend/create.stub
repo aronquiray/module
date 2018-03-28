@@ -14,34 +14,8 @@
         @slot('link_submit', 'Submit')
         @slot('link_submit_edit', 'Submit & Edit')
 
-        @slot('custom')
-            @include('backend.includes.widgets.image', ['id' => 'dropzone'])
-            @include('backend.includes.widgets.tab-actions', [ 
-                'name' => 'More Info',
-                'links' => [
-                    [
-                        'name' => 'Meta',
-                        'template' => 'backend.core.meta.form',
-                        'args' => ['meta' => null]
-                    ]
-                ]
-            ])
-        @endslot
-
     @endcomponent
 @endsection
-
-@include('backend.includes.widgets.dropzone')
-
-@push('after-scripts')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#dummy-class-form').multipleImageDropzone({
-                dropzone: '#dropzone',
-            })
-        })
-    </script>
-@endpush
 
 
 
