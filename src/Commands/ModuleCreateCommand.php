@@ -106,7 +106,7 @@ class ModuleCreateCommand extends GeneratorCommand
     protected function generate($modules)
     {
         foreach ($modules as $stub => $path) {
-            $this->line("<fg=yellow>Excecuting $stub ...</>");
+            $this->line("<fg=yellow>Generating $stub ...</>");
             
             $stub = $this->files->get(__DIR__ .'/stubs/' . $stub);
             $stub = $this->replaceName($stub, $this->getNameInput());
