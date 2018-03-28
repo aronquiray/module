@@ -65,6 +65,8 @@ class ModuleCreateCommand extends GeneratorCommand
         $this->line('<fg=green>Done Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
 
         $this->info("Done Generating {$this->type} '" . $this->getNameInput() . '\'.');
+
+        shell_exec('composer clear-all');
     }
 
     protected function basic()
