@@ -98,6 +98,7 @@ class ModuleCreateCommand extends GeneratorCommand
             'basic/database/migration.stub' => "database/migrations/$migrationFileName.php",
             'basic/database/factory.stub' => "database/factories/core/DummyClassFactory.php",
             'basic/database/tableSeeder.stub' => "database/seeds/Modules/Core/DummyClassTableSeeder.php",
+            'basic/database/permissionSeeder.stub' => "database/seeds/Modules/Core/Permissions/DummyClassPermissionTableSeeder.php",
         ];
     }
 
