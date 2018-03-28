@@ -17,6 +17,13 @@ class TestBasicBread extends TestCase
 {
     public function testStore()
     {
+
+        shell_exec('rm -rf tests/tmp/app');
+        shell_exec('rm -rf tests/tmp/resources');
+        shell_exec('rm -rf tests/tmp/routes');
+        shell_exec('rm -rf tests/tmp/database');
+        shell_exec('rm .module.cache');
+        
         $this->artisan('module:make', [
             'name' => 'dummy class'
         ]);
