@@ -2,7 +2,7 @@
 
 Breadcrumbs::register('admin.dummy-class.index', function ($breadcrumbs) {
     $breadcrumbs->parent('admin.dashboard');
-    $breadcrumbs->push('dummy-class', route('admin.dummy-class.index'));
+    $breadcrumbs->push('Dummy Class', route('admin.dummy-class.index'));
 });
 
 Breadcrumbs::register('admin.dummy-class.create', function ($breadcrumbs) {
@@ -19,3 +19,4 @@ Breadcrumbs::register('admin.dummy-class.edit', function ($breadcrumbs, $model) 
     $breadcrumbs->parent('admin.dummy-class.show', $model);
     $breadcrumbs->push('Edit', route('admin.dummy-class.edit', $model));
 });
+
