@@ -38,6 +38,7 @@ class DummyClassPermissionTableSeeder extends Seeder
 
         $user->assignRole($role);
         
+        User::find(1)->assignRole($role);
         $this->enableForeignKeys();
     }
 
