@@ -81,6 +81,9 @@ class ModuleCreateCommand extends GeneratorCommand
             'basic/resources/views/backend/edit.stub' => 'resources/views/backend/core/dummyClass/edit.blade.php',
             'basic/resources/views/backend/index.stub' => 'resources/views/backend/core/dummyClass/index.blade.php',
             'basic/resources/views/backend/show.stub' => 'resources/views/backend/core/dummyClass/show.blade.php',
+            // views partials
+            'basic/resources/views/backend/partials/fields.stub' => 'resources/views/backend/core/dummyClass/partials/fields.blade.php',
+            'basic/resources/views/backend/partials/overview.stub' => 'resources/views/backend/core/dummyClass/partials/overview.blade.php',
 
             // route
             'basic/backend-route.stub' => 'routes/backend/core/dummy-class.php',

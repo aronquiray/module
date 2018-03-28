@@ -18,10 +18,8 @@ class CreateDummyClassesTable extends Migration
     {
         Schema::create('dummy_classes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title')->unique();
             $table->string('slug');
-            $table->string('name')->unique();
-            $table->string('content');
-            $table->text('description');
             $table->timestamps();
         });
     }
