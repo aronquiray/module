@@ -40,7 +40,7 @@ class DummyClassTest extends TestCase
             'title' => 'Salliess',
         ]);
 
-        $dummyClass =  Model::latest()->first();
+        $dummyClass =  Model::orderBy('id', 'desc')->first();
        
         $response
             ->assertStatus(302)
