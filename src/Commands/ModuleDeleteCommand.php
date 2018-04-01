@@ -52,6 +52,8 @@ class ModuleDeleteCommand extends GeneratorCommand
         $this->_deletingFiles($datas->datas);
 
         $this->line("" . '<bg=green>Module "' .  $this->getNameInput() . '" deleted successfully.</>');
+   
+        shell_exec('composer clear-all');
     }
 
     private function _checkFile()
