@@ -1,0 +1,51 @@
+<?php
+
+namespace Tests\Feature\Backend;
+
+use Tests\TestCase;
+use App\Models\Auth\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+
+use HalcyonLaravel\Base\Events\BaseStoringEvent;
+use HalcyonLaravel\Base\Events\BaseStoredEvent;
+
+/**
+ * Class DummyClassTest.
+ */
+class DummyClassTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function setUp()
+    {
+        parent::setUp();
+        \Artinsan::class('migrate:fresh');
+        \Artinsan::class('db:seed');
+    }
+
+    /** @test */
+    public function testStore()
+    {        
+        $this->expectsEvents(BaseStoringEvent::class);
+        $this->expectsEvents(BaseStoredEvent::class);
+
+        $response = $this->withHeaders([
+            'X-Header' => 'Value',
+        ])->json('POST', route('admin.dummy-class.store'), [
+            'title' => 'Salliess',
+        ]);
+
+        $dummy =  DummyClass::latest()->first();
+       
+        $response
+            ->assertStatus(302)
+            ->assertSessionHas('flash_success', 'Salliess has been created.')
+            ->assertRedirect(route('admin.dummy-class.show', $dummy));
+
+        $this->assertDatabaseHas((new DummyClass)->getTable(), [
+            'title' => 'Salliess',
+        ]);
+ 
+    }
+}

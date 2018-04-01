@@ -99,6 +99,9 @@ class ModuleCreateCommand extends GeneratorCommand
             'basic/database/factory.stub' => "database/factories/core/DummyClassFactory.php",
             'basic/database/tableSeeder.stub' => "database/seeds/Modules/Core/DummyClassTableSeeder.php",
             'basic/database/permissionSeeder.stub' => "database/seeds/Modules/Core/Permissions/DummyClassPermissionTableSeeder.php",
+
+            // tests
+            'basic/tests/test.stub' => 'tests/Feature/Module/DummyClassTest.php',
         ];
     }
 
