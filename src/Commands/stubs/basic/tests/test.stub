@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Backend;
+namespace Tests\Feature\Module\Backend;
 
 use Tests\TestCase;
 use App\Models\Auth\User;
@@ -20,8 +20,8 @@ class DummyClassTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        \Artinsan::class('migrate:fresh');
-        \Artinsan::class('db:seed');
+        \Artisan::class('migrate:fresh');
+        \Artisan::class('db:seed');
     }
 
     /** @test */
