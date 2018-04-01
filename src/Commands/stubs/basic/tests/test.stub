@@ -10,6 +10,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use HalcyonLaravel\Base\Events\BaseStoringEvent;
 use HalcyonLaravel\Base\Events\BaseStoredEvent;
 
+use App\Models\Core\DummyClass as Model;
+
 /**
  * Class DummyClassTest.
  */
@@ -20,8 +22,10 @@ class DummyClassTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        \Artisan::class('migrate:fresh');
-        \Artisan::class('db:seed');
+        \Artisan::call('migrate:rollback');
+        \Artisan::call('migrate');
+        \Artisan::call('db:seed');
+        $this->actingAs(User::find(1));
     }
 
     /** @test */
@@ -36,14 +40,14 @@ class DummyClassTest extends TestCase
             'title' => 'Salliess',
         ]);
 
-        $dummy =  DummyClass::latest()->first();
+        $dummyClass =  Model::latest()->first();
        
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been created.')
-            ->assertRedirect(route('admin.dummy-class.show', $dummy));
+            ->assertRedirect(route('admin.dummy-class.show', $dummyClass));
 
-        $this->assertDatabaseHas((new DummyClass)->getTable(), [
+        $this->assertDatabaseHas((new Model)->getTable(), [
             'title' => 'Salliess',
         ]);
  
