@@ -8,7 +8,7 @@
         @slot('url', route('admin.dummy-class.table'))
         @slot('form_data', json_encode([ 'trash' => true ]))
         @slot('table_name', 'dummy-class-table')
-        @slot('title', 'Dummy Class List')
+        @slot('title', 'Dummy Class Deleted List')
         @slot('secondary_title', 'Dummy Class Mangement')
         
         @slot('links')
