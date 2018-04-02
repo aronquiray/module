@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Module\Backend;
 
-use Tests\TestCase;
+use HalcyonLaravel\Module\AbstractClasses\BaseModuleTest as TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
@@ -12,10 +12,6 @@ use HalcyonLaravel\Base\Events\BaseStoredEvent;
 use App\Models\Core\DummyClass as Model;
 
 
-use Hash;
-use App\Models\Auth\Role;
-use App\Models\Auth\User;
-use Spatie\Permission\Models\Permission;
 /**
  * Class DummyClassTest.
  */
@@ -23,58 +19,10 @@ class DummyClassFeatureTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp()
-    {     
-        parent::setUp();
-
-        $adminRole = factory(Role::class)->create(['name' => config('access.users.admin_role')]);
-        $adminRole->givePermissionTo(factory(Permission::class)->create(['name' => 'view backend']));
-        $user = factory(User::class)->create();
-        $user->assignRole($adminRole);
-
-        $user = User::create([
-            'first_name'        => 'Dummy Class User',
-            'last_name'         => 'Manager',
-            'email'             => 'dummy-class@system.com',
-            'password'          => Hash::make('1234'),
-            'confirmation_code' => md5(uniqid(mt_rand(), true)),
-            'confirmed'         => true,
-        ]);
-
-        // Create Roles
-        $role = Role::create(['name' => 'dummy class manager']);
-        $role->givePermissionTo($this->_permissions());
-        $role->givePermissionTo('view backend');
-
-        $user->assignRole($role);
-        
-        User::find(1)->assignRole($role);
-    }
-
-    private function _permissions() :array
-    {
-        $prefix = 'dummy class ';
-        $return = [];
-
-        foreach([
-            'list',
-            'create',
-            'update',
-            'show',
-        ] as $p){
-            $return[] = $prefix . $p;
-
-            // Create Permissions
-            Permission::create(['name' => $prefix . $p]);
-        }
-
-        return $return;
-    }
-
     /** @test */
     public function testStore()
     {        
-        $this->actingAs(User::find(1));
+        $this->loginAsAdminModule('dummy class');
 
         $this->expectsEvents(BaseStoringEvent::class);
         $this->expectsEvents(BaseStoredEvent::class);
