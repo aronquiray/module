@@ -34,7 +34,7 @@ class TestBasicBread extends TestCase
         Route::group([
             'namespace' => 'App\Http\Controllers\Backend',
             'prefix' => 'admin',
-            'as' => 'admin.', 
+            'as' => 'admin.',
             'middleware' => 'admin'
         ], function () {
             include_once __DIR__ . '/../tmp/routes/backend/core/dummy-class.php';
@@ -67,7 +67,7 @@ class TestBasicBread extends TestCase
             'content' => 'description test',
             'description' => 'description',
         ]);
-dd($response);
+        dd($response);
         $dummy =  DummyClass::latest()->first();
        
         $response
