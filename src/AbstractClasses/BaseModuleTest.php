@@ -51,10 +51,10 @@ abstract class BaseModuleTest extends TestCase
                 'update',
                 'show',
             ] as $p){
-                $return[] = $prefix . $p;
+                $return[] = $prefix . ' ' . $p;
     
                 // Create Permissions
-                Permission::create(['name' => $prefix . $p]);
+                Permission::create(['name' => $prefix . ' ' . $p]);
             }
     
             return $return;
