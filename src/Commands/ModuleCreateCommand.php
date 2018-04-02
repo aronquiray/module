@@ -66,7 +66,9 @@ class ModuleCreateCommand extends GeneratorCommand
 
         $this->info("Done Generating {$this->type} '" . $this->getNameInput() . '\'.');
 
-        shell_exec('composer clear-all');
+        if (app()->environment() != 'testing') {
+            shell_exec('composer clear-all');
+        }
     }
 
     protected function basic()

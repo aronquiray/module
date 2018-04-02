@@ -67,7 +67,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         // 'password_expires' => \App\Http\Middleware\PasswordExpires::class,
-        // 'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'throttle' => \App\Http\Middleware\ThrottleRequests::class,
     ];

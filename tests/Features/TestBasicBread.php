@@ -21,23 +21,33 @@ class TestBasicBread extends TestCase
         shell_exec('rm -rf tests/tmp/resources');
         shell_exec('rm -rf tests/tmp/routes');
         shell_exec('rm -rf tests/tmp/database');
+        shell_exec('rm -rf tests/tmp/tests');
         shell_exec('rm .module.cache');
         
         $this->artisan('module:make', [
             'name' => 'dummy class'
         ]);
+        // Route::group([
+        //     'namespace' => 'App\Http\Controllers\Backend',
+        //     'prefix' => 'admin.',
+        // ], function () {
         Route::group([
             'namespace' => 'App\Http\Controllers\Backend',
-            'prefix' => 'admin.',
+            'prefix' => 'admin',
+            'as' => 'admin.', 
+            'middleware' => 'admin'
         ], function () {
-            include_once __DIR__ . '/../tmp/routes/backend/core/dummyClass.php';
+            include_once __DIR__ . '/../tmp/routes/backend/core/dummy-class.php';
         });
 
-        include_once __DIR__ . '/../../src/Commands/stubs/basic/migration.stub';
+        include_once __DIR__ . '/../../src/Commands/stubs/basic/database/migration.stub';
 
         shell_exec('composer dumpautoload -o');
         (new \CreateDummyClassesTable)->up();
         View::addLocation(__DIR__.'/../tmp/resources/views/');
+
+        $this->artisan('migrate');
+        $this->artisan('db:seed');
 
 
         $this->actingAs($this->admin);
@@ -57,7 +67,7 @@ class TestBasicBread extends TestCase
             'content' => 'description test',
             'description' => 'description',
         ]);
-
+dd($response);
         $dummy =  DummyClass::latest()->first();
        
         $response
@@ -136,6 +146,7 @@ class TestBasicBread extends TestCase
         shell_exec('rm -rf tests/tmp/resources');
         shell_exec('rm -rf tests/tmp/routes');
         shell_exec('rm -rf tests/tmp/database');
+        shell_exec('rm -rf tests/tmp/tests');
         shell_exec('rm .module.cache');
     }
 }
