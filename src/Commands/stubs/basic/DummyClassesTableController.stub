@@ -36,15 +36,6 @@ class DummyClassesTableController extends Controller
     {
         $user = auth()->user();
         return DataTables::of($this->repo->table())
-            ->addColumn('name', function ($model) {
-                return $model->name;
-            })
-            ->addColumn('content', function ($model) {
-                return $model->content;
-            })
-            ->addColumn('description', function ($model) {
-                return $model->description;
-            })
             ->editColumn('updated_at', function ($model) {
                 return $model->updated_at->format('d M, Y h:m A');
             })
