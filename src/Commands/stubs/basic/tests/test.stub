@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use HalcyonLaravel\Base\Events\BaseStoringEvent;
 use HalcyonLaravel\Base\Events\BaseStoredEvent;
+use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
+use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
 
 use App\Models\Core\DummyClass as Model;
 
@@ -15,14 +17,19 @@ use App\Models\Core\DummyClass as Model;
 /**
  * Class DummyClassTest.
  */
-class DummyClassFeatureTest extends TestCase
+class DummyClassBreadFeatureTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->loginAsAdminModule('dummy class');
+    }
 
     /** @test */
     public function testStore()
     {        
-        $this->loginAsAdminModule('dummy class');
 
         $this->expectsEvents(BaseStoringEvent::class);
         $this->expectsEvents(BaseStoredEvent::class);
@@ -44,5 +51,35 @@ class DummyClassFeatureTest extends TestCase
             'title' => 'Salliess',
         ]);
  
+    }
+
+    public function testUpdate()
+    {
+        DummyClass::create([
+            'name' => 'old Salliess',
+        ]);
+
+
+        $dummy =  DummyClass::latest()->first();
+
+
+        $dataNew = [
+            'name' => 'new Salliess',
+        ];
+
+
+        $this->expectsEvents(BaseUpdatingEvent::class);
+        $this->expectsEvents(BaseUpdatedEvent::class);
+
+        $response = $this->withHeaders([
+            'X-Header' => 'Value',
+        ])->json('PUT', route('admin.dummy-class.update', $dummy), $dataNew);
+       
+        $response
+            ->assertStatus(302)
+            ->assertSessionHas('flash_success', 'Salliess has been updated.')
+            ->assertRedirect(route('admin.dummy-class.show', $dummy));
+
+        $this->assertDatabaseHas((new DummyClass)->getTable(), $dataNew);
     }
 }

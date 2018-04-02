@@ -17,7 +17,6 @@ class TestBasicBread extends TestCase
 {
     public function testStore()
     {
-
         shell_exec('rm -rf tests/tmp/app');
         shell_exec('rm -rf tests/tmp/resources');
         shell_exec('rm -rf tests/tmp/routes');

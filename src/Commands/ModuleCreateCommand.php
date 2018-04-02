@@ -101,7 +101,7 @@ class ModuleCreateCommand extends GeneratorCommand
             'basic/database/permissionSeeder.stub' => "database/seeds/Modules/Core/Permissions/DummyClassPermissionTableSeeder.php",
 
             // tests
-            'basic/tests/test.stub' => 'tests/Feature/Module/Backend/DummyClassFeatureTest.php',
+            'basic/tests/test.stub' => 'tests/Feature/Module/Backend/DummyClassBreadFeatureTest.php',
         ];
     }
 
