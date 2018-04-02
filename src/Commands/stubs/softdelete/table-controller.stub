@@ -34,8 +34,15 @@ class DummyClassesTableController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $trashOnly = false;
+        if (isset($request->trash)) {
+            $trashOnly = (bool) $request->trash;
+        }
+
         $user = auth()->user();
-        return DataTables::of($this->repo->table())
+        return DataTables::of($this->repo->table([
+                    'trashOnly' => $trashOnly,
+            ]))
             ->editColumn('updated_at', function ($model) {
                 return $model->updated_at->format('d M, Y h:m A');
             })

@@ -20,3 +20,7 @@ Breadcrumbs::register('admin.dummy-class.edit', function ($breadcrumbs, $model) 
     $breadcrumbs->push('Edit', route('admin.dummy-class.edit', $model));
 });
 
+Breadcrumbs::register('admin.dummy-class.deleted', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.dummy-class.index');
+    $breadcrumbs->push('Deleted', route('admin.dummy-class.deleted'));
+});
