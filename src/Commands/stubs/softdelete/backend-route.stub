@@ -5,6 +5,6 @@ Route::group([
         'middleware' => 'admin'
 ], function () {
         Route::post('dummy-class/table', 'DummyClassesTableController')->name('dummy-class.table');
-        Route::get('dummy-class/deleted', 'Core\Page\PagesSoftDeleteController@deleted')->name('dummy-class.deleted');
+        Route::get('dummy-class/deleted', 'DummyClassesDeleteController@deleted')->name('dummy-class.deleted');
         Route::resource('dummy-class', 'DummyClassesController');
 });
