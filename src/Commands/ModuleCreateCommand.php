@@ -44,6 +44,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
         $modules = null;
 
         if ($this->option('softdelete')) {
+            $modules = $this->softdelete();
             $this->option = 'softdelete';
         }
     

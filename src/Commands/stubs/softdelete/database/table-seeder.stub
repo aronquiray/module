@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\Models\Core\DummyClass as Model;
+
+/**
+ * Class AuthTableSeeder.
+ */
+class DummyClassTableSeeder extends Seeder
+{
+
+    use DisableForeignKeys;
+    
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $this->disableForeignKeys();
+
+        factory(Model::class, 20)->create();
+
+        $this->enableForeignKeys();
+    }
+}
