@@ -47,7 +47,7 @@ abstract class BaseModuleTest extends TestCase
         foreach ([
                 'list',
                 'create',
-                'update',
+                'edit',
                 'show',
             ] as $p) {
             $return[] = $prefix . ' ' . $p;

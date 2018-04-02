@@ -2,13 +2,14 @@
 
 namespace App\Models\Core;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use HalcyonLaravel\Base\Models\Model;
 use Spatie\Sluggable\SlugOptions;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 
 class DummyClass extends Model
 {
-    use ModelDefaultTraits;
+    use SoftDeletes, ModelDefaultTraits;
 
     /**
      * Declared Fillables

@@ -50,7 +50,7 @@ class DummyClassPermissionTableSeeder extends Seeder
         foreach([
             'list',
             'create',
-            'update',
+            'edit',
             'show',
         ] as $p){
             $return[] = $prefix . $p;
