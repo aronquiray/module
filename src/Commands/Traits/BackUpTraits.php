@@ -13,7 +13,7 @@ trait BackUpTraits
 {
     private $_fileName = '.module.cache';
 
-    public function generatingFile($options = null)
+    public function generatingFile($option = null)
     {
         $oldData = $this->getBackupFile();
 
@@ -25,7 +25,7 @@ trait BackUpTraits
                 'created_at' => now()->format('Y-m-d H:i:s'),
                 'updated_at' => now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
-                'types' => $options ?: 'basic',
+                'types' => $option ?: 'basic',
                 'datas' => $this->generatedFiles
             ]
         ];

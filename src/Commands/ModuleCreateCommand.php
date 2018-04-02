@@ -33,7 +33,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
     protected $type = 'Module';
 
 
-    protected $options;
+    protected $option;
     /**
      * Get the stub file for the generator.
      *
@@ -44,7 +44,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
         $modules = null;
 
         if ($this->option('softdelete')) {
-            $this->options[] = 'softdelete';
+            $this->option = 'softdelete';
         }
     
         return $modules ?: $this->basic();
@@ -52,7 +52,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
 
     public function handle()
     {
-        $this->options = [];
+        $this->option = null;
         $this->generatedFiles = [];
         $this->line("<fg=yellow>Generating {$this->type} '" . $this->getNameInput() . '\' ...</>');
 
@@ -60,7 +60,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
 
 
         $this->line('<fg=yellow>Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
-        $this->generatingFile($this->options);
+        $this->generatingFile($this->option);
         $this->line('<fg=green>Done Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
 
         $this->info("Done Generating {$this->type} '" . $this->getNameInput() . '\'.');
@@ -153,7 +153,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
     protected function getOptions()
     {
         return [
-            ['softdelete', 'sd', InputOption::VALUE_OPTIONAL, 'With Softdeletes.'],
+            ['softdelete', null, InputOption::VALUE_NONE, 'With Softdeletes.'],
 
             // ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class.'],
 
