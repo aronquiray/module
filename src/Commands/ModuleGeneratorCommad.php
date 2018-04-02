@@ -15,6 +15,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             // controllers
             'softdelete/resource-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
             'softdelete/table-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesTableController.php',
+            'softdelete/deleted-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesDeleteController.php',
 
             // views
             'softdelete/resources/views/backend/create.stub' => 'resources/views/backend/core/dummyClass/create.blade.php',
