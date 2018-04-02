@@ -55,12 +55,12 @@ class DummyClassBreadFeatureTest extends TestCase
 
     public function testUpdate()
     {
-        DummyClass::create([
+        Model::create([
             'title' => 'old Salliess',
         ]);
 
 
-        $dummyClass =  DummyClass::latest()->first();
+        $dummyClass =  Model::latest()->first();
 
 
         $dataNew = [
@@ -75,11 +75,14 @@ class DummyClassBreadFeatureTest extends TestCase
             'X-Header' => 'Value',
         ])->json('PUT', route('admin.dummy-class.update', $dummyClass), $dataNew);
        
+        // get the updated data
+        $dummyClass = Model::find($dummyClass->id);
+
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'new Salliess has been updated.')
             ->assertRedirect(route('admin.dummy-class.show', $dummyClass));
 
-        $this->assertDatabaseHas((new DummyClass)->getTable(), $dataNew);
+        $this->assertDatabaseHas((new Model)->getTable(), $dataNew);
     }
 }
