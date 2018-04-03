@@ -24,7 +24,8 @@ class DummyClassesController extends Controller
         $this->middleware('permission:dummy class list', ['only' => ['index']]);
         $this->middleware('permission:dummy class show', ['only' => ['show']]);
         $this->middleware('permission:dummy class create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:dummy class update', ['only' => ['update', 'edit']]);
+        $this->middleware('permission:dummy class edit', ['only' => ['update', 'edit']]);
+        $this->middleware('permission:dummy class destroy', ['only' => ['destroy']]);
     }
 
     /**

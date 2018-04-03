@@ -1,0 +1,36 @@
+<?php
+
+
+namespace App\Http\Controllers\Backend\Core\DummyClass;
+
+use Illuminate\Http\Request;
+use HalcyonLaravel\Base\Controllers\Backend\DeletedController as Controller;
+use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
+use App\Models\Core\DummyClass as Model;
+
+/**
+ * Class DummyClassesDeleteController.
+ */
+class DummyClassesDeletedController extends Controller
+{
+    /**
+     * DummyClassesDeleteController Constructor
+     */
+    public function __construct(Model $model)
+    {
+        $this->model = $model;
+        $this->repo = new Repository($model);
+        $this->route_path = Model::routeAdminPath;
+        $this->view_path = Model::viewBackendPath;
+    }
+
+    /**
+     * Specify Model class name.
+     *
+     * @return mixed
+     */
+    public function model()
+    {
+        return Model::class;
+    }
+}
