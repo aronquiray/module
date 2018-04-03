@@ -53,8 +53,17 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
         // replace stubs that has softdelete and history
         // unset
-        unset($stubs['softdelete/resource-controller.stub']);
+        unset($stubs['softdelete/resource-controller.stub'], $stubs['softdelete/backend-route.stub']) ;
         $stubs['basic-softdelete-history/resource-controller.stub'] =  'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php';
+        $stubs['basic-softdelete-history/backend-route.stub'] = 'routes/backend/core/dummy-class.php';
+
+        /** 
+         * addtional
+         */
+        // controller
+        $stubs['basic-softdelete-history/history-controller.stub'] =  'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesHistoryController.php';
+        // view
+        $stubs['basic-softdelete-history/history.stub'] =  'resources/views/backend/core/dummyClass/history.blade.php';
 
         return $stubs;
     }
