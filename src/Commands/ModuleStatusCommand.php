@@ -89,7 +89,7 @@ class ModuleStatusCommand extends GeneratorCommand
             $countFile = count($value->datas);
             $datas[]   = [
                 $module,
-                $value->types,
+                implode(',', $value->types),
                 $value->status,
                 $countFile,
                 $value->created_at,
