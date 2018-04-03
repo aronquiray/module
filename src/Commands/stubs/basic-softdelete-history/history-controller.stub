@@ -8,6 +8,8 @@ use App\Models\Core\DummyClass as Model;
 class DummyClassesHistoryController extends Controller
 {
     public function __invoke(){
-        return view(Model::viewBackendPath . '.history');
+        return view(Model::viewBackendPath . '.history')->with([
+            'classModel'=> Model::class
+        ]);
     }
 }

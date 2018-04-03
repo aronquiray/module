@@ -56,11 +56,13 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         unset(
             $stubs['softdelete/resource-controller.stub'], 
             $stubs['softdelete/backend-route.stub'], 
-            $stubs['softdelete/resources/views/backend/partials/links.stub']
+            $stubs['softdelete/resources/views/backend/partials/links.stub'],
+            $stubs['softdelete/bread-crumbs.stub']
         );
         $stubs['basic-softdelete-history/resource-controller.stub'] =  'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php';
         $stubs['basic-softdelete-history/backend-route.stub'] = 'routes/backend/core/dummy-class.php';
         $stubs['basic-softdelete-history/links.stub'] = 'resources/views/backend/core/dummyClass/partials/links.blade.php';
+        $stubs['basic-softdelete-history/bread-crumbs.stub'] = 'routes/breadcrumbs/backend/core/dummy-class.php';
 
         /** 
          * addtional
