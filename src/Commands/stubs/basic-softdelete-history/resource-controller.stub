@@ -18,6 +18,7 @@ use HalcyonLaravel\Base\Events\BaseRestoredEvent;
 use HalcyonLaravel\Base\Events\BasePurgingEvent;
 use HalcyonLaravel\Base\Events\BasePurgedEvent;
 
+use History;
 /**
  * Class DummyClassesController.
  */
