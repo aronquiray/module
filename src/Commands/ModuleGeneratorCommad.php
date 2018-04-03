@@ -26,6 +26,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             // views partials
             'softdelete/resources/views/backend/partials/fields.stub' => 'resources/views/backend/core/dummyClass/partials/fields.blade.php',
             'softdelete/resources/views/backend/partials/overview.stub' => 'resources/views/backend/core/dummyClass/partials/overview.blade.php',
+            'softdelete/resources/views/backend/partials/links.stub' => 'resources/views/backend/core/dummyClass/partials/links.blade.php',
 
             // route
             'softdelete/backend-route.stub' => 'routes/backend/core/dummy-class.php',
