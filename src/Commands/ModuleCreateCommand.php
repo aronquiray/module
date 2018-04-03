@@ -33,7 +33,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
     protected $type = 'Module';
 
 
-    protected $option;
+    protected $options;
     /**
      * Get the stub file for the generator.
      *
@@ -41,19 +41,22 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
      */
     protected function getStub()
     {
-        $modules = null;
+        $stubs = null;
 
-        if ($this->option('softdelete')) {
-            $modules = $this->softdelete();
-            $this->option = 'softdelete';
-        }
-    
-        return $modules ?: $this->basic();
+        if ($this->option('softdelete') && $this->option('history')) {
+            $this->options[] = 'softdelete';
+            $this->options[] = 'history';
+            $stubs =   $this->basic_softdelete_history();
+        } elseif ($this->option('softdelete')) {
+            $this->options[] = 'softdelete';
+            $stubs = $this->softdelete();
+        }            
+        return $stubs ?: $this->basic();
     }
 
     public function handle()
     {
-        $this->option = null;
+        $this->options = null;
         $this->generatedFiles = [];
         $this->line("<fg=yellow>Generating {$this->type} '" . $this->getNameInput() . '\' ...</>');
 
@@ -61,7 +64,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
 
 
         $this->line('<fg=yellow>Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
-        $this->generatingFile($this->option);
+        $this->generatingFile($this->options);
         $this->line('<fg=green>Done Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
 
         $this->info("Done Generating {$this->type} '" . $this->getNameInput() . '\'.');
@@ -155,12 +158,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
     {
         return [
             ['softdelete', null, InputOption::VALUE_NONE, 'With Softdeletes.'],
-
-            // ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class.'],
-
-            // ['parent', 'p', InputOption::VALUE_OPTIONAL, 'Generate a nested resource controller class.'],
-
-            // ['api', null, InputOption::VALUE_NONE, 'Exclude the create and edit methods from the controller.'],
+            ['history', null, InputOption::VALUE_NONE, 'With History.'],
         ];
     }
 }

@@ -46,6 +46,19 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         ];
     }
 
+    protected function basic_softdelete_history()
+    {
+        // get the softdelete
+        $stubs = $this->softdelete();
+
+        // replace stubs that has softdelete and history
+        // unset
+        unset($stubs['softdelete/resource-controller.stub']);
+        $stubs['basic-softdelete-history/resource-controller.stub'] =  'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php';
+
+        return $stubs;
+    }
+
     protected function basic()
     {
         $migrationFileName = now()->format('Y_m_d_hms') . '_create_dummy_classes_table';
