@@ -1,10 +1,21 @@
 <?php
 
 Route::group([
-        'namespace' => 'Core\DummyClass',
-        'middleware' => 'admin'
+    'namespace' => 'Core\DummyClass',
+    'middleware' => 'admin'
 ], function () {
-        Route::post('dummy-class/table', 'DummyClassesTableController')->name('dummy-class.table');
-        Route::get('dummy-class/deleted', 'DummyClassesDeleteController@deleted')->name('dummy-class.deleted');
-        Route::resource('dummy-class', 'DummyClassesController');
+
+    Route::group([
+        'prefix' => 'dummy-class',
+        'as' => 'dummy-class.',
+    ], function () {
+
+        Route::get('deleted', 'DummyClassesDeletedController@deleted')->name('deleted');
+        Route::delete('{deletedDummyClass}/delete', 'DummyClassesDeletedController@purge')->name('purge');
+        Route::patch('{deletedDummyClass}restore', 'DummyClassesDeletedController@restore')->name('restore');
+        Route::post('table', 'DummyClassesTableController')->name('table');
+
+    });
+
+    Route::resource('dummy-class', 'DummyClassesController');
 });

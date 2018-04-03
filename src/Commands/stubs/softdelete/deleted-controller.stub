@@ -11,7 +11,7 @@ use App\Models\Core\DummyClass as Model;
 /**
  * Class DummyClassesDeleteController.
  */
-class DummyClassesDeleteController extends Controller
+class DummyClassesDeletedController extends Controller
 {
     /**
      * DummyClassesDeleteController Constructor
