@@ -47,6 +47,9 @@ class DummyClassesTableController extends Controller
                 return $model->updated_at->format('d M, Y h:m A');
             })
             ->addColumn('actions', function ($model) {
+                if($model->trashed()){
+                    return $model->actions('backend', ['restore', 'purge']);
+                }
                 return $model->actions('backend', ['show', 'edit', 'destroy']);
             })
             ->make(true);
