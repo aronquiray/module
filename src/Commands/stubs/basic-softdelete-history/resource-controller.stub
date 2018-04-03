@@ -13,10 +13,6 @@ use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
 use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
 use HalcyonLaravel\Base\Events\BaseDeletingEvent;
 use HalcyonLaravel\Base\Events\BaseDeletedEvent;
-use HalcyonLaravel\Base\Events\BaseRestoringEvent;
-use HalcyonLaravel\Base\Events\BaseRestoredEvent;
-use HalcyonLaravel\Base\Events\BasePurgingEvent;
-use HalcyonLaravel\Base\Events\BasePurgedEvent;
 
 use History;
 /**
@@ -101,8 +97,6 @@ class DummyClassesController extends Controller
         'storing', 'stored',
         'updating', 'updated',
         'deleting', 'deleted',
-        'restoring', 'restored',
-        'purging', 'purged',
      *
      * add custome logic on functions
      *
@@ -146,31 +140,7 @@ class DummyClassesController extends Controller
         // };
         $this->repo->deleted = function ($model) {
             event(new BaseDeletedEvent);
-            History::created($model);
-            // dd($model);
-            return $model;
-        };
-        // $this->repo->restoring = function ($model)
-        // {
-        //     event(new BaseRestoringEvent);
-        //     // dd($model);
-        //     return $model;
-        // };
-        $this->repo->restored = function ($model) {
-            event(new BaseRestoredEvent);
-            History::created($model);
-            // dd($model);
-            return $model;
-        };
-        // $this->repo->purging = function ($model)
-        // {
-        //     event(new BasePurgingEvent);
-        //     // dd($model);
-        //     return $model;
-        // };
-        $this->repo->purged = function ($model) {
-            event(new BasePurgedEvent);
-            History::created($model);
+            History::deleted($model);
             // dd($model);
             return $model;
         };
