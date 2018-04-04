@@ -18,15 +18,15 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',
 
             // views
-            'softdelete/resources/views/backend/create.stub' => 'resources/views/backend/core/dummyClass/create.blade.php',
-            'softdelete/resources/views/backend/edit.stub' => 'resources/views/backend/core/dummyClass/edit.blade.php',
-            'softdelete/resources/views/backend/index.stub' => 'resources/views/backend/core/dummyClass/index.blade.php',
-            'softdelete/resources/views/backend/show.stub' => 'resources/views/backend/core/dummyClass/show.blade.php',
-            'softdelete/resources/views/backend/deleted.stub' => 'resources/views/backend/core/dummyClass/deleted.blade.php',
+            'softdelete/resources/views/backend/create.stub' => 'resources/views/backend/dummyClass/create.blade.php',
+            'softdelete/resources/views/backend/edit.stub' => 'resources/views/backend/dummyClass/edit.blade.php',
+            'softdelete/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
+            'softdelete/resources/views/backend/show.stub' => 'resources/views/backend/dummyClass/show.blade.php',
+            'softdelete/resources/views/backend/deleted.stub' => 'resources/views/backend/dummyClass/deleted.blade.php',
             // views partials
-            'softdelete/resources/views/backend/partials/fields.stub' => 'resources/views/backend/core/dummyClass/partials/fields.blade.php',
-            'softdelete/resources/views/backend/partials/overview.stub' => 'resources/views/backend/core/dummyClass/partials/overview.blade.php',
-            'softdelete/resources/views/backend/partials/links.stub' => 'resources/views/backend/core/dummyClass/partials/links.blade.php',
+            'softdelete/resources/views/backend/partials/fields.stub' => 'resources/views/backend/dummyClass/partials/fields.blade.php',
+            'softdelete/resources/views/backend/partials/overview.stub' => 'resources/views/backend/dummyClass/partials/overview.blade.php',
+            'softdelete/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
 
             // route
             'softdelete/routes/backend.stub' => 'routes/backend/core/dummy-class.php',
@@ -54,25 +54,25 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         // replace stubs that has softdelete and history
         // unset
         unset(
-            $stubs['softdelete/resource-controller.stub'], 
-            $stubs['softdelete/backend-route.stub'], 
+            $stubs['softdelete/resource-controller.stub'],
+            $stubs['softdelete/backend-route.stub'],
             $stubs['softdelete/resources/views/backend/partials/links.stub'],
             $stubs['softdelete/bread-crumbs.stub'],
             $stubs['softdelete/deleted-controller.stub']
         );
         $stubs['basic-softdelete-history/controllers/resource.stub'] =  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php';
         $stubs['basic-softdelete-history/routes/backend.stub'] = 'routes/backend/core/dummy-class.php';
-        $stubs['basic-softdelete-history/resources/views/backend/partials/links.stub'] = 'resources/views/backend/core/dummyClass/partials/links.blade.php';
+        $stubs['basic-softdelete-history/resources/views/backend/partials/links.stub'] = 'resources/views/backend/dummyClass/partials/links.blade.php';
         $stubs['basic-softdelete-history/routes/bread-crumbs.stub'] = 'routes/breadcrumbs/backend/core/dummy-class.php';
         $stubs['basic-softdelete-history/controllers/deleted.stub'] = 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php';
 
-        /** 
+        /**
          * addtional
          */
         // controller
         $stubs['basic-softdelete-history/controllers/history.stub'] =  'app/Http/Controllers/Backend/DummyClass/DummyClassesHistoryController.php';
         // view
-        $stubs['basic-softdelete-history/resources/views/backend/history.stub'] =  'resources/views/backend/core/dummyClass/history.blade.php';
+        $stubs['basic-softdelete-history/resources/views/backend/history.stub'] =  'resources/views/backend/dummyClass/history.blade.php';
 
         return $stubs;
     }
@@ -87,13 +87,13 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/controllers/table.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesTableController.php',
 
             // views
-            'basic/resources/views/backend/create.stub' => 'resources/views/backend/core/dummyClass/create.blade.php',
-            'basic/resources/views/backend/edit.stub' => 'resources/views/backend/core/dummyClass/edit.blade.php',
-            'basic/resources/views/backend/index.stub' => 'resources/views/backend/core/dummyClass/index.blade.php',
-            'basic/resources/views/backend/show.stub' => 'resources/views/backend/core/dummyClass/show.blade.php',
+            'basic/resources/views/backend/create.stub' => 'resources/views/backend/dummyClass/create.blade.php',
+            'basic/resources/views/backend/edit.stub' => 'resources/views/backend/dummyClass/edit.blade.php',
+            'basic/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
+            'basic/resources/views/backend/show.stub' => 'resources/views/backend/dummyClass/show.blade.php',
             // views partials
-            'basic/resources/views/backend/partials/fields.stub' => 'resources/views/backend/core/dummyClass/partials/fields.blade.php',
-            'basic/resources/views/backend/partials/overview.stub' => 'resources/views/backend/core/dummyClass/partials/overview.blade.php',
+            'basic/resources/views/backend/partials/fields.stub' => 'resources/views/backend/dummyClass/partials/fields.blade.php',
+            'basic/resources/views/backend/partials/overview.stub' => 'resources/views/backend/dummyClass/partials/overview.blade.php',
 
             // route
             'basic/routes/backend.stub' => 'routes/backend/core/dummy-class.php',

@@ -21,8 +21,8 @@ class DummyClass extends BaseModel
 
 
     public const moduleName         = 'dummy class';
-    public const viewBackendPath    = 'backend.core.dummyClass';
-    public const viewFrontendPath   = 'frontend.core.dummyClass';
+    public const viewBackendPath    = 'backend.dummyClass';
+    public const viewFrontendPath   = 'frontend.dummyClass';
     public const routeAdminPath     = 'admin.dummy-class';
     public const routeFrontendPath  = 'frontend.dummy-class';
 

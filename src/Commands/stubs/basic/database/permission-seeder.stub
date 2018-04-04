@@ -52,6 +52,7 @@ class DummyClassPermissionTableSeeder extends Seeder
             'create',
             'edit',
             'show',
+            'destroy',
         ] as $p){
             $return[] = $prefix . $p;
 
