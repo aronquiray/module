@@ -11,7 +11,7 @@ use HalcyonLaravel\Base\Events\BaseStoredEvent;
 use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
 use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
 
-use App\Models\Core\DummyClass as Model;
+use App\Models\DummyClass as Model;
 
 
 /**

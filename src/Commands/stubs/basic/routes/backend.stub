@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-        'namespace' => 'Core\DummyClass',
+        'namespace' => 'DummyClass',
         'middleware' => 'admin'
 ], function () {
         Route::post('dummy-class/table', 'DummyClassesTableController')->name('dummy-class.table');

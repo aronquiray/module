@@ -13,9 +13,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         // stub | direction path
         return [
             // controllers
-            'softdelete/resource-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
-            'softdelete/table-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesTableController.php',
-            'softdelete/deleted-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesDeletedController.php',
+            'softdelete/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
+            'softdelete/controllers/table.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesTableController.php',
+            'softdelete/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',
 
             // views
             'softdelete/resources/views/backend/create.stub' => 'resources/views/backend/core/dummyClass/create.blade.php',
@@ -29,17 +29,17 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/resources/views/backend/partials/links.stub' => 'resources/views/backend/core/dummyClass/partials/links.blade.php',
 
             // route
-            'softdelete/backend-route.stub' => 'routes/backend/core/dummy-class.php',
-            'softdelete/bread-crumbs.stub' => 'routes/breadcrumbs/backend/core/dummy-class.php',
+            'softdelete/routes/backend.stub' => 'routes/backend/core/dummy-class.php',
+            'softdelete/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/core/dummy-class.php',
 
             // model
-            'softdelete/model.stub' => 'app/Models/Core/DummyClass.php',
+            'softdelete/model.stub' => 'app/Models/DummyClass.php',
 
             // database
             'softdelete/database/migration.stub' => "database/migrations/$migrationFileName.php",
             'softdelete/database/factory.stub' => "database/factories/core/DummyClassFactory.php",
-            'softdelete/database/table-seeder.stub' => "database/seeds/Modules/Core/DummyClassTableSeeder.php",
-            'softdelete/database/permission-seeder.stub' => "database/seeds/Modules/Core/Permissions/DummyClassPermissionTableSeeder.php",
+            'softdelete/database/table-seeder.stub' => "database/seeds/Modules/DummyClassTableSeeder.php",
+            'softdelete/database/permission-seeder.stub' => "database/seeds/Modules/Permissions/DummyClassPermissionTableSeeder.php",
 
             // tests
             'softdelete/tests/test.stub' => 'tests/Feature/Module/Backend/DummyClassBreadFeatureTest.php',
@@ -60,19 +60,19 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             $stubs['softdelete/bread-crumbs.stub'],
             $stubs['softdelete/deleted-controller.stub']
         );
-        $stubs['basic-softdelete-history/resource-controller.stub'] =  'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php';
-        $stubs['basic-softdelete-history/backend-route.stub'] = 'routes/backend/core/dummy-class.php';
-        $stubs['basic-softdelete-history/links.stub'] = 'resources/views/backend/core/dummyClass/partials/links.blade.php';
-        $stubs['basic-softdelete-history/bread-crumbs.stub'] = 'routes/breadcrumbs/backend/core/dummy-class.php';
-        $stubs['basic-softdelete-history/deleted-controller.stub'] = 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesDeletedController.php';
+        $stubs['basic-softdelete-history/controllers/resource.stub'] =  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php';
+        $stubs['basic-softdelete-history/routes/backend.stub'] = 'routes/backend/core/dummy-class.php';
+        $stubs['basic-softdelete-history/resources/views/backend/partials/links.stub'] = 'resources/views/backend/core/dummyClass/partials/links.blade.php';
+        $stubs['basic-softdelete-history/routes/bread-crumbs.stub'] = 'routes/breadcrumbs/backend/core/dummy-class.php';
+        $stubs['basic-softdelete-history/controllers/deleted.stub'] = 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php';
 
         /** 
          * addtional
          */
         // controller
-        $stubs['basic-softdelete-history/history-controller.stub'] =  'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesHistoryController.php';
+        $stubs['basic-softdelete-history/controllers/history.stub'] =  'app/Http/Controllers/Backend/DummyClass/DummyClassesHistoryController.php';
         // view
-        $stubs['basic-softdelete-history/history.stub'] =  'resources/views/backend/core/dummyClass/history.blade.php';
+        $stubs['basic-softdelete-history/resources/views/backend/history.stub'] =  'resources/views/backend/core/dummyClass/history.blade.php';
 
         return $stubs;
     }
@@ -83,8 +83,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         // stub | direction path
         return [
             // controllers
-            'basic/resource-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
-            'basic/table-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesTableController.php',
+            'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
+            'basic/controllers/table.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesTableController.php',
 
             // views
             'basic/resources/views/backend/create.stub' => 'resources/views/backend/core/dummyClass/create.blade.php',
@@ -96,17 +96,17 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/resources/views/backend/partials/overview.stub' => 'resources/views/backend/core/dummyClass/partials/overview.blade.php',
 
             // route
-            'basic/backend-route.stub' => 'routes/backend/core/dummy-class.php',
-            'basic/bread-crumbs.stub' => 'routes/breadcrumbs/backend/core/dummy-class.php',
+            'basic/routes/backend.stub' => 'routes/backend/core/dummy-class.php',
+            'basic/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/core/dummy-class.php',
 
             // model
-            'basic/model.stub' => 'app/Models/Core/DummyClass.php',
+            'basic/model.stub' => 'app/Models/DummyClass.php',
 
             // database
             'basic/database/migration.stub' => "database/migrations/$migrationFileName.php",
             'basic/database/factory.stub' => "database/factories/core/DummyClassFactory.php",
-            'basic/database/table-seeder.stub' => "database/seeds/Modules/Core/DummyClassTableSeeder.php",
-            'basic/database/permission-seeder.stub' => "database/seeds/Modules/Core/Permissions/DummyClassPermissionTableSeeder.php",
+            'basic/database/table-seeder.stub' => "database/seeds/Modules/DummyClassTableSeeder.php",
+            'basic/database/permission-seeder.stub' => "database/seeds/Modules/Permissions/DummyClassPermissionTableSeeder.php",
 
             // tests
             'basic/tests/test.stub' => 'tests/Feature/Module/Backend/DummyClassBreadFeatureTest.php',
