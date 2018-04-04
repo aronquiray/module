@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use HalcyonLaravel\Base\Models\Model;
+use HalcyonLaravel\Base\Models\Model as BaseModel;
 use Spatie\Sluggable\SlugOptions;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 
-class DummyClass extends Model
+class DummyClass extends BaseModel
 {
     use ModelDefaultTraits;
 
