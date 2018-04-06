@@ -1,5 +1,5 @@
 <?php
 
 Route::get('/{dummy_class}', function($dummy_class){
-       dd('test frontend view, $dummy_class);
+       dd('test frontend view', $dummy_class);
 })->name('dummy-class.show');
