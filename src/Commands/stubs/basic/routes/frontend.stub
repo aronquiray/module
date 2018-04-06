@@ -1,5 +1,10 @@
 <?php
 
-Route::get('/{dummy_class}', function($dummy_class){
-       dd('test frontend view', $dummy_class);
-})->name('dummy-class.show');
+Route::group([
+	'prefix' => 'dummy-class',
+	'as' => 'dummy-class.',
+],function(){
+	Route::get('{dummy_class}', function(App\Models\DummyClass $dummy_class){
+		dd('test frontend view', $dummy_class);
+	})->name('.show');
+});
