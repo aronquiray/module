@@ -5,6 +5,8 @@ Route::group([
 	'as' => 'dummy-class.',
 ],function(){
 	Route::get('{dummy_class}', function(App\Models\DummyClass $dummy_class){
-		dd('test frontend view', $dummy_class);
+		echo '<b>test frontend view here on route file</b>';
+		echo '<pre>';
+		print_r($dummy_class);
 	})->name('show');
 });

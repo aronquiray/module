@@ -46,6 +46,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             // tests
             'basic/tests/backend.stub',
             'basic/tests/frontend.stub',
+            // routes
+            'basic/routes/frontend.stub',
             // database
             'basic/database/factory.stub',
             'basic/database/table-seeder.stub',
