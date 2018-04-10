@@ -110,7 +110,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/database/permission-seeder.stub' => "database/seeds/Modules/Permissions/DummyClassPermissionTableSeeder.php",
 
             // tests
-            'basic/tests/test.stub' => 'tests/Feature/Module/Backend/DummyClassBreadFeatureTest.php',
+            'basic/tests/test.stub' => 'tests/Feature/Modules/Backend/DummyClassBreadFeatureTest.php',
         ];
     }
 }
