@@ -28,7 +28,28 @@ class DummyClassBreadFeatureBackendTest extends TestCase
         (new \DummyClassTableSeeder)->run();
     }
 
-    /** @test */
+    public function testDummyClassCreateRouteExist()
+    {
+        $this->get(route('admin.dummy-class.create'))
+            ->assertStatus(200);
+    }
+
+    public function testDummyClassShowRouteExist()
+    {
+        $model = Model::first();
+
+        $this->get(route('admin.dummy-class.show', $model))
+            ->assertStatus(200);
+    }
+
+    public function testDummyClassEditRouteExist()
+    {
+        $model = Model::first();
+
+        $this->get(route('admin.dummy-class.edit', $model))
+            ->assertStatus(200);
+    }
+
     public function testStore()
     {        
 

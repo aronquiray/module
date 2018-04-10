@@ -26,6 +26,12 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
         (new \DummyClassTableSeeder)->run();
     }
 
+    public function testDummyClassDeletedRouteExist()
+    {
+        $this->get(route('admin.dummy-class.deleted'))
+            ->assertStatus(200);
+    }
+
     public function testDestroy()
     {
         $this->expectsEvents(BaseDeletingEvent::class);
