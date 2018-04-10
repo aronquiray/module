@@ -92,8 +92,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic-history/resources/views/backend/history.stub' => 'resources/views/backend/dummyClass/history.blade.php',
 
             // routes
-            'basic-softdelete-history/routes/backend.stub' => 'routes/backend/dummy-class.php',
-            'basic-softdelete-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
+            'basic-history/routes/backend.stub' => 'routes/backend/dummy-class.php',
+            'basic-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
         ];
 
         return array_merge($stubs, $hiostoryStubs);
