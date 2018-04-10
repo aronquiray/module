@@ -26,6 +26,25 @@ class DummyClass extends BaseModel
     public const routeAdminPath     = 'admin.dummy-class';
     public const routeFrontendPath  = 'frontend.dummy-class';
 
+    /**
+     * Return the permissions related to this model.
+     *
+     * @return array
+     */
+    public function permissions() : array
+    {
+        return [
+            // table
+            'list' => 'dummy class list',
+
+            // resources
+            'create' => 'dummy class create',
+            'edit' => 'dummy class edit',
+            'show' => 'dummy class show',
+            'destroy' => 'dummy class destroy',
+        ];
+    }
+
 
     public function getRouteKeyName()
     {
