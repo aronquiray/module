@@ -33,18 +33,15 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
     public function testDestroy()
     {
         $this->expectsEvents(BaseDeletingEvent::class);
-        $this->expectsEvents(BaseDeletedEvent::class);
-        
+        $this->expectsEvents(BaseDeletedEvent::class);        
         
         $model = Model::create([
             'title' => 'Salliess',
         ]);
 
-
         $response = $this->withHeaders([
             'X-Header' => 'Value',
         ])->json('DELETE', route('admin.dummy-class.destroy', $model));
-
        
         $response
             ->assertStatus(302)
@@ -65,57 +62,49 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
     public function testRestore()
     {
         $this->expectsEvents(BaseRestoringEvent::class);
-        $this->expectsEvents(BaseRestoredEvent::class);
+        $this->expectsEvents(BaseRestoredEvent::class);        
         
-        
-        $model = Model::create([
-            'title' => 'Salliess',
-            'deleted_at' => now(),
-        ]);
-
+        $model = new Model;
+        $model->title = 'Salliess';
+        $model->deleted_at = now();
+        $model->save();
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
-        ])->json('DELETE', route('admin.dummy-class.restore', $model));
+        ])->json('PATCH', route('admin.dummy-class.restore', $model));
 
-       
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been restored.')
-            ->assertRedirect(route('admin.dummy-class.deleted'));
+            ->assertRedirect(route('admin.dummy-class.index'));
 
             $this->assertDatabaseHas((new Model)->getTable(), [
                 'id' => $model->id,
                 'deleted_at' => null,
-            ]);
- 
+            ]); 
     }
 
     public function testPurge()
     {
         $this->expectsEvents(BasePurgingEvent::class);
         $this->expectsEvents(BasePurgedEvent::class);
-        
-        
-        $model = Model::create([
-            'title' => 'Salliess',
-            'deleted_at' => now(),
-        ]);
-
+                
+        $model = new Model;
+        $model->title = 'Salliess';
+        $model->deleted_at = now();
+        $model->save();
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
         ])->json('DELETE', route('admin.dummy-class.purge', $model));
-
        
         $response
             ->assertStatus(302)
-            ->assertSessionHas('flash_success', 'Salliess has been restored.')
+            ->assertSessionHas('flash_success', 'Salliess has been permanently deleted.')
             ->assertRedirect(route('admin.dummy-class.deleted'));
 
-            $this->assertDatabaseMising((new Model)->getTable(), [
+            $this->assertDatabaseMissing((new Model)->getTable(), [
                 'id' => $model->id,
-            ]);
- 
+            ]); 
     }
 }
