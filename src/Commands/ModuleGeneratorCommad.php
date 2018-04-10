@@ -101,7 +101,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
     protected function basic_softdelete_history()
     {
-        $stubs = $this->softdelete();
+        $softdeleteStubs = $this->softdelete();
 
         foreach([
             // controllers
@@ -114,25 +114,32 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/resources/views/backend/partials/links.stub',
         ] as $forget)
         {
-            array_forget($stubs, $forget);
+            array_forget($softdeleteStubs, $forget);
         }
 
-        // controllers replace
-        $stubs['basic-softdelete-history/controllers/resource.stub'] =  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php';
-        $stubs['basic-softdelete-history/controllers/deleted.stub'] = 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php';
-        // controllers
-        $stubs['basic-softdelete-history/controllers/history.stub'] =  'app/Http/Controllers/Backend/DummyClass/DummyClassesHistoryController.php';
+        $additionalStubs = [
+            // controllers replace
+            // 'basic-softdelete-history/controllers/resource.stub' =>  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
+            'basic-softdelete-history/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',
+          
+            // routes
+            'basic-softdelete-history/routes/backend.stub' => 'routes/backend/dummy-class.php',
+            'basic-softdelete-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
 
-        // routes
-        $stubs['basic-softdelete-history/routes/backend.stub'] = 'routes/backend/dummy-class.php';
-        $stubs['basic-softdelete-history/routes/bread-crumbs.stub'] = 'routes/breadcrumbs/backend/dummy-class.php';
+            // resources replace
+            'basic-softdelete-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
+      ];
 
-        // resources replace
-        $stubs['basic-softdelete-history/resources/views/backend/partials/links.stub'] = 'resources/views/backend/dummyClass/partials/links.blade.php';
-        // resources 
-        $stubs['basic-softdelete-history/resources/views/backend/history.stub'] = 'resources/views/backend/dummyClass/history.blade.php';
+        $stubs = array_merge($softdeleteStubs, $stubs);
 
-        return $stubs;
+        return array_merge($stubs, array_only($this->basic_history(), [
+            // controllers
+            'basic-history/controllers/history.stub',
+            'basic-history/controllers/resource.stub',
+
+            // resources
+            'basic-history/resources/views/backend/history.stub',
+        ]));
     }
 
     protected function basic()
