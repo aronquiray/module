@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Backend\DummyClass;
 
 use Illuminate\Http\Request;
