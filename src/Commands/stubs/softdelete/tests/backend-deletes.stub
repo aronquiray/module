@@ -45,9 +45,9 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been deleted.')
-            ->assertRedirect(route('admin.dummy-class.index'));
+            ->assertRedirect(route('admin.dummy-class.deleted'));
 
-        $this->assertDatabaseMissing((new Model)->getTable(), [
+        $this->assertDatabaseHas((new Model)->getTable(), [
             'id' => $model->id,
         ]);
  

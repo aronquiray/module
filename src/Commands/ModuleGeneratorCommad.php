@@ -38,7 +38,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/database/migration.stub' => $this->_databaseMigrationFileName(),
 
             // test
-            // 'softdelete/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/DummyClassBreadFeatureDeletesBackendTest.php',
+            'softdelete/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/DummyClassBreadFeatureDeletesBackendTest.php',
 
         ];
 
