@@ -14,7 +14,7 @@ use App\Models\DummyClass as Model;
 
 
 /**
- * Class DummyClassTest.
+ * Class DummyClassBreadFeatureBackendTest.
  */
 class DummyClassBreadFeatureBackendTest extends TestCase
 {

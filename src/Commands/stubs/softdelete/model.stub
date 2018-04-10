@@ -42,6 +42,12 @@ class DummyClass extends BaseModel
             'edit' => 'dummy class edit',
             'show' => 'dummy class show',
             'destroy' => 'dummy class destroy',
+
+            // deletes         
+            'deleted list' => 'dummy class deleted list',
+            'restore' => 'dummy class restore',
+            'purge' => 'dummy class purge',
+
         ];
     }
 

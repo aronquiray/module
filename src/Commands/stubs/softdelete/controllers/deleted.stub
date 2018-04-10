@@ -22,6 +22,10 @@ class DummyClassesDeletedController extends Controller
         $this->repo = new Repository($model);
         $this->route_path = Model::routeAdminPath;
         $this->view_path = Model::viewBackendPath;
+
+        $this->middleware('permission:' . $this->model->permission('deleted list'), ['only' => ['deleted']]);
+        $this->middleware('permission:' . $this->model->permission('restore'), ['only' => ['restore']]);
+        $this->middleware('permission:' . $this->model->permission('purge'), ['only' => ['purge']]);
     }
 
     /**
