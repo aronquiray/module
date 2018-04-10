@@ -44,20 +44,11 @@ class DummyClassPermissionTableSeeder extends Seeder
 
     private function _permissions() :array
     {
-        $prefix = 'dummy class ';
-        $return = [];
+        $permissions = (new Model)->permissions();
 
-        foreach([
-            'list',
-            'create',
-            'edit',
-            'show',
-            'destroy',
-        ] as $p){
-            $return[] = $prefix . $p;
-
+        foreach($permissions as $p){
             // Create Permissions
-            Permission::create(['name' => $prefix . $p]);
+            Permission::create(['name' =>  $p]);
         }
 
         return $return;
