@@ -24,7 +24,9 @@ class DummyClassBreadFeatureTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->loginAsAdminModule('dummy class');
+        $this->loginAsAdmin();
+        (new \DummyClassPermissionTableSeeder)->run();
+        (new \DummyClassTableSeeder)->run();
     }
 
     /** @test */

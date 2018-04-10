@@ -6,5 +6,5 @@ Route::group([
 ],function(){
 	Route::get('{dummy_class}', function(App\Models\DummyClass $dummy_class){
 		dd('test frontend view', $dummy_class);
-	})->name('.show');
+	})->name('show');
 });
