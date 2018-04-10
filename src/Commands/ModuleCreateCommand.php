@@ -50,7 +50,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
         } elseif (!$this->option('softdelete') && $this->option('history')) {
             $this->options[] = 'history';
             $this->info('test basic history');
-            exit();
+            $stubs = $this->basic_history();
         } elseif ($this->option('softdelete')) {
             $this->options[] = 'softdelete';
             $stubs = $this->softdelete();

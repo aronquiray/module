@@ -1,0 +1,9 @@
+@extends('backend.layouts.app')
+
+@section ('title', 'Dummy Class History Management | ' . app_name())
+
+@section('content')
+       
+{!! History::renderType($classModel) !!}
+
+@endsection

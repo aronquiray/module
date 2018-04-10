@@ -1,0 +1,148 @@
+<?php
+
+namespace App\Http\Controllers\Backend\DummyClass;
+
+use Illuminate\Http\Request;
+use HalcyonLaravel\Base\Controllers\Backend\CRUDController as Controller;
+use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
+use App\Models\DummyClass as Model;
+
+use HalcyonLaravel\Base\Events\BaseStoringEvent;
+use HalcyonLaravel\Base\Events\BaseStoredEvent;
+use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
+use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
+use HalcyonLaravel\Base\Events\BaseDeletingEvent;
+use HalcyonLaravel\Base\Events\BaseDeletedEvent;
+
+use History;
+/**
+ * Class DummyClassesController.
+ */
+class DummyClassesController extends Controller
+{
+    /**
+     * DummyClassesController Constructor
+     */
+    public function __construct(Model $model)
+    {
+        $this->model = $model;
+        $this->repo = new Repository($model);
+        $this->_initRepositoryObservers();
+        parent::__construct();
+
+        $this->middleware('permission:dummy class list', ['only' => ['index']]);
+        $this->middleware('permission:dummy class show', ['only' => ['show']]);
+        $this->middleware('permission:dummy class create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:dummy class edit', ['only' => ['update', 'edit']]);
+        $this->middleware('permission:dummy class destroy', ['only' => ['destroy']]);
+    }
+
+    /**
+     * Specify Model class name.
+     *
+     * @return mixed
+     */
+    public function model()
+    {
+        return Model::class;
+    }
+
+    /**
+     * @param Request $request
+     * @param Model $model | nullable
+     *
+     * @return array
+     */
+    public function generateStub(Request $request) : array
+    {
+        return $request->only($this->model->getFillable());
+    }
+
+
+    /**
+     * Validate input on store
+     *
+     * @return array
+     */
+    public function storeRules(Request $request) : array
+    {
+        $table = $this->model->getTable();
+        return [
+            'title' => "required|max:255|unique:$table",
+        ];
+    }
+    
+    /**
+     * Validate input on update
+     *
+     * @param Model $model | nullable
+     *
+     * @return array
+     */
+    public function updateRules(Request $request, $model) : array
+    {
+        $table = $this->model->getTable();
+        return [
+            'title' => "required|max:255|unique:$table,title,{$model->id}",
+        ];
+    }
+
+    public function testForMethodNotFound()
+    {
+        $this->repo->imNotExist();
+    }
+
+    /**
+     *  Available observers can costumise:
+        'storing', 'stored',
+        'updating', 'updated',
+        'deleting', 'deleted',
+     *
+     * add custome logic on functions
+     *
+     *
+     * You can comment/uncomment one of them,
+     * it will run default bahavior if commented on base class.
+     *
+     * @author lloricode@gmail.com
+     */
+    private function _initRepositoryObservers()
+    {
+        // $this->repo->storing = function ($data)
+        // {
+        //     event(new BaseStoringEvent);
+        //     // dd($data);
+        //     return $data;
+        // };
+        $this->repo->stored = function ($data, $model) {
+            event(new BaseStoredEvent);
+            History::created($model);
+            // dd($data, $model);
+            return $model;
+        };
+        // $this->repo->updating = function ($data, $model)
+        // {
+        //     event(new BaseUpdatingEvent);
+        //     // dd($data, $model);
+        //     return $model;
+        // };
+        $this->repo->updated = function ($data, $model, $oldModel) {
+            event(new BaseUpdatedEvent);
+            History::updated($model, $oldModel);
+            // dd($data, $model, $oldModel);
+            return $model;
+        };
+        // $this->repo->deleting = function ($model)
+        // {
+        //     event(new BaseDeletingEvent);
+        //     // dd($model);
+        //     return $model;
+        // };
+        $this->repo->deleted = function ($model) {
+            event(new BaseDeletedEvent);
+            History::deleted($model);
+            // dd($model);
+            return $model;
+        };
+    }
+}

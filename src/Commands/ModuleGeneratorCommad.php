@@ -65,6 +65,40 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         ]));
     }
 
+    protected function basic_history()
+    {
+        $stubs = $this->basic();
+
+        foreach([
+            // controllers
+            'basic/controllers/resource.stub',
+            // routes
+            'basic/routes/backend.stub',
+            'basic/routes/bread-crumbs.stub',
+            // resources
+            'basic/resources/views/backend/partials/links.stub',
+        ] as $forget)
+        {
+            array_forget($stubs, $forget);
+        }
+
+        $hiostoryStubs = [
+            // controllers
+            'basic-history/controllers/history.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesHistoryController.php',
+            'basic-history/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
+
+            // resources
+            'basic-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
+            'basic-history/resources/views/backend/history.stub' => 'resources/views/backend/dummyClass/history.blade.php',
+
+            // routes
+            'basic-softdelete-history/routes/backend.stub' => 'routes/backend/dummy-class.php',
+            'basic-softdelete-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
+        ];
+
+        return array_merge($stubs, $hiostoryStubs);
+    }
+
     protected function basic_softdelete_history()
     {
         $stubs = $this->softdelete();
