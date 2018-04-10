@@ -71,7 +71,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
         foreach([
             // controllers
-            'softdelete/controllers/resource.stub',
+            'basic/controllers/resource.stub', // inherited from basic
             'softdelete/controllers/deleted.stub',
             // routes
             'softdelete/routes/backend.stub',
