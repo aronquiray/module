@@ -28,6 +28,13 @@ class DummyClassBreadFeatureBackendTest extends TestCase
         (new \DummyClassTableSeeder)->run();
     }
 
+    public function testDummyClassCreateRouteExist()
+    {
+        $this->get(route('admin.dummy-class.create'))
+            ->assertStatus(200);
+    }
+
+
     public function testDummyClassShowRouteExist()
     {
         $model = Model::first();
