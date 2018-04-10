@@ -7,25 +7,24 @@ use Illuminate\Console\GeneratorCommand;
 
 abstract class ModuleGeneratorCommad extends GeneratorCommand
 {
-    protected function softdelete()
+    private function _databaseMigrationFileName()
     {
         $migrationFileName = now()->format('Y_m_d_hms') . '_create_dummy_classes_table';
+        return  "database/migrations/$migrationFileName.php";
+    }
+
+    protected function softdelete()
+    {
         // stub | direction path
-        return [
+        $stubs = [
             // controllers
-            'softdelete/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
             'softdelete/controllers/table.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesTableController.php',
             'softdelete/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',
 
             // views
-            'softdelete/resources/views/backend/create.stub' => 'resources/views/backend/dummyClass/create.blade.php',
-            'softdelete/resources/views/backend/edit.stub' => 'resources/views/backend/dummyClass/edit.blade.php',
             'softdelete/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
-            'softdelete/resources/views/backend/show.stub' => 'resources/views/backend/dummyClass/show.blade.php',
             'softdelete/resources/views/backend/deleted.stub' => 'resources/views/backend/dummyClass/deleted.blade.php',
             // views partials
-            'softdelete/resources/views/backend/partials/fields.stub' => 'resources/views/backend/dummyClass/partials/fields.blade.php',
-            'softdelete/resources/views/backend/partials/overview.stub' => 'resources/views/backend/dummyClass/partials/overview.blade.php',
             'softdelete/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
 
             // route
@@ -36,50 +35,63 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/model.stub' => 'app/Models/DummyClass.php',
 
             // database
-            'softdelete/database/migration.stub' => "database/migrations/$migrationFileName.php",
-            'softdelete/database/factory.stub' => "database/factories/DummyClassFactory.php",
-            'softdelete/database/table-seeder.stub' => "database/seeds/Modules/DummyClassTableSeeder.php",
-            'softdelete/database/permission-seeder.stub' => "database/seeds/Modules/Permissions/DummyClassPermissionTableSeeder.php",
+            'softdelete/database/migration.stub' => $this->_databaseMigrationFileName(),
 
-            // tests
-            'softdelete/tests/test.stub' => 'tests/Feature/Module/Backend/DummyClassBreadFeatureTest.php',
         ];
+
+        // get only specific stubs in basic
+        return array_merge($stubs, array_only($this->basic(), [
+            // controllers
+            'basic/controllers/resource.stub',
+            // tests
+            'basic/tests/test.stub',
+            // database
+            'basic/database/factory.stub',
+            'basic/database/table-seeder.stub',
+            'basic/database/permission-seeder.stub' ,
+            // resources views
+            'basic/resources/views/backend/create.stub',
+            'basic/resources/views/backend/edit.stub',
+            'basic/resources/views/backend/show.stub',
+            // resources view partilas
+            'basic/resources/views/backend/partials/fields.stub',
+            'basic/resources/views/backend/partials/overview.stub',
+        ]));
     }
 
     protected function basic_softdelete_history()
     {
-        // get the softdelete
-        $stubs = $this->softdelete();
+        $stubs = array_forget($this->softdelete(), [
+            // controllers
+            'softdelete/controllers/resource.stub',
+            'softdelete/controllers/deleted.stub',
+            // routes
+            'softdelete/routes/backend.stub',
+            'softdelete/routes/bread-crumbs.stub',
+            // resources
+            'softdelete/resources/views/backend/partials/links.stub',
+        ]);
 
-        // replace stubs that has softdelete and history
-        // unset
-        unset(
-            $stubs['softdelete/resource-controller.stub'],
-            $stubs['softdelete/backend-route.stub'],
-            $stubs['softdelete/resources/views/backend/partials/links.stub'],
-            $stubs['softdelete/bread-crumbs.stub'],
-            $stubs['softdelete/deleted-controller.stub']
-        );
+        // controllers replace
         $stubs['basic-softdelete-history/controllers/resource.stub'] =  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php';
-        $stubs['basic-softdelete-history/routes/backend.stub'] = 'routes/backend/dummy-class.php';
-        $stubs['basic-softdelete-history/resources/views/backend/partials/links.stub'] = 'resources/views/backend/dummyClass/partials/links.blade.php';
-        $stubs['basic-softdelete-history/routes/bread-crumbs.stub'] = 'routes/breadcrumbs/backend/dummy-class.php';
         $stubs['basic-softdelete-history/controllers/deleted.stub'] = 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php';
-
-        /**
-         * addtional
-         */
-        // controller
+        // controllers
         $stubs['basic-softdelete-history/controllers/history.stub'] =  'app/Http/Controllers/Backend/DummyClass/DummyClassesHistoryController.php';
-        // view
-        $stubs['basic-softdelete-history/resources/views/backend/history.stub'] =  'resources/views/backend/dummyClass/history.blade.php';
+
+        // routes
+        $stubs['basic-softdelete-history/routes/backend.stub'] = 'routes/backend/dummy-class.php';
+        $stubs['basic-softdelete-history/routes/bread-crumbs.stub'] = 'routes/breadcrumbs/backend/dummy-class.php';
+
+        // resources replace
+        $stubs['basic-softdelete-history/resources/views/backend/partials/links.stub'] = 'resources/views/backend/dummyClass/partials/links.blade.php';
+        // resources 
+        $stubs['basic-softdelete-history/resources/views/backend/history.stub'] = 'resources/views/backend/dummyClass/history.blade.php';
 
         return $stubs;
     }
 
     protected function basic()
     {
-        $migrationFileName = now()->format('Y_m_d_hms') . '_create_dummy_classes_table';
         // stub | direction path
         return [
             // controllers
@@ -104,7 +116,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/model.stub' => 'app/Models/DummyClass.php',
 
             // database
-            'basic/database/migration.stub' => "database/migrations/$migrationFileName.php",
+            'basic/database/migration.stub' => $this->_databaseMigrationFileName(),
             'basic/database/factory.stub' => "database/factories/DummyClassFactory.php",
             'basic/database/table-seeder.stub' => "database/seeds/Modules/DummyClassTableSeeder.php",
             'basic/database/permission-seeder.stub' => "database/seeds/Modules/Permissions/DummyClassPermissionTableSeeder.php",
