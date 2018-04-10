@@ -5,7 +5,6 @@ namespace Tests\Feature\Modules\Backend;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-
 use HalcyonLaravel\Base\Events\BaseStoringEvent;
 use HalcyonLaravel\Base\Events\BaseStoredEvent;
 use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
@@ -17,7 +16,7 @@ use App\Models\DummyClass as Model;
 /**
  * Class DummyClassTest.
  */
-class DummyClassBreadFeatureTest extends TestCase
+class DummyClassBreadFeatureBackendTest extends TestCase
 {
     use RefreshDatabase;
 

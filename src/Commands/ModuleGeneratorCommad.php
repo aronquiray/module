@@ -44,7 +44,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             // controllers
             'basic/controllers/resource.stub',
             // tests
-            'basic/tests/test.stub',
+            'basic/tests/backend.stub',
+            'basic/tests/frontend.stub',
             // database
             'basic/database/factory.stub',
             'basic/database/table-seeder.stub',
@@ -122,7 +123,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/database/permission-seeder.stub' => "database/seeds/Modules/Permissions/DummyClassPermissionTableSeeder.php",
 
             // tests
-            'basic/tests/test.stub' => 'tests/Feature/Modules/Backend/DummyClassBreadFeatureTest.php',
+            'basic/tests/backend.stub' => 'tests/Feature/Modules/Backend/DummyClassBreadFeatureBackendTest.php',
+            'basic/tests/frontend.stub' => 'tests/Feature/Modules/Frontend/DummyClassFeatureFrontendTest.php',
         ];
     }
 }

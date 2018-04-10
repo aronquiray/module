@@ -24,7 +24,8 @@ class DummyClassesTableController extends Controller
     public function __construct()
     {
         $this->repo = new Repository(new Model);    
-        $this->middleware('permission:dummy class list', ['only' => ['__invoke']]);    
+        
+        $this->middleware('permission:' . (new Model)->permission('list'), ['only' => ['__invoke']]);
     }
 
     /**
