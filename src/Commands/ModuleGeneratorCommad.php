@@ -38,7 +38,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/database/migration.stub' => $this->_databaseMigrationFileName(),
 
             // test
-            'softdelete/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/DummyClassBreadFeatureDeletesBackendTest.php',
+            'softdelete/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
 
         ];
 
@@ -133,9 +133,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/database/permission-seeder.stub' => "database/seeds/Modules/Permissions/DummyClassPermissionTableSeeder.php",
 
             // tests
-            'basic/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/DummyClassBreadFeatureDeletesBackendTest.php',
-            'basic/tests/backend.stub' => 'tests/Feature/Modules/Backend/DummyClassBreadFeatureBackendTest.php',
-            'basic/tests/frontend.stub' => 'tests/Feature/Modules/Frontend/DummyClassFeatureFrontendTest.php',
+            'basic/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
+            'basic/tests/backend.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassBreadFeatureBackendTest.php',
+            'basic/tests/frontend.stub' => 'tests/Feature/Modules/Frontend/DummyClass/DummyClassFeatureFrontendTest.php',
         ];
     }
 }
