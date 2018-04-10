@@ -51,6 +51,6 @@ class DummyClassPermissionTableSeeder extends Seeder
             Permission::create(['name' =>  $p]);
         }
 
-        return $return;
+        return $permissions;
     }
 }

@@ -41,12 +41,12 @@ class DummyClassBreadFeatureBackendTest extends TestCase
             'title' => 'Salliess',
         ]);
 
-        $dummyClass =  Model::orderBy('id', 'desc')->first();
+        $model =  Model::orderBy('id', 'desc')->first();
        
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been created.')
-            ->assertRedirect(route('admin.dummy-class.show', $dummyClass));
+            ->assertRedirect(route('admin.dummy-class.show', $model));
 
         $this->assertDatabaseHas((new Model)->getTable(), [
             'title' => 'Salliess',
@@ -56,13 +56,9 @@ class DummyClassBreadFeatureBackendTest extends TestCase
 
     public function testUpdate()
     {
-        Model::create([
+        $model = Model::create([
             'title' => 'old Salliess',
         ]);
-
-
-        $dummyClass =  Model::latest()->first();
-
 
         $dataNew = [
             'title' => 'new Salliess',
@@ -74,15 +70,15 @@ class DummyClassBreadFeatureBackendTest extends TestCase
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
-        ])->json('PUT', route('admin.dummy-class.update', $dummyClass), $dataNew);
+        ])->json('PUT', route('admin.dummy-class.update', $model), $dataNew);
        
         // get the updated data
-        $dummyClass = Model::find($dummyClass->id);
+        $model = Model::find($model->id);
 
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'new Salliess has been updated.')
-            ->assertRedirect(route('admin.dummy-class.show', $dummyClass));
+            ->assertRedirect(route('admin.dummy-class.show', $model));
 
         $this->assertDatabaseHas((new Model)->getTable(), $dataNew);
     }
