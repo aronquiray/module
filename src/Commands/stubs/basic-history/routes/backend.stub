@@ -10,7 +10,6 @@ Route::group([
         'as' => 'dummy-class.',
     ], function () {
 
-        Route::get('deleted', 'DummyClassesDeletedController@deleted')->name('deleted');
         Route::post('table', 'DummyClassesTableController')->name('table');
         Route::get('history', 'DummyClassesHistoryController')->name('history');
 

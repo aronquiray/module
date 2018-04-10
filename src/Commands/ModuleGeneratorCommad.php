@@ -149,6 +149,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
             'basic/resources/views/backend/show.stub' => 'resources/views/backend/dummyClass/show.blade.php',
             // views partials
+            'basic/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
             'basic/resources/views/backend/partials/fields.stub' => 'resources/views/backend/dummyClass/partials/fields.blade.php',
             'basic/resources/views/backend/partials/overview.stub' => 'resources/views/backend/dummyClass/partials/overview.blade.php',
 
