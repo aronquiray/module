@@ -67,7 +67,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
     protected function basic_softdelete_history()
     {
-        $stubs = array_forget($this->softdelete(), [
+        $stubs = $this->softdelete();
+
+        foreach([
             // controllers
             'softdelete/controllers/resource.stub',
             'softdelete/controllers/deleted.stub',
@@ -76,7 +78,10 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/routes/bread-crumbs.stub',
             // resources
             'softdelete/resources/views/backend/partials/links.stub',
-        ]);
+        ] as $forget)
+        {
+            array_forget($stubs, $forget);
+        }
 
         // controllers replace
         $stubs['basic-softdelete-history/controllers/resource.stub'] =  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php';
