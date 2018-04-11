@@ -69,7 +69,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
     {
         $stubs = $this->basic();
 
-        foreach([
+        foreach ([
             // controllers
             'basic/controllers/resource.stub',
             // routes
@@ -77,8 +77,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/routes/bread-crumbs.stub',
             // resources
             'basic/resources/views/backend/partials/links.stub',
-        ] as $forget)
-        {
+        ] as $forget) {
             array_forget($stubs, $forget);
         }
 
@@ -103,7 +102,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
     {
         $softdeleteStubs = $this->softdelete();
 
-        foreach([
+        foreach ([
             // controllers
             'basic/controllers/resource.stub', // inherited from basic
             'softdelete/controllers/deleted.stub',
@@ -112,8 +111,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/routes/bread-crumbs.stub',
             // resources
             'softdelete/resources/views/backend/partials/links.stub',
-        ] as $forget)
-        {
+        ] as $forget) {
             array_forget($softdeleteStubs, $forget);
         }
 
@@ -130,9 +128,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic-softdelete-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
       ];
 
-        $stubs = array_merge($softdeleteStubs, $stubs);
-
-        return array_merge($stubs, array_only($this->basic_history(), [
+        return array_merge(array_merge($softdeleteStubs, $additionalStubs), array_only($this->basic_history(), [
             // controllers
             'basic-history/controllers/history.stub',
             'basic-history/controllers/resource.stub',
