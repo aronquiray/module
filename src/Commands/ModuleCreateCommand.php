@@ -157,7 +157,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
     private function _nameSpaceApp($stub)
     {
 
-        return str_replace('DummyNameSpaceClass', $this->getAppNamespace(), $stub);
+        return str_replace('DummyNameSpaceClass\\', $this->getAppNamespace(), $stub);
     }
 
 
