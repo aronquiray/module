@@ -7,78 +7,179 @@ use Illuminate\Console\GeneratorCommand;
 
 abstract class ModuleGeneratorCommad extends GeneratorCommand
 {
-    protected function softdelete()
+    private function _databaseMigrationFileName()
     {
         $migrationFileName = now()->format('Y_m_d_hms') . '_create_dummy_classes_table';
+        return  "database/migrations/$migrationFileName.php";
+    }
+
+    protected function softdelete()
+    {
         // stub | direction path
-        return [
+        $stubs = [
             // controllers
-            'softdelete/resource-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
-            'softdelete/table-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesTableController.php',
-            'softdelete/deleted-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesDeletedController.php',
+            'softdelete/controllers/table.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesTableController.php',
+            'softdelete/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',
 
             // views
-            'softdelete/resources/views/backend/create.stub' => 'resources/views/backend/core/dummyClass/create.blade.php',
-            'softdelete/resources/views/backend/edit.stub' => 'resources/views/backend/core/dummyClass/edit.blade.php',
-            'softdelete/resources/views/backend/index.stub' => 'resources/views/backend/core/dummyClass/index.blade.php',
-            'softdelete/resources/views/backend/show.stub' => 'resources/views/backend/core/dummyClass/show.blade.php',
-            'softdelete/resources/views/backend/deleted.stub' => 'resources/views/backend/core/dummyClass/deleted.blade.php',
+            'softdelete/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
+            'softdelete/resources/views/backend/deleted.stub' => 'resources/views/backend/dummyClass/deleted.blade.php',
             // views partials
-            'softdelete/resources/views/backend/partials/fields.stub' => 'resources/views/backend/core/dummyClass/partials/fields.blade.php',
-            'softdelete/resources/views/backend/partials/overview.stub' => 'resources/views/backend/core/dummyClass/partials/overview.blade.php',
-            'softdelete/resources/views/backend/partials/links.stub' => 'resources/views/backend/core/dummyClass/partials/links.blade.php',
+            'softdelete/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
 
             // route
-            'softdelete/backend-route.stub' => 'routes/backend/core/dummy-class.php',
-            'softdelete/bread-crumbs.stub' => 'routes/breadcrumbs/backend/core/dummy-class.php',
+            'softdelete/routes/backend.stub' => 'routes/backend/dummy-class.php',
+            'softdelete/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
 
             // model
-            'softdelete/model.stub' => 'app/Models/Core/DummyClass.php',
+            'softdelete/model.stub' => 'app/Models/DummyClass.php',
 
             // database
-            'softdelete/database/migration.stub' => "database/migrations/$migrationFileName.php",
-            'softdelete/database/factory.stub' => "database/factories/core/DummyClassFactory.php",
-            'softdelete/database/table-seeder.stub' => "database/seeds/Modules/Core/DummyClassTableSeeder.php",
-            'softdelete/database/permission-seeder.stub' => "database/seeds/Modules/Core/Permissions/DummyClassPermissionTableSeeder.php",
+            'softdelete/database/migration.stub' => $this->_databaseMigrationFileName(),
+
+            // test
+            'softdelete/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
+
+        ];
+
+        // get only specific stubs in basic
+        return array_merge($stubs, array_only($this->basic(), [
+            // controllers
+            'basic/controllers/resource.stub',
+            // tests
+            'basic/tests/backend.stub',
+            'basic/tests/frontend.stub',
+            // routes
+            'basic/routes/frontend.stub',
+            // database
+            'basic/database/factory.stub',
+            'basic/database/table-seeder.stub',
+            'basic/database/permission-seeder.stub' ,
+            // resources views
+            'basic/resources/views/backend/create.stub',
+            'basic/resources/views/backend/edit.stub',
+            'basic/resources/views/backend/show.stub',
+            // resources view partilas
+            'basic/resources/views/backend/partials/fields.stub',
+            'basic/resources/views/backend/partials/overview.stub',
+        ]));
+    }
+
+    protected function basic_history()
+    {
+        $stubs = $this->basic();
+
+        foreach ([
+            // controllers
+            'basic/controllers/resource.stub',
+            // routes
+            'basic/routes/backend.stub',
+            'basic/routes/bread-crumbs.stub',
+            // resources
+            'basic/resources/views/backend/partials/links.stub',
+        ] as $forget) {
+            array_forget($stubs, $forget);
+        }
+
+        $hiostoryStubs = [
+            // controllers
+            'basic-history/controllers/history.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesHistoryController.php',
+            'basic-history/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
+
+            // resources
+            'basic-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
+            'basic-history/resources/views/backend/history.stub' => 'resources/views/backend/dummyClass/history.blade.php',
+
+            // routes
+            'basic-history/routes/backend.stub' => 'routes/backend/dummy-class.php',
+            'basic-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
 
             // tests
-            'softdelete/tests/test.stub' => 'tests/Feature/Module/Backend/DummyClassBreadFeatureTest.php',
+            'basic-history/tests/history.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassFeatureHistoryTest.php',
         ];
+
+        return array_merge($stubs, $hiostoryStubs);
+    }
+
+    protected function basic_softdelete_history()
+    {
+        $softdeleteStubs = $this->softdelete();
+
+        foreach ([
+            // controllers
+            'basic/controllers/resource.stub', // inherited from basic
+            'softdelete/controllers/deleted.stub',
+            // routes
+            'softdelete/routes/backend.stub',
+            'softdelete/routes/bread-crumbs.stub',
+            // resources
+            'softdelete/resources/views/backend/partials/links.stub',
+        ] as $forget) {
+            array_forget($softdeleteStubs, $forget);
+        }
+
+        $additionalStubs = [
+            // controllers replace
+            // 'basic-softdelete-history/controllers/resource.stub' =>  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
+            'basic-softdelete-history/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',
+          
+            // routes
+            'basic-softdelete-history/routes/backend.stub' => 'routes/backend/dummy-class.php',
+            'basic-softdelete-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
+
+            // resources replace
+            'basic-softdelete-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
+      ];
+
+        return array_merge(array_merge($softdeleteStubs, $additionalStubs), array_only($this->basic_history(), [
+            // controllers
+            'basic-history/controllers/history.stub',
+            'basic-history/controllers/resource.stub',
+
+            // resources
+            'basic-history/resources/views/backend/history.stub',
+
+            // tests
+            'basic-history/tests/history.stub',
+        ]));
     }
 
     protected function basic()
     {
-        $migrationFileName = now()->format('Y_m_d_hms') . '_create_dummy_classes_table';
         // stub | direction path
         return [
             // controllers
-            'basic/resource-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesController.php',
-            'basic/table-controller.stub' => 'app/Http/Controllers/Backend/Core/DummyClass/DummyClassesTableController.php',
+            'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
+            'basic/controllers/table.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesTableController.php',
 
             // views
-            'basic/resources/views/backend/create.stub' => 'resources/views/backend/core/dummyClass/create.blade.php',
-            'basic/resources/views/backend/edit.stub' => 'resources/views/backend/core/dummyClass/edit.blade.php',
-            'basic/resources/views/backend/index.stub' => 'resources/views/backend/core/dummyClass/index.blade.php',
-            'basic/resources/views/backend/show.stub' => 'resources/views/backend/core/dummyClass/show.blade.php',
+            'basic/resources/views/backend/create.stub' => 'resources/views/backend/dummyClass/create.blade.php',
+            'basic/resources/views/backend/edit.stub' => 'resources/views/backend/dummyClass/edit.blade.php',
+            'basic/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
+            'basic/resources/views/backend/show.stub' => 'resources/views/backend/dummyClass/show.blade.php',
             // views partials
-            'basic/resources/views/backend/partials/fields.stub' => 'resources/views/backend/core/dummyClass/partials/fields.blade.php',
-            'basic/resources/views/backend/partials/overview.stub' => 'resources/views/backend/core/dummyClass/partials/overview.blade.php',
+            'basic/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
+            'basic/resources/views/backend/partials/fields.stub' => 'resources/views/backend/dummyClass/partials/fields.blade.php',
+            'basic/resources/views/backend/partials/overview.stub' => 'resources/views/backend/dummyClass/partials/overview.blade.php',
 
             // route
-            'basic/backend-route.stub' => 'routes/backend/core/dummy-class.php',
-            'basic/bread-crumbs.stub' => 'routes/breadcrumbs/backend/core/dummy-class.php',
+            'basic/routes/backend.stub' => 'routes/backend/dummy-class.php',
+            'basic/routes/frontend.stub' => 'routes/frontend/dummy-class.php',
+            'basic/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
 
             // model
-            'basic/model.stub' => 'app/Models/Core/DummyClass.php',
+            'basic/model.stub' => 'app/Models/DummyClass.php',
 
             // database
-            'basic/database/migration.stub' => "database/migrations/$migrationFileName.php",
-            'basic/database/factory.stub' => "database/factories/core/DummyClassFactory.php",
-            'basic/database/table-seeder.stub' => "database/seeds/Modules/Core/DummyClassTableSeeder.php",
-            'basic/database/permission-seeder.stub' => "database/seeds/Modules/Core/Permissions/DummyClassPermissionTableSeeder.php",
+            'basic/database/migration.stub' => $this->_databaseMigrationFileName(),
+            'basic/database/factory.stub' => "database/factories/DummyClassFactory.php",
+            'basic/database/table-seeder.stub' => "database/seeds/Modules/DummyClassTableSeeder.php",
+            'basic/database/permission-seeder.stub' => "database/seeds/Modules/Permissions/DummyClassPermissionTableSeeder.php",
 
             // tests
-            'basic/tests/test.stub' => 'tests/Feature/Module/Backend/DummyClassBreadFeatureTest.php',
+            'basic/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
+            'basic/tests/backend.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassBreadFeatureBackendTest.php',
+            'basic/tests/frontend.stub' => 'tests/Feature/Modules/Frontend/DummyClass/DummyClassFeatureFrontendTest.php',
         ];
     }
 }

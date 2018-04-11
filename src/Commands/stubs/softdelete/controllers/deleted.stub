@@ -1,12 +1,11 @@
 <?php
 
-
-namespace App\Http\Controllers\Backend\Core\DummyClass;
+namespace App\Http\Controllers\Backend\DummyClass;
 
 use Illuminate\Http\Request;
 use HalcyonLaravel\Base\Controllers\Backend\DeletedController as Controller;
 use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
-use App\Models\Core\DummyClass as Model;
+use App\Models\DummyClass as Model;
 
 /**
  * Class DummyClassesDeleteController.
@@ -22,6 +21,10 @@ class DummyClassesDeletedController extends Controller
         $this->repo = new Repository($model);
         $this->route_path = Model::routeAdminPath;
         $this->view_path = Model::viewBackendPath;
+
+        $this->middleware('permission:' . $this->model->permission('deleted list'), ['only' => ['deleted']]);
+        $this->middleware('permission:' . $this->model->permission('restore'), ['only' => ['restore']]);
+        $this->middleware('permission:' . $this->model->permission('purge'), ['only' => ['purge']]);
     }
 
     /**

@@ -1,0 +1,19 @@
+<?php
+
+Route::group([
+    'namespace' => 'DummyClass',
+    'middleware' => 'admin'
+], function () {
+
+    Route::group([
+        'prefix' => 'dummy-class',
+        'as' => 'dummy-class.',
+    ], function () {
+
+        Route::post('table', 'DummyClassesTableController')->name('table');
+        Route::get('history', 'DummyClassesHistoryController')->name('history');
+
+    });
+
+    Route::resource('dummy-class', 'DummyClassesController');
+});

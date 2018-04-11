@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Auth\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Models\Core\DummyClass as Model;
+use App\Models\DummyClass as Model;
 
 /**
  * Class AuthTableSeeder.
@@ -44,21 +44,13 @@ class DummyClassPermissionTableSeeder extends Seeder
 
     private function _permissions() :array
     {
-        $prefix = 'dummy class ';
-        $return = [];
+        $permissions = (new Model)->permissions();
 
-        foreach([
-            'list',
-            'create',
-            'edit',
-            'show',
-        ] as $p){
-            $return[] = $prefix . $p;
-
+        foreach($permissions as $p){
             // Create Permissions
-            Permission::create(['name' => $prefix . $p]);
+            Permission::create(['name' =>  $p]);
         }
 
-        return $return;
+        return $permissions;
     }
 }

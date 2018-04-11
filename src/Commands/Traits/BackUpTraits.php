@@ -25,7 +25,7 @@ trait BackUpTraits
                 'created_at' => now()->format('Y-m-d H:i:s'),
                 'updated_at' => now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
-                'types' => $option ?: 'basic',
+                'types' => $option ?: ['basic'],
                 'datas' => $this->generatedFiles
             ]
         ];

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Core\DummyClass;
+namespace App\Http\Controllers\Backend\DummyClass;
 
 use Illuminate\Http\Request;
 use HalcyonLaravel\Base\Controllers\Backend\CRUDController as Controller;
 use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
-use App\Models\Core\DummyClass as Model;
+use App\Models\DummyClass as Model;
 
 /**
  * Class DummyClassesController.
@@ -20,12 +20,12 @@ class DummyClassesController extends Controller
         $this->model = $model;
         $this->repo = new Repository($model);
         parent::__construct();
-
-        $this->middleware('permission:dummy class list', ['only' => ['index']]);
-        $this->middleware('permission:dummy class show', ['only' => ['show']]);
-        $this->middleware('permission:dummy class create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:dummy class edit', ['only' => ['update', 'edit']]);
-        $this->middleware('permission:dummy class destroy', ['only' => ['destroy']]);
+        
+        $this->middleware('permission:' . $model->permission('list'), ['only' => ['index']]);
+        $this->middleware('permission:' . $model->permission('show'), ['only' => ['show']]);
+        $this->middleware('permission:' . $model->permission('create'), ['only' => ['create', 'store']]);
+        $this->middleware('permission:' . $model->permission('edit'), ['only' => ['update', 'edit']]);
+        $this->middleware('permission:' . $model->permission('destroy'), ['only' => ['destroy']]);
     }
 
     /**

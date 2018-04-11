@@ -12,7 +12,7 @@
         @slot('secondary_title', 'Dummy Class Mangement')
         
         @slot('links')
-            @include('backend.core.dummyClass.partials.links')
+            @include('backend.dummyClass.partials.links')
         @endslot
         @slot('headers')
         	<td>Title</td>

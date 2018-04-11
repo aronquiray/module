@@ -1,33 +1,56 @@
 <?php
 
-namespace Tests\Feature\Module\Backend;
+namespace Tests\Feature\Modules\Backend\DummyClass;
 
-use HalcyonLaravel\Module\AbstractClasses\BaseModuleTest as TestCase;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 
 use HalcyonLaravel\Base\Events\BaseStoringEvent;
 use HalcyonLaravel\Base\Events\BaseStoredEvent;
 use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
 use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
 
-use App\Models\Core\DummyClass as Model;
+use App\Models\DummyClass as Model;
 
 
 /**
- * Class DummyClassTest.
+ * Class DummyClassBreadFeatureBackendTest.
  */
-class DummyClassBreadFeatureTest extends TestCase
+class DummyClassBreadFeatureBackendTest extends TestCase
 {
     use RefreshDatabase;
 
     public function setUp()
     {
         parent::setUp();
-        $this->loginAsAdminModule('dummy class');
+        $this->loginAsAdmin();
+        (new \DummyClassPermissionTableSeeder)->run();
+        (new \DummyClassTableSeeder)->run();
     }
 
-    /** @test */
+    public function testDummyClassCreateRouteExist()
+    {
+        $this->get(route('admin.dummy-class.create'))
+            ->assertStatus(200);
+    }
+
+
+    public function testDummyClassShowRouteExist()
+    {
+        $model = Model::first();
+
+        $this->get(route('admin.dummy-class.show', $model))
+            ->assertStatus(200);
+    }
+
+    public function testDummyClassEditRouteExist()
+    {
+        $model = Model::first();
+
+        $this->get(route('admin.dummy-class.edit', $model))
+            ->assertStatus(200);
+    }
+
     public function testStore()
     {        
 
@@ -40,12 +63,12 @@ class DummyClassBreadFeatureTest extends TestCase
             'title' => 'Salliess',
         ]);
 
-        $dummyClass =  Model::orderBy('id', 'desc')->first();
+        $model =  Model::orderBy('id', 'desc')->first();
        
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been created.')
-            ->assertRedirect(route('admin.dummy-class.show', $dummyClass));
+            ->assertRedirect(route('admin.dummy-class.show', $model));
 
         $this->assertDatabaseHas((new Model)->getTable(), [
             'title' => 'Salliess',
@@ -55,13 +78,9 @@ class DummyClassBreadFeatureTest extends TestCase
 
     public function testUpdate()
     {
-        Model::create([
+        $model = Model::create([
             'title' => 'old Salliess',
         ]);
-
-
-        $dummyClass =  Model::latest()->first();
-
 
         $dataNew = [
             'title' => 'new Salliess',
@@ -73,15 +92,15 @@ class DummyClassBreadFeatureTest extends TestCase
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
-        ])->json('PUT', route('admin.dummy-class.update', $dummyClass), $dataNew);
+        ])->json('PUT', route('admin.dummy-class.update', $model), $dataNew);
        
         // get the updated data
-        $dummyClass = Model::find($dummyClass->id);
+        $model = Model::find($model->id);
 
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'new Salliess has been updated.')
-            ->assertRedirect(route('admin.dummy-class.show', $dummyClass));
+            ->assertRedirect(route('admin.dummy-class.show', $model));
 
         $this->assertDatabaseHas((new Model)->getTable(), $dataNew);
     }

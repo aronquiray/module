@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Core;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use HalcyonLaravel\Base\Models\Model;
+use HalcyonLaravel\Base\Models\Model as BaseModel;
 use Spatie\Sluggable\SlugOptions;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 
-class DummyClass extends Model
+class DummyClass extends BaseModel
 {
     use SoftDeletes, ModelDefaultTraits;
 
@@ -21,10 +21,35 @@ class DummyClass extends Model
 
 
     public const moduleName         = 'dummy class';
-    public const viewBackendPath    = 'backend.core.dummyClass';
-    public const viewFrontendPath   = 'frontend.core.dummyClass';
+    public const viewBackendPath    = 'backend.dummyClass';
+    public const viewFrontendPath   = 'frontend.dummyClass';
     public const routeAdminPath     = 'admin.dummy-class';
     public const routeFrontendPath  = 'frontend.dummy-class';
+
+    /**
+     * Return the permissions related to this model.
+     *
+     * @return array
+     */
+    public function permissions() : array
+    {
+        return [
+            // table
+            'list' => 'dummy class list',
+
+            // resources
+            'create' => 'dummy class create',
+            'edit' => 'dummy class edit',
+            'show' => 'dummy class show',
+            'destroy' => 'dummy class destroy',
+
+            // deletes         
+            'deleted list' => 'dummy class deleted list',
+            'restore' => 'dummy class restore',
+            'purge' => 'dummy class purge',
+
+        ];
+    }
 
 
     public function getRouteKeyName()
