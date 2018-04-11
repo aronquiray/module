@@ -7,11 +7,11 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Symfony\Component\Console\Input\InputOption;
 use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
-use Illuminate\Console\AppNamespaceDetectorTrait;
+use Illuminate\Console\DetectsApplicationNamespace;
 
 class ModuleCreateCommand extends ModuleGeneratorCommad
 {
-    use BackUpTraits, AppNamespaceDetectorTrait;
+    use BackUpTraits, DetectsApplicationNamespace;
     /**
          * The console command name.
          *
