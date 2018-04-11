@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Backend\DummyClass;
+namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyClass;
 
-use App\Http\Controllers\Controller;
-use App\Models\DummyClass as Model;
+use DummyNameSpaceClass\Http\Controllers\Controller;
+use DummyNameSpaceClass\Models\DummyClass as Model;
 
 class DummyClassesHistoryController extends Controller
 {

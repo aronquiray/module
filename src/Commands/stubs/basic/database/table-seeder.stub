@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyClass as Model;
 
 /**
  * Class AuthTableSeeder.
