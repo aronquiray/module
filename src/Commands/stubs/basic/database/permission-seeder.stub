@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Auth\User;
+use DummyNameSpaceClass\Models\Auth\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Models\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyClass as Model;
 
 /**
  * Class AuthTableSeeder.

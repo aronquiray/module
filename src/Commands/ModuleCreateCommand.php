@@ -7,10 +7,11 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Symfony\Component\Console\Input\InputOption;
 use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
+use Illuminate\Console\DetectsApplicationNamespace;
 
 class ModuleCreateCommand extends ModuleGeneratorCommad
 {
-    use BackUpTraits;
+    use BackUpTraits, DetectsApplicationNamespace;
     /**
          * The console command name.
          *
@@ -84,8 +85,9 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
             $this->line("<fg=yellow>Generating $stub ...</>");
             
             $stub = $this->files->get(__DIR__ .'/stubs/' . $stub);
-            $stub = $this->replaceName($stub, $this->getNameInput());
-            $path = $this->replaceName($path, $this->getNameInput());
+            $stub = $this->_nameSpaceApp($stub);
+            $stub = $this->_replaceName($stub);
+            $path = $this->_replaceName($path);
 
             $path = $this->getStubByEnvironment($path);
             
@@ -121,8 +123,9 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
      * @param  string  $name
      * @return string
      */
-    public function replaceName($stub, $name)
+    private function _replaceName($stub)
     {
+        $name = $this->getNameInput();
         // lloric code
         // Small case
         $stub = str_replace('dummy classes', str_replace('-', ' ', str_slug(str_plural($name))), $stub); // llorics | lloric codes
@@ -149,6 +152,12 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
         $stub = str_replace('DummyClasses', ucfirst(studly_case(str_plural($name))), $stub); // Llorics | LloricCodes
         $stub = str_replace('DummyClass', ucfirst(studly_case($name)), $stub); // Lloric | LloricCode
         return $stub;
+    }
+
+    private function _nameSpaceApp($stub)
+    {
+
+        return str_replace('DummyNameSpaceClass\\', $this->getAppNamespace(), $stub);
     }
 
 
