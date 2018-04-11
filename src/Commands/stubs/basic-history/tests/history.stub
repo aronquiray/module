@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Modules\Frontend\DummyClass;
+namespace Tests\Feature\Modules\Backend\DummyClass;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -8,9 +8,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\DummyClass as Model;
 
 /**
- * Class DummyClassFeatureFrontendTest.
+ * Class DummyClassFeatureHistoryTest.
  */
-class DummyClassFeatureFrontendTest extends TestCase
+class DummyClassFeatureHistoryTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -23,10 +23,9 @@ class DummyClassFeatureFrontendTest extends TestCase
     }
 
     /** @test */
-    public function testDummyClassRouteFrontShowExist()
+    public function testDummyClassHistoryRouteExist()
     {        
-        $model = Model::first();
-        $this->get(route('frontend.dummy-class.show', $model))
+        $this->get(route('admin.dummy-class.history'))
             ->assertStatus(200);
  
     }

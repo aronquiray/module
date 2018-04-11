@@ -93,6 +93,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             // routes
             'basic-history/routes/backend.stub' => 'routes/backend/dummy-class.php',
             'basic-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
+
+            // tests
+            'basic-history/tests/history.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassFeatureHistoryTest.php',
         ];
 
         return array_merge($stubs, $hiostoryStubs);
@@ -135,6 +138,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
             // resources
             'basic-history/resources/views/backend/history.stub',
+
+            // tests
+            'basic-history/tests/history.stub',
         ]));
     }
 
