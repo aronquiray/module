@@ -17,7 +17,7 @@ class DummyClassFeatureHistoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->loginAsAdmin(false);
+        $this->loginAsAdmin();
         (new \DummyClassPermissionTableSeeder)->run();
         (new \DummyClassTableSeeder)->run();
     }
