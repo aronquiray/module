@@ -3,6 +3,7 @@
 namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyClass;
 
 use Illuminate\Http\Request;
+use App\Models\DummyClass as Model;
 use HalcyonLaravel\Base\Controllers\Backend\CRUDController as Controller;
 use DummyNameSpaceClass\Repositories\Backend\DummyClass\DummyClassRepository as Repository;
 
@@ -14,8 +15,9 @@ class DummyClassesController extends Controller
     /**
      * DummyClassesController Constructor
      */
-    public function __construct(Repository $repo)
+    public function __construct(Repository $repo, Model $model)
     {
+        $this->model = $model;
         parent::__construct();
         $this->repo = $repo;
         
