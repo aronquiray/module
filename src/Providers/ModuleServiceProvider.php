@@ -19,9 +19,4 @@ class ModuleServiceProvider extends ServiceProvider
             ]);
         }
     }
-
-    public function register()
-    {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'module');
-    }
 }
