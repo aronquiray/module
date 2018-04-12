@@ -148,6 +148,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
     {
         // stub | direction path
         return [
+            // repository
+            'basic/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
+
             // controllers
             'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
             'basic/controllers/table.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesTableController.php',
