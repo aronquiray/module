@@ -4,7 +4,7 @@ namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyClass;
 
 use Illuminate\Http\Request;
 use HalcyonLaravel\Base\Controllers\Backend\CRUDController as Controller;
-use DummyNameSpaceClass\Repositories\Backend\DummyClas\DummyClassRepository as Repository;
+use DummyNameSpaceClass\Repositories\Backend\DummyClass\DummyClassRepository as Repository;
 
 /**
  * Class DummyClassesController.
