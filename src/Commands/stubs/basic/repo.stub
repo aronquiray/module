@@ -2,7 +2,7 @@
 
 namespace DummyNameSpaceClass\Repositories\Backend\DummyClass;
 
-use DummyNameSpaceClass\Models\DummyClass as Model;
+use Illuminate\Database\Eloquent\Model;
 use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -11,10 +11,9 @@ use Illuminate\Database\Eloquent\Builder;
 */
 class DummyClassRepository extends Repository
 {
-    public function __construct()
+    public function __construct(Model $model)
     {
-        $this->model = new Model;;
-        parent::__construct($this->model);
+        parent::__construct($model);
     }
 
 }

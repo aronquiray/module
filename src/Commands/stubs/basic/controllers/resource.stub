@@ -18,7 +18,7 @@ class DummyClassesController extends Controller
     public function __construct(Repository $repo, Model $model)
     {
         $this->model = $model;
-        parent::__construct();
+        parent::__construct($model);
         $this->repo = $repo;
         
         $this->middleware('permission:' . $model->permission('list'), ['only' => ['index']]);
