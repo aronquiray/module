@@ -5,7 +5,7 @@ namespace HalcyonLaravel\Module\Commands;
 
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Symfony\Component\Console\Input\InputOption;
+// use Symfony\Component\Console\Input\InputOption;
 use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
 use Illuminate\Console\DetectsApplicationNamespace;
 
@@ -42,19 +42,55 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
      */
     protected function getStub()
     {
+
+        $selected = $this->menu('What type of ' . $this->type . ' want to generate?', [
+            'softdelete-history'=>'Softdelete and History',
+            'history'=>'History',
+            'softdelete'=>'Softdelete',
+            'basic'=>'Just Basic, (none on the above)',
+        ])
+        ->setForegroundColour('green')
+        ->setBackgroundColour('black')
+        ->setWidth(200)
+        ->setPadding(10)
+        ->setMargin(5)
+        ->setExitButtonText("Abort") // remove exit button with ->disableDefaultItems()
+        ->setUnselectedMarker('*')
+        ->setSelectedMarker('->')
+        // ->setTitleSeparator('*-')
+        // ->addLineBreak('#', 1)
+        // ->addStaticItem('AREA 2')
+        ->open();
+
         $stubs = null;
 
-        if ($this->option('softdelete') && $this->option('history')) {
-            $this->options[] = 'softdelete';
-            $this->options[] = 'history';
-            $stubs =   $this->basic_softdelete_history();
-        } elseif (!$this->option('softdelete') && $this->option('history')) {
-            $this->options[] = 'history';
-            $stubs = $this->basic_history();
-        } elseif ($this->option('softdelete')) {
-            $this->options[] = 'softdelete';
-            $stubs = $this->softdelete();
+        switch($selected)
+        {
+            case 'softdelete-history';
+                $this->options[] = 'softdelete';
+                $this->options[] = 'history';
+                $stubs =   $this->basic_softdelete_history();
+            break;
+            case 'history';
+                $this->options[] = 'history';
+                $stubs = $this->basic_history();
+            break;
+            case 'softdelete';
+                $this->options[] = 'softdelete';
+                $stubs = $this->softdelete();
+            break;
+            case 'baisc';
+                // do nothing, just execute default
+            break;
+            case null;
+                $this->error('Aborted ...');
+            exit();
+            default:
+                $this->error('Argument not found, Aborted ...');
+                exit();
+            break;
         }
+
         return $stubs ?: $this->basic();
     }
 
@@ -169,8 +205,8 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
     protected function getOptions()
     {
         return [
-            ['softdelete', null, InputOption::VALUE_NONE, 'With Softdeletes.'],
-            ['history', null, InputOption::VALUE_NONE, 'With History.'],
+            // ['softdelete', null, InputOption::VALUE_NONE, 'With Softdeletes.'],
+            // ['history', null, InputOption::VALUE_NONE, 'With History.'],
         ];
     }
 }
