@@ -46,6 +46,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         return array_merge($stubs, array_only($this->basic(), [
             // controllers
             'basic/controllers/resource.stub',
+            // repository
+            'basic/repo.stub',
             // tests
             'basic/tests/backend.stub',
             'basic/tests/frontend.stub',
