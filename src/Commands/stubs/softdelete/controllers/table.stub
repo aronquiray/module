@@ -4,7 +4,7 @@ namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyClass;
 
 use Illuminate\Http\Request;
 use HalcyonLaravel\Base\Controllers\BaseController as Controller;
-use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
+use DummyNameSpaceClass\Repositories\Backend\DummyClass\DummyClassRepository as Repository;
 use DummyNameSpaceClass\Models\DummyClass as Model;
 use DataTables;
 
@@ -14,16 +14,16 @@ use DataTables;
 class DummyClassesTableController extends Controller
 {
     /**
-     * @var BaseRepository
+     * @var DummyClassRepository
      */
     protected $repo;
 
     /**
-     * @param BlockRepository $repo
+     * @param DummyClassRepository $repo
      */
-    public function __construct()
+    public function __construct(Repository $repo)
     {
-        $this->repo = new Repository(new Model);    
+        $this->repo = $repo;   
         
         $this->middleware('permission:' . (new Model)->permission('list'), ['only' => ['__invoke']]);
     }
