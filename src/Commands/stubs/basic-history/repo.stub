@@ -7,6 +7,18 @@ use Illuminate\Database\Eloquent\Builder;
 use DummyNameSpaceClass\Models\DummyClass as Model;
 use History;
 
+
+
+use HalcyonLaravel\Base\Events\BaseStoringEvent;
+use HalcyonLaravel\Base\Events\BaseStoredEvent;
+
+use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
+use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
+
+use HalcyonLaravel\Base\Events\BaseDeletingEvent;
+use HalcyonLaravel\Base\Events\BaseDeletedEvent;
+
+
 /**
 * DummyClassRepository
 */
