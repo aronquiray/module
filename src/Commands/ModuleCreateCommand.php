@@ -79,7 +79,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
                 $this->options[] = 'softdelete';
                 $stubs = $this->softdelete();
             break;
-            case 'baisc';
+            case 'basic';
                 // do nothing, just execute default
             break;
             case null;
