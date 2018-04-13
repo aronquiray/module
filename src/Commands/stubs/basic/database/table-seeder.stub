@@ -25,7 +25,7 @@ class DummyClassTableSeeder extends Seeder
         $page = Page::create([
             'title' => 'Dummy Class', 
             'slug' => str_slug('dummy class'), 
-            'type' => 'module', 
+            'type' => str_slug('dummy class'),
             'status' => 'enable', 
             'template' => Model::viewFrontendPath . '.index'
             ]);
