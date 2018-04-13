@@ -89,7 +89,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
             // controllers
             'basic-history/controllers/history.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesHistoryController.php',
-            'basic-history/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
+            // 'basic-history/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
 
             // resources
             'basic-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
@@ -144,7 +144,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         return array_merge(array_merge($softdeleteStubs, $additionalStubs), array_only($this->basic_history(), [
             // controllers
             'basic-history/controllers/history.stub',
-            'basic-history/controllers/resource.stub',
+            
+            'basic/controllers/resource.stub', // inherited
 
             // resources
             'basic-history/resources/views/backend/history.stub',
