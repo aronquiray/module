@@ -8,12 +8,12 @@ use DummyNameSpaceClass\Repositories\Backend\DummyClass\DummyClassRepository as 
 use DummyNameSpaceClass\Models\DummyClass as Model;
 
 /**
- * Class DummyClassesDeleteController.
+ * Class DummyClassesDeletedController.
  */
 class DummyClassesDeletedController extends Controller
 {
     /**
-     * DummyClassesDeleteController Constructor
+     * DummyClassesDeletedController Constructor
      */
     public function __construct(Model $model, Repository $repo)
     {

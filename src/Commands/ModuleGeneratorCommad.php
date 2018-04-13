@@ -72,8 +72,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         $stubs = $this->basic();
 
         foreach ([
-            // controllers
-            'basic/controllers/resource.stub',
+            // repository
+            'basic/repo.stub',
             // routes
             'basic/routes/backend.stub',
             'basic/routes/bread-crumbs.stub',
@@ -84,6 +84,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         }
 
         $hiostoryStubs = [
+            // repository replace
+            'basic-history/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
+
             // controllers
             'basic-history/controllers/history.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesHistoryController.php',
             'basic-history/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
@@ -108,6 +111,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         $softdeleteStubs = $this->softdelete();
 
         foreach ([
+            // repository
+            'basic/repo.stub', // inherited from basic
             // controllers
             'basic/controllers/resource.stub', // inherited from basic
             'softdelete/controllers/deleted.stub',
@@ -121,6 +126,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         }
 
         $additionalStubs = [
+            // repository replace
+            'basic-softdelete-history/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
+
             // controllers replace
             // 'basic-softdelete-history/controllers/resource.stub' =>  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
             'basic-softdelete-history/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',

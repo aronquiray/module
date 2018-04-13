@@ -43,7 +43,8 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
     protected function getStub()
     {
 
-        $selected = $this->menu('What type of ' . $this->type . ' want to generate?', [
+        $selected = $this->menu('Generate "' .  $this->getNameInput() . '"' . "\n" .
+            'What type of ' . $this->type . ' want to generate?', [
             'softdelete-history'=>'Softdelete and History',
             'history'=>'History',
             'softdelete'=>'Softdelete',

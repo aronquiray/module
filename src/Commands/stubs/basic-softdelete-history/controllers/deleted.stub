@@ -4,21 +4,21 @@ namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyClass;
 
 use Illuminate\Http\Request;
 use HalcyonLaravel\Base\Controllers\Backend\DeletedController as Controller;
-use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
+use DummyNameSpaceClass\Repositories\Backend\DummyClass\DummyClassRepository as Repository;
 use DummyNameSpaceClass\Models\DummyClass as Model;
 
 /**
- * Class DummyClassesDeleteController.
+ * Class DummyClassesDeletedController.
  */
 class DummyClassesDeletedController extends Controller
 {
     /**
-     * DummyClassesDeleteController Constructor
+     * DummyClassesDeletedController Constructor
      */
-    public function __construct(Model $model)
+    public function __construct(Model $model, Repository $repo)
     {
         $this->model = $model;
-        $this->repo = new Repository($model);
+        $this->repo = $repo;
         $this->route_path = Model::routeAdminPath;
         $this->view_path = Model::viewBackendPath;
 
@@ -35,46 +35,5 @@ class DummyClassesDeletedController extends Controller
     public function model()
     {
         return Model::class;
-    }
-
-    /**
-     *  Available observers can costumise:
-        'restoring', 'restored',
-        'purging', 'purged',
-     *
-     * add custome logic on functions
-     *
-     *
-     * You can comment/uncomment one of them,
-     * it will run default bahavior if commented on base class.
-     *
-     * @author lloricode@gmail.com
-     */
-    private function _initRepositoryObservers()
-    {
-        // $this->repo->restoring = function ($model)
-        // {
-        //     event(new BaseRestoringEvent);
-        //     // dd($model);
-        //     return $model;
-        // };
-        $this->repo->restored = function ($model) {
-            event(new BaseRestoredEvent);
-            History::restored($model);
-            // dd($model);
-            return $model;
-        };
-        // $this->repo->purging = function ($model)
-        // {
-        //     event(new BasePurgingEvent);
-        //     // dd($model);
-        //     return $model;
-        // };
-        $this->repo->purged = function ($model) {
-            event(new BasePurgedEvent);
-            History::purged($model);
-            // dd($model);
-            return $model;
-        };
     }
 }
