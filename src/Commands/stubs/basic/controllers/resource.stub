@@ -58,8 +58,15 @@ class DummyClassesController extends Controller
     public function storeRules(Request $request) : array
     {
         $table = $this->model->getTable();
+
         return [
-            'title' => "required|max:255|unique:$table",
+            'rules' => [
+                'title' => "required|max:255|unique:$table",
+            ],
+            // custome validation messages
+            'messages' => [
+                'title.required' => 'The title field is required.',
+            ],
         ];
     }
     
@@ -73,8 +80,15 @@ class DummyClassesController extends Controller
     public function updateRules(Request $request, $model) : array
     {
         $table = $this->model->getTable();
+        
         return [
-            'title' => "required|max:255|unique:$table,title,{$model->id}",
+            'rules' => [
+                'title' => "required|max:255|unique:$table,title,{$model->id}",
+            ],
+            // custome validation messages
+            'messages' => [
+                'title.required' => 'The title field is required.',
+            ],
         ];
     }
 
