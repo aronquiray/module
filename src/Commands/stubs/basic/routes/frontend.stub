@@ -1,0 +1,12 @@
+<?php
+
+Route::group([
+	'prefix' => 'dummy-class',
+	'as' => 'dummy-class.',
+],function(){
+	Route::get('{dummy_class}', function(DummyNameSpaceClass\Models\DummyClass $dummy_class){
+		return view('module::test_frontend')->with([
+			'model' => $dummy_class,
+		]);
+	})->name('show');
+});

@@ -1,0 +1,82 @@
+<?php
+
+namespace DummyNameSpaceClass\Models;
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+use HalcyonLaravel\Base\Models\Model as BaseModel;
+use Spatie\Sluggable\SlugOptions;
+use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
+
+class DummyClass extends BaseModel
+{
+    use SoftDeletes, ModelDefaultTraits;
+
+    /**
+     * Declared Fillables
+     */
+    protected $fillable = [
+        'title',
+        'slug',
+    ];
+
+
+    public const moduleName         = 'dummy class';
+    public const viewBackendPath    = 'backend.dummyClass';
+    public const viewFrontendPath   = 'frontend.dummyClass';
+    public const routeAdminPath     = 'admin.dummy-class';
+    public const routeFrontendPath  = 'frontend.dummy-class';
+
+    /**
+     * Return the permissions related to this model.
+     *
+     * @return array
+     */
+    public function permissions() : array
+    {
+        return [
+            // table
+            'list' => 'dummy class list',
+
+            // resources
+            'create' => 'dummy class create',
+            'edit' => 'dummy class edit',
+            'show' => 'dummy class show',
+            'destroy' => 'dummy class destroy',
+
+            // deletes         
+            'deleted list' => 'dummy class deleted list',
+            'restore' => 'dummy class restore',
+            'purge' => 'dummy class purge',
+
+        ];
+    }
+
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
+     * Return the baseable source for this model.
+     *
+     * @return array
+     */
+    public function baseable() : array
+    {
+        return [
+            'source' => 'title'
+        ];
+    }
+
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
+}

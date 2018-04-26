@@ -1,0 +1,38 @@
+@extends('backend.layouts.app')
+
+@section ('title', $model->title .' - Dummy Class Management | ' . app_name())
+
+@section('content')
+    @component('backend.includes.widgets.box-model')
+    
+    	@slot('title', $model->title)
+        @slot('secondary_title', 'Dummy Class Mangement')
+        @slot('actions', $model->actions('backend', ['edit']))
+
+        @slot('content')
+     		@include('backend.includes.widgets.tabs', [
+                        'links' => [
+                                [
+                                        'name' => 'Overview',
+                                        'template' => 'backend.dummyClass.partials.overview',
+                                        'args' => [ 'model' => $model ]
+                                ],
+                        ]
+                ])
+        @endslot
+
+         @slot('footer')
+             <div class="row">
+                <div class="col">
+                    <small class="float-right text-muted">
+                        <strong>Date Created: </strong> {{ $model->updated_at->timezone(get_user_timezone()) }} ({{ $model->created_at->diffForHumans() }}),
+                        <strong>Date Modified:</strong> {{ $model->created_at->timezone(get_user_timezone()) }} ({{ $model->updated_at->diffForHumans() }})
+                    </small>
+                </div>
+            </div>
+        @endslot
+
+    @endcomponent
+@endsection
+
+

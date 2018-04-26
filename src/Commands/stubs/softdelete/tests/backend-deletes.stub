@@ -1,0 +1,116 @@
+<?php
+
+namespace Tests\Feature\Modules\Backend\DummyClass;
+
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+use HalcyonLaravel\Base\Events\BaseDeletingEvent;
+use HalcyonLaravel\Base\Events\BaseDeletedEvent;
+use HalcyonLaravel\Base\Events\BaseRestoringEvent;
+use HalcyonLaravel\Base\Events\BaseRestoredEvent;
+use HalcyonLaravel\Base\Events\BasePurgingEvent;
+use HalcyonLaravel\Base\Events\BasePurgedEvent;
+
+use DummyNameSpaceClass\Models\DummyClass as Model;
+
+
+/**
+ * Class DummyClassBreadFeatureDeletesBackendTest.
+ */
+class DummyClassBreadFeatureDeletesBackendTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->loginAsAdmin();
+        (new \DummyClassPermissionTableSeeder)->run();
+        (new \DummyClassTableSeeder)->run();
+    }
+
+    public function testDummyClassDeletedRouteExist()
+    {
+        $this->get(route('admin.dummy-class.deleted'))
+            ->assertStatus(200);
+    }
+
+    public function testDestroy()
+    {
+        $this->expectsEvents(BaseDeletingEvent::class);
+        $this->expectsEvents(BaseDeletedEvent::class);        
+        
+        $model = Model::create([
+            'title' => 'Salliess',
+        ]);
+
+        $response = $this->withHeaders([
+            'X-Header' => 'Value',
+        ])->json('DELETE', route('admin.dummy-class.destroy', $model));
+       
+        $response
+            ->assertStatus(302)
+            ->assertSessionHas('flash_success', 'Salliess has been deleted.')
+            ->assertRedirect(route('admin.dummy-class.deleted'));
+
+            $this->assertDatabaseHas((new Model)->getTable(), [
+                'id' => $model->id,
+            ]);
+
+            $this->assertDatabaseMissing((new Model)->getTable(), [
+                'id' => $model->id,
+                'deleted_at' => null,
+            ]);
+ 
+    }
+
+    public function testRestore()
+    {
+        $this->expectsEvents(BaseRestoringEvent::class);
+        $this->expectsEvents(BaseRestoredEvent::class);        
+        
+        $model = new Model;
+        $model->title = 'Salliess';
+        $model->deleted_at = now();
+        $model->save();
+
+        $response = $this->withHeaders([
+            'X-Header' => 'Value',
+        ])->json('PATCH', route('admin.dummy-class.restore', $model));
+
+        $response
+            ->assertStatus(302)
+            ->assertSessionHas('flash_success', 'Salliess has been restored.')
+            ->assertRedirect(route('admin.dummy-class.index'));
+
+            $this->assertDatabaseHas((new Model)->getTable(), [
+                'id' => $model->id,
+                'deleted_at' => null,
+            ]); 
+    }
+
+    public function testPurge()
+    {
+        $this->expectsEvents(BasePurgingEvent::class);
+        $this->expectsEvents(BasePurgedEvent::class);
+                
+        $model = new Model;
+        $model->title = 'Salliess';
+        $model->deleted_at = now();
+        $model->save();
+
+        $response = $this->withHeaders([
+            'X-Header' => 'Value',
+        ])->json('DELETE', route('admin.dummy-class.purge', $model));
+       
+        $response
+            ->assertStatus(302)
+            ->assertSessionHas('flash_success', 'Salliess has been permanently deleted.')
+            ->assertRedirect(route('admin.dummy-class.deleted'));
+
+            $this->assertDatabaseMissing((new Model)->getTable(), [
+                'id' => $model->id,
+            ]); 
+    }
+}

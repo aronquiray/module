@@ -1,0 +1,9 @@
+<?php
+
+Route::group([
+        'namespace' => 'DummyClass',
+        'middleware' => 'admin'
+], function () {
+        Route::post('dummy-class/table', 'DummyClassesTableController')->name('dummy-class.table');
+        Route::resource('dummy-class', 'DummyClassesController');
+});

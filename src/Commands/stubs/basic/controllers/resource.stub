@@ -1,0 +1,94 @@
+<?php
+
+namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyClass;
+
+use Illuminate\Http\Request;
+use DummyNameSpaceClass\Models\DummyClass as Model;
+use HalcyonLaravel\Base\Controllers\Backend\CRUDController as Controller;
+use DummyNameSpaceClass\Repositories\Backend\DummyClass\DummyClassRepository as Repository;
+
+/**
+ * Class DummyClassesController.
+ */
+class DummyClassesController extends Controller
+{
+    /**
+     * DummyClassesController Constructor
+     */
+    public function __construct(Repository $repo, Model $model)
+    {
+        $this->model = $model;
+        parent::__construct($model);
+        $this->repo = $repo;
+        
+        $this->middleware('permission:' . $model->permission('list'), ['only' => ['index']]);
+        $this->middleware('permission:' . $model->permission('show'), ['only' => ['show']]);
+        $this->middleware('permission:' . $model->permission('create'), ['only' => ['create', 'store']]);
+        $this->middleware('permission:' . $model->permission('edit'), ['only' => ['update', 'edit']]);
+        $this->middleware('permission:' . $model->permission('destroy'), ['only' => ['destroy']]);
+    }
+
+    /**
+     * Specify Model class name.
+     *
+     * @return mixed
+     */
+    public function model()
+    {
+        return Model::class;
+    }
+
+    /**
+     * @param Request $request
+     * @param Model $model | nullable
+     *
+     * @return array
+     */
+    public function generateStub(Request $request) : array
+    {
+        return $request->only($this->model->getFillable());
+    }
+
+
+    /**
+     * Validate input on store
+     *
+     * @return array
+     */
+    public function storeRules(Request $request) : array
+    {
+        $table = $this->model->getTable();
+
+        return [
+            'rules' => [
+                'title' => "required|max:255|unique:$table",
+            ],
+            // custome validation messages
+            'messages' => [
+                'title.required' => 'The title field is required.',
+            ],
+        ];
+    }
+    
+    /**
+     * Validate input on update
+     *
+     * @param Model $model | nullable
+     *
+     * @return array
+     */
+    public function updateRules(Request $request, $model) : array
+    {
+        $table = $this->model->getTable();
+        
+        return [
+            'rules' => [
+                'title' => "required|max:255|unique:$table,title,{$model->id}",
+            ],
+            // custome validation messages
+            'messages' => [
+                'title.required' => 'The title field is required.',
+            ],
+        ];
+    }
+}

@@ -1,0 +1,35 @@
+<?php
+
+namespace Tests\Feature\Modules\Frontend\DummyClass;
+
+use Tests\TestCase;
+// use Illuminate\Foundation\Testing\RefreshDatabase;
+
+// use DummyNameSpaceClass\Models\DummyClass as Model;
+
+/**
+ * Class DummyClassFeatureFrontendTest.
+ */
+class DummyClassFeatureFrontendTest extends TestCase
+{
+    // use RefreshDatabase;
+
+    // public function setUp()
+    // {
+    //     parent::setUp();
+    //     $this->loginAsAdmin(false);
+    //     (new \DummyClassPermissionTableSeeder)->run();
+    //     (new \DummyClassTableSeeder)->run();
+    // }
+
+    /** @test */
+    public function testDummyClassRouteFrontShowExist()
+    {        
+        // $model = Model::first();
+        // $this->get(route('frontend.dummy-class.show', $model))
+        //     ->assertStatus(200);
+        $this->assertTrue(true);
+ 
+    }
+
+}

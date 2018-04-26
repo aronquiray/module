@@ -1,0 +1,33 @@
+<?php
+
+Breadcrumbs::register('admin.dummy-class.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.dashboard');
+    $breadcrumbs->push('Dummy Class', route('admin.dummy-class.index'));
+});
+
+Breadcrumbs::register('admin.dummy-class.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.dummy-class.index');
+    $breadcrumbs->push('Create', route('admin.dummy-class.create'));
+});
+
+Breadcrumbs::register('admin.dummy-class.show', function ($breadcrumbs, $model) {
+    $breadcrumbs->parent('admin.dummy-class.index');
+    $breadcrumbs->push('Show', route('admin.dummy-class.show', $model));
+});
+
+Breadcrumbs::register('admin.dummy-class.edit', function ($breadcrumbs, $model) {
+    $breadcrumbs->parent('admin.dummy-class.show', $model);
+    $breadcrumbs->push('Edit', route('admin.dummy-class.edit', $model));
+});
+
+Breadcrumbs::register('admin.dummy-class.deleted', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.dummy-class.index');
+    $breadcrumbs->push('Deleted', route('admin.dummy-class.deleted'));
+});
+
+
+Breadcrumbs::register('admin.dummy-class.history', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.dummy-class.index');
+    $breadcrumbs->push('History List', route('admin.dummy-class.history'));
+});
+

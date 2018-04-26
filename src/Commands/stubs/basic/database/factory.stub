@@ -1,0 +1,12 @@
+<?php
+
+use Faker\Generator as Faker;
+use DummyNameSpaceClass\Models\DummyClass as Model;
+
+$factory->define(Model::class, function (Faker $faker) {
+    $title = $faker->unique()->word;
+    return [
+        'title' => $title,
+        'slug' => str_slug($title),
+    ];
+});

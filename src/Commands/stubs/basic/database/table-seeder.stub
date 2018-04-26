@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use DummyNameSpaceClass\Models\DummyClass as Model;
+use DummyNameSpaceClass\Models\Core\Page\Page;
+
+/**
+ * Class AuthTableSeeder.
+ */
+class DummyClassTableSeeder extends Seeder
+{
+
+    use DisableForeignKeys;
+    
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $this->disableForeignKeys();
+
+        // Page 
+        $page = Page::create([
+            'title' => 'Dummy Class', 
+            'slug' => str_slug('dummy class'), 
+            'type' => str_slug('dummy class'),
+            'status' => 'enable', 
+            'template' => Model::viewFrontendPath . '.index'
+            ]);
+        $page->metable()->create([
+            'name' => 'Dummy Class', 
+            'description' => 'List of all dummy classes', 
+            'keywords' => 'page,dummy-class', 
+            'user_id' => 2,
+            ]);
+
+        factory(Model::class, 20)->create();
+
+        $this->enableForeignKeys();
+    }
+}

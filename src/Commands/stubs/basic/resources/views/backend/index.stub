@@ -1,0 +1,32 @@
+@extends('backend.layouts.app')
+
+@section ('title', 'Dummy Class Management | ' . app_name())
+
+@section('content')
+   @component('backend.includes.widgets.table')
+
+        @slot('url', route('admin.dummy-class.table'))
+        @slot('form_data', json_encode([  ]))
+        @slot('table_name', 'dummy-class-table')
+        @slot('title', 'Dummy Class List')
+        @slot('secondary_title', 'Dummy Class Mangement')
+        
+        @slot('links')
+           @include('backend.dummyClass.partials.links')
+         @endslot
+        @slot('headers')
+        	<td>Title</td>
+        	<td>Last Modified</td>
+        	<td>Action</td>
+        @endslot
+        @slot('columns', json_encode([
+        	[ 'data' => 'title' ],
+        	[ 'data' => 'updated_at' ],
+        	[ 'data' => 'actions', 'type' => 'actions', 'sortable' => false, 'searchable' => false ],
+        ]))
+        @slot('options', json_encode([
+        	'order' => [ [0, 'desc'] ] 
+        ]))
+
+    @endcomponent
+@endsection

@@ -1,0 +1,48 @@
+<?php
+
+namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyClass;
+
+use Illuminate\Http\Request;
+use HalcyonLaravel\Base\Controllers\BaseController as Controller;
+use DummyNameSpaceClass\Repositories\Backend\DummyClass\DummyClassRepository as Repository;
+use DummyNameSpaceClass\Models\DummyClass as Model;
+use DataTables;
+
+/**
+ * Class DummyClassTableController.
+ */
+class DummyClassesTableController extends Controller
+{
+    /**
+     * @var DummyClassRepository
+     */
+    protected $repo;
+
+    /**
+     * @param DummyClassRepository $repo
+     */
+    public function __construct(Repository $repo)
+    {
+        $this->repo = $repo;
+        
+        $this->middleware('permission:' . (new Model)->permission('list'), ['only' => ['__invoke']]);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function __invoke(Request $request)
+    {
+        $user = auth()->user();
+        return DataTables::of($this->repo->table())
+            ->editColumn('updated_at', function ($model) {
+                return $model->updated_at->format('d M, Y h:m A');
+            })
+            ->addColumn('actions', function ($model) {
+                return $model->actions('backend', ['show', 'edit', 'destroy']);
+            })
+            ->make(true);
+    }
+}

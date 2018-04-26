@@ -1,0 +1,21 @@
+@extends('backend.layouts.app')
+
+@section ('title', 'Create Dummy Class - Dummy Class Management | ' . app_name())
+
+@section('content')
+    @component('backend.includes.widgets.form')
+
+        @slot('url', route('admin.dummy-class.store'))
+        @slot('form_id', 'dummy-class-form')
+        @slot('title', 'Create Dummy Class')
+        @slot('secondary_title', 'Dummy Class Mangement')
+        @slot('fields', 'backend.dummyClass.partials.fields')
+        @slot('link_cancel', route('admin.dummy-class.index'))
+        @slot('link_submit', 'Submit')
+        @slot('link_submit_edit', 'Submit & Edit')
+
+    @endcomponent
+@endsection
+
+
+
