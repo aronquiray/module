@@ -4,6 +4,6 @@
 
 @section('content')
        
-<p>not yet implemented</p>
+    {!! history()->buildClass($classModel)->render(10) !!}
 
 @endsection
