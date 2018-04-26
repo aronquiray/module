@@ -1,6 +1,6 @@
-# Halcyon Packages Module - develop #
+# Halcyon Packages Module - 1.0.0 #
 
 ```
-"halcyon-laravel/module": "dev-develop"
+"halcyon-laravel/module": "^1.0"
 ```
 ### Changes Log ###
