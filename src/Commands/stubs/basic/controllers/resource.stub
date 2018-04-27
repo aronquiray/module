@@ -70,7 +70,7 @@ class DummyClassesController extends Controller
                 'title.required' => 'The title field is required.',
             ])
             ->updateRules([
-                'title' => 'required|max:255|unique:$table,title,' . optional($model)->id,
+                'title' => "required|max:255|unique:$table,title," . optional($model)->id,
             ])
             ->updateRuleMessages([
                 'title.required' => 'The title field is required.',
