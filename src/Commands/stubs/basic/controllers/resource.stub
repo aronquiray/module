@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DummyNameSpaceClass\Models\DummyClass as Model;
 use HalcyonLaravel\Base\Controllers\Backend\CRUDController as Controller;
 use DummyNameSpaceClass\Repositories\Backend\DummyClass\DummyClassRepository as Repository;
+use HalcyonLaravel\Base\BasableOptions;
+use Illuminate\Database\Eloquent\Model as IlluminateModel;
 
 /**
  * Class DummyClassesController.
@@ -49,46 +51,29 @@ class DummyClassesController extends Controller
         return $request->only($this->model->getFillable());
     }
 
-
     /**
-     * Validate input on store
+     * Validate input on store/update
      *
-     * @return array
+     * @param Illuminate\Http\Request $request
+     * @param Illuminate\Database\Eloquent\Model $model | nullable
+     * @return HalcyonLaravel\Base\BasableOptions
      */
-    public function storeRules(Request $request) : array
+    public function crudRules(Request $request, IlluminateModel $model = null) : BasableOptions
     {
         $table = $this->model->getTable();
 
-        return [
-            'rules' => [
+        return BasableOptions::create()
+            ->storeRules([
                 'title' => "required|max:255|unique:$table",
-            ],
-            // custome validation messages
-            'messages' => [
+            ])
+            ->storeRuleMessages([
                 'title.required' => 'The title field is required.',
-            ],
-        ];
-    }
-    
-    /**
-     * Validate input on update
-     *
-     * @param Model $model | nullable
-     *
-     * @return array
-     */
-    public function updateRules(Request $request, $model) : array
-    {
-        $table = $this->model->getTable();
-        
-        return [
-            'rules' => [
-                'title' => "required|max:255|unique:$table,title,{$model->id}",
-            ],
-            // custome validation messages
-            'messages' => [
+            ])
+            ->updateRules([
+                'title' => 'required|max:255|unique:$table,title,' . optional($model)->id,
+            ])
+            ->updateRuleMessages([
                 'title.required' => 'The title field is required.',
-            ],
-        ];
+            ]);
     }
 }
