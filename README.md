@@ -7,6 +7,6 @@
             - Permission make static
             - Move Model to own folder, 
             - Add traits such attribute, scope, relations, regular functions and static functions.
-            - ***Add frontend controller
+            - Add frontend controller, and view
     v1.0.3: update on basebable options
     v1.0.2: add ui on history

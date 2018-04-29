@@ -46,6 +46,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         return array_merge($stubs, array_only($this->basic(), [
             // controllers
             'basic/controllers/resource.stub',
+            'basic/controllers/frontend.stub',
             // repository
             'basic/repo.stub',
             // tests
@@ -57,13 +58,17 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/database/factory.stub',
             'basic/database/table-seeder.stub',
             'basic/database/permission-seeder.stub' ,
-            // resources views
+            // resources views backend
             'basic/resources/views/backend/create.stub',
             'basic/resources/views/backend/edit.stub',
             'basic/resources/views/backend/show.stub',
-            // resources view partilas
+            // resources view backend partilas
             'basic/resources/views/backend/partials/fields.stub',
             'basic/resources/views/backend/partials/overview.stub',
+            // resources view frontend
+            'basic/resources/views/frontend/index.stub',
+            'basic/resources/views/frontend/show.stub',
+            'basic/resources/views/frontend/partials/node.stub',
             // model traits
             'basic/model-traits/attribute.stub',
             'basic/model-traits/regular.stub',
@@ -170,9 +175,10 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
             // controllers
             'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
+            'basic/controllers/frontend.stub' => 'app/Http/Controllers/Frontend/DummyClass/DummyClassesController.php',
             'basic/controllers/table.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesTableController.php',
 
-            // views
+            // views backend
             'basic/resources/views/backend/create.stub' => 'resources/views/backend/dummyClass/create.blade.php',
             'basic/resources/views/backend/edit.stub' => 'resources/views/backend/dummyClass/edit.blade.php',
             'basic/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
@@ -182,6 +188,11 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/resources/views/backend/partials/fields.stub' => 'resources/views/backend/dummyClass/partials/fields.blade.php',
             'basic/resources/views/backend/partials/overview.stub' => 'resources/views/backend/dummyClass/partials/overview.blade.php',
 
+            // views frontend
+            'basic/resources/views/frontend/index.stub' => 'resources/views/frontend/dummyClass/index.blade.php',
+            'basic/resources/views/frontend/show.stub' => 'resources/views/frontend/dummyClass/show.blade.php',
+            'basic/resources/views/frontend/partials/node.stub' => 'resources/views/frontend/dummyClass/partials/node.blade.php',
+           
             // route
             'basic/routes/backend.stub' => 'routes/backend/dummy-class.php',
             'basic/routes/frontend.stub' => 'routes/frontend/dummy-class.php',

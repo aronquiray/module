@@ -25,7 +25,7 @@ class DummyClassTableSeeder extends Seeder
         $page = Page::create([
             'title' => 'Dummy Class', 
             'slug' => str_slug('dummy class'), 
-            'type' => str_slug('dummy class'),
+            'type' => 'dummy class',
             'status' => 'enable', 
             'template' => Model::VIEW_FRONTEND_PATH . '.index'
             ]);
@@ -36,7 +36,15 @@ class DummyClassTableSeeder extends Seeder
             'user_id' => 2,
             ]);
 
-        factory(Model::class, 20)->create();
+        foreach(factory(Model::class, 20)->create() as $model)
+        { 
+            $model->metable()->create([
+                'name' => $model->title,
+                'description' => $model->title,
+                'keywords' => str_replace('-', ',', $model->slug),
+                'user_id' => 2
+            ]);
+        }
 
         $this->enableForeignKeys();
     }
