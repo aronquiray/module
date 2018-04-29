@@ -31,7 +31,7 @@ class DummyClass extends BaseModel
      *
      * @return array
      */
-    public function permissions() : array
+    public static function permissions() : array
     {
         return [
             // table
