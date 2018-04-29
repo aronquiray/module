@@ -42,7 +42,6 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
      */
     protected function getStub()
     {
-
         $selected = $this->menu('Generate "' .  $this->getNameInput() . '"' . "\n" .
             'What type of ' . $this->type . ' want to generate?', [
             'softdelete-history'=>'Softdelete and History',
@@ -65,25 +64,24 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
 
         $stubs = null;
 
-        switch($selected)
-        {
-            case 'softdelete-history';
+        switch ($selected) {
+            case 'softdelete-history':
                 $this->options[] = 'softdelete';
                 $this->options[] = 'history';
                 $stubs =   $this->basic_softdelete_history();
             break;
-            case 'history';
+            case 'history':
                 $this->options[] = 'history';
                 $stubs = $this->basic_history();
             break;
-            case 'softdelete';
+            case 'softdelete':
                 $this->options[] = 'softdelete';
                 $stubs = $this->softdelete();
             break;
-            case 'basic';
+            case 'basic':
                 // do nothing, just execute default
             break;
-            case null;
+            case null:
                 $this->error('Aborted ...');
             exit();
             default:
@@ -193,7 +191,6 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
 
     private function _nameSpaceApp($stub)
     {
-
         return str_replace('DummyNameSpaceClass\\', $this->getAppNamespace(), $stub);
     }
 

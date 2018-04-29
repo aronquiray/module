@@ -6,9 +6,21 @@ use HalcyonLaravel\Base\Models\Model as BaseModel;
 use Spatie\Sluggable\SlugOptions;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 
+// Model Traits
+use  DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassAttributes;
+use  DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassRegularFunctions;
+use  DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassRelations;
+use  DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassScopes;
+use  DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassStaticFunctions;
+
 class DummyClass extends BaseModel
 {
-    use ModelDefaultTraits;
+    use ModelDefaultTraits,
+        DummyClassAttributes,
+        DummyClassRegularFunctions,
+        DummyClassRelations,
+        DummyClassScopes,
+        DummyClassStaticFunctions;
 
     /**
      * Declared Fillables

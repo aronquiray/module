@@ -64,6 +64,12 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             // resources view partilas
             'basic/resources/views/backend/partials/fields.stub',
             'basic/resources/views/backend/partials/overview.stub',
+            // model traits
+            'basic/model-traits/attribute.stub',
+            'basic/model-traits/regular.stub',
+            'basic/model-traits/relation.stub',
+            'basic/model-traits/scope.stub',
+            'basic/model-traits/static.stub',
         ]));
     }
 
@@ -183,6 +189,12 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
             // model
             'basic/model.stub' => 'app/Models/DummyClass/DummyClass.php',
+            // model traits
+            'basic/model-traits/attribute.stub' => 'app/Models/DummyClass/Traits/DummyClassAttributes.php',
+            'basic/model-traits/regular.stub' => 'app/Models/DummyClass/Traits/DummyClassRegularFunctions.php',
+            'basic/model-traits/relation.stub' => 'app/Models/DummyClass/Traits/DummyClassRelations.php',
+            'basic/model-traits/scope.stub' => 'app/Models/DummyClass/Traits/DummyClassScopes.php',
+            'basic/model-traits/static.stub' => 'app/Models/DummyClass/Traits/DummyClassStaticFunctions.php',
 
             // database
             'basic/database/migration.stub' => $this->_databaseMigrationFileName(),

@@ -1,0 +1,7 @@
+<?php
+
+namespace DummyNameSpaceClass\Models\DummyClass\Traits;
+
+trait DummyClassScopes
+{
+}
