@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use HalcyonLaravel\Base\Events\BaseDeletingEvent;
 use HalcyonLaravel\Base\Events\BaseDeletedEvent;
 
-use DummyNameSpaceClass\Models\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 
 
 /**

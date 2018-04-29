@@ -1,6 +1,6 @@
 <?php
 
-namespace DummyNameSpaceClass\Models;
+namespace DummyNameSpaceClass\Models\DummyClass;
 
 use HalcyonLaravel\Base\Models\Model as BaseModel;
 use Spatie\Sluggable\SlugOptions;

@@ -3,7 +3,7 @@
 namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyClass;
 
 use DummyNameSpaceClass\Http\Controllers\Controller;
-use DummyNameSpaceClass\Models\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 
 class DummyClassesHistoryController extends Controller
 {

@@ -5,7 +5,7 @@ namespace Tests\Feature\Modules\Frontend\DummyClass;
 use Tests\TestCase;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 
-// use DummyNameSpaceClass\Models\DummyClass as Model;
+// use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 
 /**
  * Class DummyClassFeatureFrontendTest.

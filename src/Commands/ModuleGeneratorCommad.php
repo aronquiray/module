@@ -32,7 +32,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
 
             // model
-            'softdelete/model.stub' => 'app/Models/DummyClass.php',
+            'softdelete/model.stub' => 'app/Models/DummyClass/DummyClass.php',
 
             // database
             'softdelete/database/migration.stub' => $this->_databaseMigrationFileName(),
@@ -182,7 +182,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
 
             // model
-            'basic/model.stub' => 'app/Models/DummyClass.php',
+            'basic/model.stub' => 'app/Models/DummyClass/DummyClass.php',
 
             // database
             'basic/database/migration.stub' => $this->_databaseMigrationFileName(),

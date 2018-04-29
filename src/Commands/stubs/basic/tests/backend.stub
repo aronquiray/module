@@ -10,7 +10,7 @@ use HalcyonLaravel\Base\Events\BaseStoredEvent;
 use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
 use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
 
-use DummyNameSpaceClass\Models\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 
 
 /**
