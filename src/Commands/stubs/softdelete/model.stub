@@ -6,10 +6,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use HalcyonLaravel\Base\Models\Model as BaseModel;
 use Spatie\Sluggable\SlugOptions;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
+use App\Models\Core\Meta\MetableTrait;
+
+// Model Traits
+use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassAttributes;
+use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassRegularFunctions;
+use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassRelations;
+use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassScopes;
+use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassStaticFunctions;
 
 class DummyClass extends BaseModel
 {
-    use SoftDeletes, ModelDefaultTraits;
+    use MetableTrait,
+        SoftDeletes, 
+        ModelDefaultTraits,
+        DummyClassAttributes,
+        DummyClassRegularFunctions,
+        DummyClassRelations,
+        DummyClassScopes,
+        DummyClassStaticFunctions;
 
     /**
      * Declared Fillables
@@ -35,7 +50,7 @@ class DummyClass extends BaseModel
     {
         return [
             // table
-            'list' => self::MODULE_NAME . ' list',
+            'index' => self::MODULE_NAME . ' list',
 
             // resources
             'create' => self::MODULE_NAME . ' create',
@@ -78,5 +93,62 @@ class DummyClass extends BaseModel
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+        /**
+     * Return the links related to this model.
+     *
+     * @return array
+     */
+    public function links() : array
+    {
+        $links =  [
+            'frontend' => [
+                'show' => [
+                    'type' => 'show',
+                    'url' => route(self::ROUTE_FRONTEND_PATH. '.show', taxonomy()->getRoute($this, $include_model = true) ?? $this)
+                ]
+            ],
+            'backend' => [
+                'index'      => [
+                    'type' => 'custom',
+                    'label' => 'Articles',
+                    'permission' => $this->permission('index'),
+                    'url' => route(self::ROUTE_ADMIN_PATH.'.index')
+                ],
+                'show'      => [
+                    'type' => 'show',
+                    'permission' => $this->permission('show'),
+                    'url' => route(self::ROUTE_ADMIN_PATH.'.show', $this)
+                ],
+                'edit'      => [
+                    'type' => 'edit',
+                    'permission' => $this->permission('edit'),
+                    'url' => route(self::ROUTE_ADMIN_PATH.'.edit', $this)
+                ],
+                'destroy'   => [
+                    'type' => 'destroy',
+                    'permission' => $this->permission('destroy'),
+                    'url' => route(self::ROUTE_ADMIN_PATH.'.destroy', $this),
+                    'group' => 'more',
+                    'redirect' => route(self::ROUTE_ADMIN_PATH.'.index')
+                ],
+                'restore'   => [
+                    'type' => 'restore',
+                    'perminssion' =>self::permission('restore'),
+                    'url' => route(self::ROUTE_ADMIN_PATH.'.restore', $this),
+                    // 'group' => 'more',
+                    'redirect' => route(self::ROUTE_ADMIN_PATH.'.index')
+                ],
+                'purge'   => [
+                    'type' => 'purge',
+                    'perminssion' =>self::permission('purge'),
+                    'url' => route(self::ROUTE_ADMIN_PATH.'.purge', $this),
+                    // 'group' => 'more',
+                    'redirect' => route(self::ROUTE_ADMIN_PATH.'.index')
+                ],
+            ]
+        ];
+        return $links;
     }
 }

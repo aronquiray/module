@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 use DummyNameSpaceClass\Models\Core\Page\Page;
+use HalcyonLaravel\History\Facades\History;
+use App\Models\Auth\User;
 
 /**
  * Class AuthTableSeeder.
@@ -20,12 +22,13 @@ class DummyClassTableSeeder extends Seeder
     public function run()
     {
         $this->disableForeignKeys();
+        $user = User::skip(1)->first();
 
         // Page 
         $page = Page::create([
             'title' => 'Dummy Class', 
             'slug' => str_slug('dummy class'), 
-            'type' => str_slug('dummy class'),
+            'type' => 'dummy class',
             'status' => 'enable', 
             'template' => Model::VIEW_FRONTEND_PATH . '.index'
             ]);
@@ -33,10 +36,20 @@ class DummyClassTableSeeder extends Seeder
             'name' => 'Dummy Class', 
             'description' => 'List of all dummy classes', 
             'keywords' => 'page,dummy-class', 
-            'user_id' => 2,
+            'user_id' => $user->id,
             ]);
+        History::created($page, $user);
 
-        factory(Model::class, 20)->create();
+        foreach(factory(Model::class, 20)->create() as $model)
+        { 
+            $model->metable()->create([
+                'name' => $model->title,
+                'description' => $model->title,
+                'keywords' => str_replace('-', ',', $model->slug),
+                'user_id' => 2
+            ]);
+            History::created($model, $user);
+        }
 
         $this->enableForeignKeys();
     }

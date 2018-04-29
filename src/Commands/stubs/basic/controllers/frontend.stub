@@ -1,0 +1,46 @@
+<?php
+
+namespace DummyNameSpaceClass\Http\Controllers\Frontend\DummyClass;
+
+use HalcyonLaravel\Base\Controllers\BaseController as Controller;
+use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use DummyNameSpaceClass\Models\Core\Page\Page;
+
+/**
+ * Class DummyClassesController.
+ */
+class DummyClassesController extends Controller
+{
+    /**
+     * DummyClassesController constructor
+     */
+    public function __construct(Model $model)
+    {
+        $this->model = $model;
+        $this->viewFrontendPath = $this->model::VIEW_FRONTEND_PATH;
+    }
+
+    public function index()
+    {
+        $Model = new Model;
+        $page = Page::where('type', $this->model::MODULE_NAME)
+            ->where('status', 'enable')
+            ->with(['images', 'menuable', 'metable'])
+            ->firstOrFail();
+        $models = Model::paginate(12);
+        return view("$this->viewFrontendPath.index", compact('page', 'models', 'Model'));
+    }
+
+    /**
+     * Returns the view of the page if existing and is enabled
+     *
+     * @param string $routeKeyName
+     * @return View
+     */
+    public function show(string $routeKeyName)
+    {
+        $page = $model = $this->getModel($routeKeyName, false);
+        return view($this->viewFrontendPath.'.show', compact('model', 'page'));
+    }
+}
