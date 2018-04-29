@@ -32,7 +32,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
 
             // model
-            'softdelete/model.stub' => 'app/Models/DummyClass.php',
+            'softdelete/model.stub' => 'app/Models/DummyClass/DummyClass.php',
 
             // database
             'softdelete/database/migration.stub' => $this->_databaseMigrationFileName(),
@@ -115,7 +115,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/repo.stub', // inherited from basic
             // controllers
             'basic/controllers/resource.stub', // inherited from basic
-            'softdelete/controllers/deleted.stub',
+            // 'softdelete/controllers/deleted.stub',
             // routes
             'softdelete/routes/backend.stub',
             'softdelete/routes/bread-crumbs.stub',
@@ -131,7 +131,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
             // controllers replace
             // 'basic-softdelete-history/controllers/resource.stub' =>  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
-            'basic-softdelete-history/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',
+            // 'basic-softdelete-history/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',
           
             // routes
             'basic-softdelete-history/routes/backend.stub' => 'routes/backend/dummy-class.php',
@@ -182,7 +182,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
 
             // model
-            'basic/model.stub' => 'app/Models/DummyClass.php',
+            'basic/model.stub' => 'app/Models/DummyClass/DummyClass.php',
 
             // database
             'basic/database/migration.stub' => $this->_databaseMigrationFileName(),

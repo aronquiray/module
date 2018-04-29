@@ -1,6 +1,6 @@
 <?php
 
-namespace DummyNameSpaceClass\Models;
+namespace DummyNameSpaceClass\Models\DummyClass;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use HalcyonLaravel\Base\Models\Model as BaseModel;
@@ -20,33 +20,33 @@ class DummyClass extends BaseModel
     ];
 
 
-    public const moduleName         = 'dummy class';
-    public const viewBackendPath    = 'backend.dummyClass';
-    public const viewFrontendPath   = 'frontend.dummyClass';
-    public const routeAdminPath     = 'admin.dummy-class';
-    public const routeFrontendPath  = 'frontend.dummy-class';
+    public const MODULE_NAME         = 'dummy class';
+    public const VIEW_BACKEND_PATH    = 'backend.dummyClass';
+    public const VIEW_FRONTEND_PATH   = 'frontend.dummyClass';
+    public const ROUTE_ADMIN_PATH     = 'admin.dummy-class';
+    public const ROUTE_FRONTEND_PATH  = 'frontend.dummy-class';
 
     /**
      * Return the permissions related to this model.
      *
      * @return array
      */
-    public function permissions() : array
+    public static function permissions() : array
     {
         return [
             // table
-            'list' => 'dummy class list',
+            'list' => self::MODULE_NAME . ' list',
 
             // resources
-            'create' => 'dummy class create',
-            'edit' => 'dummy class edit',
-            'show' => 'dummy class show',
-            'destroy' => 'dummy class destroy',
+            'create' => self::MODULE_NAME . ' create',
+            'edit' => self::MODULE_NAME . ' edit',
+            'show' => self::MODULE_NAME . ' show',
+            'destroy' => self::MODULE_NAME . ' destroy',
 
             // deletes         
-            'deleted list' => 'dummy class deleted list',
-            'restore' => 'dummy class restore',
-            'purge' => 'dummy class purge',
+            'deleted list' => self::MODULE_NAME . ' deleted list',
+            'restore' => self::MODULE_NAME . ' restore',
+            'purge' => self::MODULE_NAME . ' purge',
 
         ];
     }

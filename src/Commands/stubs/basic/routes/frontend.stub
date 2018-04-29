@@ -1,12 +1,13 @@
 <?php
 
+/**
+ * All route names are prefixed with 'frontend.dummy-class'.
+ */
 Route::group([
+    'namespace'  => 'DummyClass',
 	'prefix' => 'dummy-class',
 	'as' => 'dummy-class.',
-],function(){
-	Route::get('{dummy_class}', function(DummyNameSpaceClass\Models\DummyClass $dummy_class){
-		return view('module::test_frontend')->with([
-			'model' => $dummy_class,
-		]);
-	})->name('show');
+], function () {
+    Route::get('', 'DummyClassesController@index')->name('index');
+    Route::get('/{dummy_class}', 'DummyClassesController@show')->where('dummy-class', '.+')->name('show');
 });

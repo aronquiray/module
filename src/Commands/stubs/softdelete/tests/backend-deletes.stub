@@ -12,7 +12,7 @@ use HalcyonLaravel\Base\Events\BaseRestoredEvent;
 use HalcyonLaravel\Base\Events\BasePurgingEvent;
 use HalcyonLaravel\Base\Events\BasePurgedEvent;
 
-use DummyNameSpaceClass\Models\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 
 
 /**
