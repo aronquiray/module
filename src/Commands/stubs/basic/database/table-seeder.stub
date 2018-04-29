@@ -27,7 +27,7 @@ class DummyClassTableSeeder extends Seeder
             'slug' => str_slug('dummy class'), 
             'type' => str_slug('dummy class'),
             'status' => 'enable', 
-            'template' => Model::viewFrontendPath . '.index'
+            'template' => Model::VIEW_FRONTEND_PATH . '.index'
             ]);
         $page->metable()->create([
             'name' => 'Dummy Class', 

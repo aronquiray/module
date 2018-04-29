@@ -18,11 +18,11 @@ class DummyClass extends BaseModel
         'slug',
     ];
 
-    public const moduleName         = 'dummy class';
-    public const viewBackendPath    = 'backend.dummyClass';
-    public const viewFrontendPath   = 'frontend.dummyClass';
-    public const routeAdminPath     = 'admin.dummy-class';
-    public const routeFrontendPath  = 'frontend.dummy-class';
+    public const MODULE_NAME         = 'dummy class';
+    public const VIEW_BACKEND_PATH    = 'backend.dummyClass';
+    public const VIEW_FRONTEND_PATH   = 'frontend.dummyClass';
+    public const ROUTE_ADMIN_PATH     = 'admin.dummy-class';
+    public const ROUTE_FRONTEND_PATH  = 'frontend.dummy-class';
 
     /**
      * Return the permissions related to this model.
