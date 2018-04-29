@@ -24,7 +24,10 @@ class DummyClassesController extends Controller
     public function index()
     {
         $Model = new Model;
-        $page = Page::where('type', $this->model::MODULE_NAME)->with(['images', 'menuable', 'metable'])->firstOrFail();
+        $page = Page::where('type', $this->model::MODULE_NAME)
+            ->where('status', 'enable')
+            ->with(['images', 'menuable', 'metable'])
+            ->firstOrFail();
         $models = Model::paginate(12);
         return view("$this->viewFrontendPath.index", compact('page', 'models', 'Model'));
     }

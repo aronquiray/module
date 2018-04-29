@@ -2,7 +2,7 @@
 
 @section('page-action')
 	@can($Model::permission('index'))
-		<li><a href="{{ $Model->actions('backend', 'index', true) }}">DummyClasses</a></li>
+		<li><a href="{{ $Model->actions('backend', 'index', true) }}">Dummy Classes</a></li>
 	@endcan
 	@can($page::permission('edit'))
 		<li><a href="{{ $page->actions('backend', 'edit', true) }}">Edit Page</a></li>
@@ -18,4 +18,5 @@
 			@endforeach
 		</div>
 	@endif
+{{ $models->links() }}
 @endsection
