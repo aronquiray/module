@@ -33,13 +33,13 @@ class DummyClass extends BaseModel
     {
         return [
             // table
-            'list' => 'dummy class list',
+            'list' => self::MODULE_NAME . ' list',
 
             // resources
-            'create' => 'dummy class create',
-            'edit' => 'dummy class edit',
-            'show' => 'dummy class show',
-            'destroy' => 'dummy class destroy',
+            'create' => self::MODULE_NAME . ' create',
+            'edit' => self::MODULE_NAME . ' edit',
+            'show' => self::MODULE_NAME . ' show',
+            'destroy' => self::MODULE_NAME . ' destroy',
         ];
     }
 

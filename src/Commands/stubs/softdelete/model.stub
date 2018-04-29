@@ -35,18 +35,18 @@ class DummyClass extends BaseModel
     {
         return [
             // table
-            'list' => 'dummy class list',
+            'list' => self::MODULE_NAME . ' list',
 
             // resources
-            'create' => 'dummy class create',
-            'edit' => 'dummy class edit',
-            'show' => 'dummy class show',
-            'destroy' => 'dummy class destroy',
+            'create' => self::MODULE_NAME . ' create',
+            'edit' => self::MODULE_NAME . ' edit',
+            'show' => self::MODULE_NAME . ' show',
+            'destroy' => self::MODULE_NAME . ' destroy',
 
             // deletes         
-            'deleted list' => 'dummy class deleted list',
-            'restore' => 'dummy class restore',
-            'purge' => 'dummy class purge',
+            'deleted list' => self::MODULE_NAME . ' deleted list',
+            'restore' => self::MODULE_NAME . ' restore',
+            'purge' => self::MODULE_NAME . ' purge',
 
         ];
     }
