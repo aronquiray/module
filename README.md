@@ -5,5 +5,6 @@
         * Fixes
             - Constants make capitilize
             - Permission make static
+            - **** Move Model to own folder, add traits such attribute, scope, relations, regular functions and static functions.
     v1.0.3: update on basebable options
     v1.0.2: add ui on history
