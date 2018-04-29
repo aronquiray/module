@@ -9,6 +9,6 @@
 @endsection
 @section('page-body')
 	<p>
-		{!! $model->description !!}
+		Static Data Sample
 	</p>
 @endsection
