@@ -12,6 +12,8 @@ use DummyNameSpaceClass\Models\Core\Page\Page;
  */
 class DummyClassesController extends Controller
 {
+    private $_page;
+    
     /**
      * DummyClassesController constructor
      */
@@ -19,10 +21,16 @@ class DummyClassesController extends Controller
     {
         $this->model = $model;
         $this->viewFrontendPath = $this->model::VIEW_FRONTEND_PATH;
+
+        $this->_page = Page::where('type', $this->model::MODULE_NAME)
+            ->where('status', 'enable')
+            ->with(['images', 'menuable', 'metable'])
+            ->firstOrFail();
     }
 
     public function index()
     {
+        $page = $this->_page;
         $Model = new Model;
         $page = Page::where('type', $this->model::MODULE_NAME)
             ->where('status', 'enable')
