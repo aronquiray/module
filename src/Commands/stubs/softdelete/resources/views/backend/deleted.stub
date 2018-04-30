@@ -9,7 +9,7 @@
         @slot('form_data', json_encode([ 'trash' => true ]))
         @slot('table_name', 'dummy-class-table')
         @slot('title', 'Dummy Class Deleted List')
-        @slot('secondary_title', 'Dummy Class Mangement')
+        @slot('secondary_title', 'Dummy Class Management')
         
         @slot('links')
             @include('backend.dummyClass.partials.links')

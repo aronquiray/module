@@ -6,7 +6,7 @@
     @component('backend.includes.widgets.box-model')
     
     	@slot('title', $model->title)
-        @slot('secondary_title', 'Dummy Class Mangement')
+        @slot('secondary_title', 'Dummy Class Management')
         @slot('actions', $model->actions('backend', ['edit']))
 
         @slot('content')
