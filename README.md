@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.4
+# Halcyon Packages Module - 1.0.5
 
 ## Changes Log
+    v1.0.5: Fix typoe Mangement to Management
     v1.0.4 
         * Fixes
             - Constants make capitilize
