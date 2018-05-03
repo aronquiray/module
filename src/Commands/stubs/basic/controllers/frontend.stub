@@ -22,10 +22,14 @@ class DummyClassesController extends Controller
         $this->model = $model;
         $this->viewFrontendPath = $this->model::VIEW_FRONTEND_PATH;
 
-        $this->_page = Page::where('type', $this->model::MODULE_NAME)
-            ->where('status', 'enable')
-            ->with(['images', 'menuable', 'metable'])
-            ->firstOrFail();
+        // ignore when running console to prevent 404
+        if (!app()->runningInConsole())
+        {
+            $this->_page = Page::where('type', $this->model::MODULE_NAME)
+                ->where('status', 'enable')
+                ->with(['images', 'menuable', 'metable'])
+                ->firstOrFail();
+        }
     }
 
     public function index()
