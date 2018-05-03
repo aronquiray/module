@@ -1,4 +1,4 @@
-# Halcyon Packages Module - 1.0.6
+# Halcyon Packages Module - 1.0.7
 
 ## Changes Log
     v1.0.7: Fix ignore checks page status when running console.
