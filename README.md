@@ -1,4 +1,4 @@
-# Halcyon Packages Module - 1.0.7
+# Halcyon Packages Module - 1.0.8
 
 ## Changes Log
     v1.0.8: Manage Seeder for production.
