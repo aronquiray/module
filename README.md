@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.7
+# Halcyon Packages Module - 1.0.8
 
 ## Changes Log
+    v1.0.8: Manage Seeder for production.
     v1.0.7: Fix ignore checks page status when running console.
     v1.0.6: Fix access show frontend when disable.
     v1.0.5: Fix typoe Mangement to Management
