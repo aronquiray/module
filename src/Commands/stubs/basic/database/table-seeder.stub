@@ -5,6 +5,7 @@ use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 use DummyNameSpaceClass\Models\Core\Page\Page;
 use HalcyonLaravel\History\Facades\History;
 use App\Models\Auth\User;
+use App\Models\Core\Menu\Menu;
 
 /**
  * Class AuthTableSeeder.
@@ -37,7 +38,22 @@ class DummyClassTableSeeder extends Seeder
             'description' => 'List of all dummy classes', 
             'keywords' => 'page,dummy-class', 
             'user_id' => $user->id,
-            ]);
+            ]);     
+        
+        $pageCount = Page::count();
+         
+        foreach(Menu::all() as $menu)
+        {
+            $page->menuable()->create([
+                'name' => $page->title, 
+                'slug' => $page->slug, 
+                'menu_id' => $menu->id, 
+                'order' => $pageCount++, 
+                'options' => '[]'
+                ]);
+
+        }    
+
         History::created($page, $user);
 
         foreach(factory(Model::class, 20)->create() as $model)
