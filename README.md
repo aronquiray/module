@@ -1,4 +1,4 @@
-# Halcyon Packages Module - 1.0.10
+# Halcyon Packages Module - 1.0.11
 
 ## Changes Log
     v1.0.11: Add Query cache.
