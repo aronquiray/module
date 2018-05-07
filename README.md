@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.9
+# Halcyon Packages Module - 1.0.10
 
 ## Changes Log
+    v1.0.10: Validate empty inputs.
     v1.0.9
         * UPdates
             - Fix permission index on softdelete controller.
