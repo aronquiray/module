@@ -42,6 +42,11 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
      */
     protected function getStub()
     {
+        if (empty($this->getNameInput())) {
+            $this->error('Aborted!, Please speacify ' . $this->type . ' name.');
+            exit();
+        }
+
         $selected = $this->menu('Generate "' .  $this->getNameInput() . '"' . "\n" .
             'What type of ' . $this->type . ' want to generate?', [
             'softdelete-history'=>'Softdelete and History',
