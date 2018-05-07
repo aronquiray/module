@@ -1,6 +1,10 @@
-# Halcyon Packages Module - 1.0.8
+# Halcyon Packages Module - 1.0.9
 
 ## Changes Log
+    v1.0.9
+        * UPdates
+            - Fix permission index on softdelete controller.
+            - Update for core seeder.
     v1.0.8: Manage Seeder for production.
     v1.0.7: Fix ignore checks page status when running console.
     v1.0.6: Fix access show frontend when disable.
