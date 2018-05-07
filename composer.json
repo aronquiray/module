@@ -8,7 +8,8 @@
         "require": {
             "halcyon-laravel/base":  "^1.0",
                 "spatie/laravel-permission": "^2.9",
-                "nunomaduro/laravel-console-menu": "^1.0"
+                "nunomaduro/laravel-console-menu": "^1.0",
+                "watson/rememberable": "^2.0"
         },
         "require-dev": {
             "orchestra/testbench": "~3.3.0|~3.4.2|^3.5.0",
