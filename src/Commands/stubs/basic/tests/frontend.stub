@@ -19,7 +19,7 @@ class DummyClassFeatureFrontendTest extends TestCase
         $this->loginAsAdmin(false);
         (new \DummyClassPermissionTableSeeder)->run();
         (new \DummyClassTableSeeder)->run();
-        $this->prepareMenu();
+        $this->prepareMenu(false);
     }
 
     public function testDummyClassRouteFrontShowExist()
