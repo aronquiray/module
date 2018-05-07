@@ -40,7 +40,9 @@ class DummyClassesController extends Controller
             ->where('status', 'enable')
             ->with(['images', 'menuable', 'metable'])
             ->firstOrFail();
-        $models = Model::paginate(12);
+
+        // Remember an hour and tag it
+        $models = Model::remember(60)->cacheTags(Model::CACHE_TAG)->paginate(12);
         return view("$this->viewFrontendPath.index", compact('page', 'models', 'Model'));
     }
 

@@ -6,6 +6,7 @@ use HalcyonLaravel\Base\Models\Model as BaseModel;
 use Spatie\Sluggable\SlugOptions;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 use App\Models\Core\Meta\MetableTrait;
+use Watson\Rememberable\Rememberable;
 
 // Model Traits
 use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassAttributes;
@@ -16,7 +17,8 @@ use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassStaticFunctions;
 
 class DummyClass extends BaseModel
 {
-    use MetableTrait,
+    use Rememberable,
+        MetableTrait,
         ModelDefaultTraits,
         DummyClassAttributes,
         DummyClassRegularFunctions,
@@ -37,6 +39,18 @@ class DummyClass extends BaseModel
     public const VIEW_FRONTEND_PATH   = 'frontend.dummyClass';
     public const ROUTE_ADMIN_PATH     = 'admin.dummy-class';
     public const ROUTE_FRONTEND_PATH  = 'frontend.dummy-class';
+     
+    /** cache tag reference to delete certaint cache */
+    public const CACHE_TAG  = 'dummy_class_queries';
+
+    public static function boot()
+    {
+        parent::boot();
+        static::saved(function () {
+            /** Delete cache on updates */
+            self::flushCache(self::CACHE_TAG);
+        });
+    }
 
     /**
      * Return the permissions related to this model.
