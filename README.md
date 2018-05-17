@@ -1,6 +1,7 @@
 # Halcyon Packages Module - 1.0.11
 
 ## Changes Log
+    v1.0.12: Add Meta.
     v1.0.11: Add Query cache.
     v1.0.10: Validate empty inputs.
     v1.0.9

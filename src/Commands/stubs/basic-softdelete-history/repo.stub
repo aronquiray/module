@@ -73,12 +73,12 @@ class DummyClassRepository extends Repository
         // dd($data, $model, $oldModel);
         return $model;
     }
-    // protected function deleting($model)
-    // {
-    //     event(new BaseDeletingEvent);
-    //     // dd($model);
-    //     return $model;
-    // }
+    protected function deleting($model)
+    {
+        event(new BaseDeletingEvent);
+        $model->metable()->delete();
+        return $model;
+    }
     protected function deleted($model) {
         event(new BaseDeletedEvent);
         History::deleted($model);

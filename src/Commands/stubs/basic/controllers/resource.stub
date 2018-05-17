@@ -48,7 +48,11 @@ class DummyClassesController extends Controller
      */
     public function generateStub(Request $request) : array
     {
-        return $request->only($this->model->getFillable());
+        $data = [
+            'meta' => $request->meta,
+        ];
+        
+        return array_merge($request->only($this->model->getFillable()), $data);
     }
 
     /**

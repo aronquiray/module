@@ -16,4 +16,15 @@ class DummyClassRepository extends Repository
         parent::__construct($model);
     }
 
+    /**
+     * @param Model $model
+     *
+     * @throws \Exception
+     * @return $model
+     */
+    public function deleting($model)
+    {
+        $model->metable()->delete();
+        return $model;
+    }
 }
