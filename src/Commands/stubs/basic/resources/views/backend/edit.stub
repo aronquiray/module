@@ -19,6 +19,18 @@
         @slot('link_submit', 'Submit')
         @slot('link_submit_edit', 'Submit & Continue')
 
+        @slot('custom')
+            @include('backend.includes.widgets.tab-actions', [ 
+                'name' => 'More Info',
+                'links' => [
+                    [
+                        'name' => 'Meta',
+                        'template' => 'backend.core.meta.form',
+                        'args' => ['meta' => $model->metable]
+                    ]
+                ]
+            ])
+        @endslot
 
     @endcomponent
 @endsection
