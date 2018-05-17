@@ -1,4 +1,4 @@
-# Halcyon Packages Module - 1.0.11
+# Halcyon Packages Module - 1.0.12
 
 ## Changes Log
     v1.0.12: Add Meta.
