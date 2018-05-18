@@ -7,6 +7,15 @@ use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 
 class DummyClassesHistoryController extends Controller
 {
+    /**
+     * DummyClassesHistoryController Constructor
+     */
+    public function __construct()
+    {
+        
+        $this->middleware('permission:' . Model::permission('history list'), ['only' => ['__invoke']]);
+    }
+
     public function __invoke(){
         return view(Model::VIEW_BACKEND_PATH . '.history')->with([
             'classModel'=> Model::class
