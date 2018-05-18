@@ -23,11 +23,11 @@ class DummyClassesController extends Controller
         parent::__construct($model);
         $this->repo = $repo;
         
-        $this->middleware('permission:' . $model->permission('index'), ['only' => ['index']]);
-        $this->middleware('permission:' . $model->permission('show'), ['only' => ['show']]);
-        $this->middleware('permission:' . $model->permission('create'), ['only' => ['create', 'store']]);
-        $this->middleware('permission:' . $model->permission('edit'), ['only' => ['update', 'edit']]);
-        $this->middleware('permission:' . $model->permission('destroy'), ['only' => ['destroy']]);
+        $this->middleware('permission:' . Model::permission('index'), ['only' => ['index']]);
+        $this->middleware('permission:' . Model::permission('show'), ['only' => ['show']]);
+        $this->middleware('permission:' . Model::permission('create'), ['only' => ['create', 'store']]);
+        $this->middleware('permission:' . Model::permission('edit'), ['only' => ['update', 'edit']]);
+        $this->middleware('permission:' . Model::permission('destroy'), ['only' => ['destroy']]);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace DummyNameSpaceClass\Models\DummyClass;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use HalcyonLaravel\Base\Models\Model as BaseModel;
 use Spatie\Sluggable\SlugOptions;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
@@ -19,6 +20,7 @@ class DummyClass extends BaseModel
 {
     use Rememberable,
         MetableTrait,
+        SoftDeletes, 
         ModelDefaultTraits,
         DummyClassAttributes,
         DummyClassRegularFunctions,
@@ -34,12 +36,13 @@ class DummyClass extends BaseModel
         'slug',
     ];
 
+
     public const MODULE_NAME         = 'dummy class';
     public const VIEW_BACKEND_PATH    = 'backend.dummyClass';
     public const VIEW_FRONTEND_PATH   = 'frontend.dummyClass';
     public const ROUTE_ADMIN_PATH     = 'admin.dummy-class';
     public const ROUTE_FRONTEND_PATH  = 'frontend.dummy-class';
-     
+    
     /** cache tag reference to delete certaint cache */
     public const CACHE_TAG  = 'dummy_class_queries';
 
@@ -68,8 +71,17 @@ class DummyClass extends BaseModel
             'edit' => self::MODULE_NAME . ' edit',
             'show' => self::MODULE_NAME . ' show',
             'destroy' => self::MODULE_NAME . ' destroy',
+
+            // deletes         
+            'deleted list' => self::MODULE_NAME . ' deleted list',
+            'restore' => self::MODULE_NAME . ' restore',
+            'purge' => self::MODULE_NAME . ' purge',
+
+            // history         
+            'history list' => self::MODULE_NAME . ' history list',
         ];
     }
+
 
     public function getRouteKeyName()
     {
@@ -88,6 +100,7 @@ class DummyClass extends BaseModel
         ];
     }
 
+
     /**
      * Get the options for generating the slug.
      */
@@ -98,7 +111,7 @@ class DummyClass extends BaseModel
             ->saveSlugsTo('slug');
     }
 
-    /**
+        /**
      * Return the links related to this model.
      *
      * @return array
@@ -134,6 +147,20 @@ class DummyClass extends BaseModel
                     'permission' => self::permission('destroy'),
                     'url' => route(self::ROUTE_ADMIN_PATH.'.destroy', $this),
                     'group' => 'more',
+                    'redirect' => route(self::ROUTE_ADMIN_PATH.'.index')
+                ],
+                'restore'   => [
+                    'type' => 'restore',
+                    'perminssion' =>self::permission('restore'),
+                    'url' => route(self::ROUTE_ADMIN_PATH.'.restore', $this),
+                    // 'group' => 'more',
+                    'redirect' => route(self::ROUTE_ADMIN_PATH.'.index')
+                ],
+                'purge'   => [
+                    'type' => 'purge',
+                    'perminssion' =>self::permission('purge'),
+                    'url' => route(self::ROUTE_ADMIN_PATH.'.purge', $this),
+                    // 'group' => 'more',
                     'redirect' => route(self::ROUTE_ADMIN_PATH.'.index')
                 ],
             ]

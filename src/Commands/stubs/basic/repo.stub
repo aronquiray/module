@@ -6,6 +6,8 @@ use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
 use Illuminate\Database\Eloquent\Builder;
 use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 
+use HalcyonLaravel\Base\Events\BaseDeletingEvent;
+
 /**
 * DummyClassRepository
 */
@@ -24,6 +26,7 @@ class DummyClassRepository extends Repository
      */
     public function deleting($model)
     {
+        event(new BaseDeletingEvent);
         $model->metable()->delete();
         return $model;
     }

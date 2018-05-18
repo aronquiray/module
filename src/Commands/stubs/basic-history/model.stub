@@ -68,6 +68,9 @@ class DummyClass extends BaseModel
             'edit' => self::MODULE_NAME . ' edit',
             'show' => self::MODULE_NAME . ' show',
             'destroy' => self::MODULE_NAME . ' destroy',
+
+            // history         
+            'history list' => self::MODULE_NAME . ' history list',
         ];
     }
 
