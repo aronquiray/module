@@ -1,4 +1,4 @@
-# Halcyon Packages Module - 1.0.12
+# Halcyon Packages Module - 1.0.13
 
 ## Changes Log
     v1.0.13: Set to static in permission access, add history list permission
