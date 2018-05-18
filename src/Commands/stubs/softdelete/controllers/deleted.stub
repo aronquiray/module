@@ -22,9 +22,9 @@ class DummyClassesDeletedController extends Controller
         $this->route_path = Model::ROUTE_ADMIN_PATH;
         $this->view_path = Model::VIEW_BACKEND_PATH;
 
-        $this->middleware('permission:' . $this->model->permission('deleted list'), ['only' => ['deleted']]);
-        $this->middleware('permission:' . $this->model->permission('restore'), ['only' => ['restore']]);
-        $this->middleware('permission:' . $this->model->permission('purge'), ['only' => ['purge']]);
+        $this->middleware('permission:' . Model::permission('deleted list'), ['only' => ['deleted']]);
+        $this->middleware('permission:' . Model::permission('restore'), ['only' => ['restore']]);
+        $this->middleware('permission:' . Model::permission('purge'), ['only' => ['purge']]);
     }
 
     /**

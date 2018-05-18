@@ -115,23 +115,23 @@ class DummyClass extends BaseModel
             'backend' => [
                 'index'      => [
                     'type' => 'custom',
-                    'label' => 'Articles',
-                    'permission' => $this->permission('index'),
+                    'label' => 'Dummy Classes',
+                    'permission' => self::permission('index'),
                     'url' => route(self::ROUTE_ADMIN_PATH.'.index')
                 ],
                 'show'      => [
                     'type' => 'show',
-                    'permission' => $this->permission('show'),
+                    'permission' => self::permission('show'),
                     'url' => route(self::ROUTE_ADMIN_PATH.'.show', $this)
                 ],
                 'edit'      => [
                     'type' => 'edit',
-                    'permission' => $this->permission('edit'),
+                    'permission' => self::permission('edit'),
                     'url' => route(self::ROUTE_ADMIN_PATH.'.edit', $this)
                 ],
                 'destroy'   => [
                     'type' => 'destroy',
-                    'permission' => $this->permission('destroy'),
+                    'permission' => self::permission('destroy'),
                     'url' => route(self::ROUTE_ADMIN_PATH.'.destroy', $this),
                     'group' => 'more',
                     'redirect' => route(self::ROUTE_ADMIN_PATH.'.index')
