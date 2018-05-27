@@ -181,6 +181,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
     {
         // stub | direction path
         return [
+            // Obserber 
+            'basic/observer.stub' => 'app/Observers/DummyClassObserver.php',
+
             // repository
             'basic/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
 
