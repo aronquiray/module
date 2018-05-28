@@ -10,7 +10,13 @@ class DummyClassObserver
 
     private function _logging($method, $model)
     {
+        if(!config('core.modules.save_log'))
+        {
+            return;
+        }
+        
         $modelData = print_r($model->toArray(), true);
+        $modelData = str_replace("\n", '', $modelData);
         Log::info("$method: $modelData");
     }
 
