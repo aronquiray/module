@@ -3,9 +3,7 @@
 namespace DummyNameSpaceClass\Repositories\Backend\DummyClass;
 
 use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
-use Illuminate\Database\Eloquent\Builder;
 use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
-use History;
 
 /**
 * DummyClassRepository
@@ -16,50 +14,5 @@ class DummyClassRepository extends Repository
     {
         parent::__construct($model);
         $this->setObserver(new DummyClassObserver);
-    }
-
-    /**
-     *  Available observers can costumise:
-        'storing', 'stored',
-        'updating', 'updated',
-        'deleting', 'deleted',
-     *
-     * add custome logic on functions
-     *
-     *
-     * You can comment/uncomment one of them,
-     * it will run default bahavior if commented on base class.
-     *
-     * @author lloricode@gmail.com
-     */
-    // protected function storing($data)
-    // {
-    //     // dd($data);
-    //     return $data;
-    // }
-    protected function stored($data, $model) {
-        History::created($model);
-        // dd($data, $model);
-        return $model;
-    }
-    // protected function updating($data, $model)
-    // {
-    //     // dd($data, $model);
-    //     return $model;
-    // }
-    protected function updated($data, $model, $oldModel) {
-        History::updated($model, $oldModel);
-        // dd($data, $model, $oldModel);
-        return $model;
-    }
-    protected function deleting($model)
-    {
-        $model->metable()->delete();
-        return $model;
-    }
-    protected function deleted($model) {
-        History::deleted($model);
-        // dd($model);
-        return $model;
     }
 }

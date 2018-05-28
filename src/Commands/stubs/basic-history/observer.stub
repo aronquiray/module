@@ -1,0 +1,88 @@
+<?php
+
+namespace DummyNameSpaceClass\Repositories\Backend\DummyClass;
+
+use HalcyonLaravel\Base\Models\Model;
+use HalcyonLaravel\Base\Repository\ObserverContract;
+use Log;
+use History;
+
+class DummyClassObserver extends ObserverContract
+{
+
+    private static function _logging($method, $model)
+    {
+        if(!config('halcyon-laravel.module.save_log'))
+        {
+            return;
+        }
+        
+        $modelData = print_r(is_array($model)?$model:$model->toArray(), true);
+        $modelData = str_replace("\n", '', $modelData);
+        Log::info("$method: $modelData");
+    }
+
+    public static function storing(array $data) :array
+    {
+        self::_logging(__METHOD__, $data);
+        return $data;
+    }
+
+    public static function stored(Model $model, array $data) :Model
+    {
+        self::_logging(__METHOD__, $model);
+        History::created($model);
+        return $model;
+    }
+
+    public static function updating(Model $model, array $data) :Model
+    {
+        self::_logging(__METHOD__, $model);
+        return $model;
+    }
+
+    public static function updated(Model $model, array $data, array $oldModel) :Model
+    {
+        self::_logging(__METHOD__, $model);
+        History::updated($model, $oldModel);
+        return $model;
+    }
+
+    public static function deleting(Model $model) :Model
+    {
+        self::_logging(__METHOD__, $model);
+        $model->metable()->delete();
+        return $model;
+    }
+
+    public static function deleted(Model $model) :Model
+    {
+        self::_logging(__METHOD__, $model);
+        History::deleted($model);
+        return $model;
+    }
+
+    public static function restoring(Model $model) :Model
+    {
+        self::_logging(__METHOD__, $model);
+        return $model;
+    }
+
+    public static function restored(Model $model) :Model
+    {
+        self::_logging(__METHOD__, $model);
+        return $model;
+    }
+
+    public static function purging(Model $model) :Model
+    {
+        self::_logging(__METHOD__, $model);
+        return $model;
+    }
+
+    public static function purged(Model $model) :Model
+    {
+        self::_logging(__METHOD__, $model);
+        return $model;
+    }
+}

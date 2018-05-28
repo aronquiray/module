@@ -87,6 +87,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/model.stub',
             // repository
             'basic/repo.stub',
+            // observer
+            'basic/observer.stub',
             // routes
             'basic/routes/backend.stub',
             'basic/routes/bread-crumbs.stub',
@@ -100,6 +102,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             // model
             'basic-history/model.stub' => 'app/Models/DummyClass/DummyClass.php',
 
+            // Obserber 
+            'basic-history/observer.stub' => 'app/Repositories/Backend/DummyClass/DummyClassObserver.php',
             // repository replace
             'basic-history/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
 
