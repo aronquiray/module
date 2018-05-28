@@ -15,9 +15,6 @@ use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassRelations;
 use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassScopes;
 use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassStaticFunctions;
 
-// model event observer
-use App\Observers\DummyClassObserver;
-
 class DummyClass extends BaseModel
 {
     use Rememberable,
@@ -53,7 +50,6 @@ class DummyClass extends BaseModel
             /** Delete cache on updates */
             self::flushCache(self::CACHE_TAG);
         });
-        self::observe(DummyClassObserver::class);
     }
 
     /**

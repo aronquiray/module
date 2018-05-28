@@ -5,6 +5,7 @@ namespace DummyNameSpaceClass\Repositories\Backend\DummyClass;
 use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
 use Illuminate\Database\Eloquent\Builder;
 use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyClass\DummyClassObserver;
 
 /**
 * DummyClassRepository
@@ -14,6 +15,7 @@ class DummyClassRepository extends Repository
     public function __construct(Model $model)
     {
         parent::__construct($model);
+        $this->setObserver(new DummyClassObserver);
     }
 
     /**

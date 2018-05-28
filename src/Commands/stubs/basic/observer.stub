@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Observers;
+namespace DummyNameSpaceClass\Models\DummyClass;
 
-use App\Models\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use HalcyonLaravel\Base\Repository\ObserverContract;
 use Log;
 
-class DummyClassObserver
+class DummyClassObserver extends ObserverContract
 {
 
     private function _logging($method, $model)
@@ -15,63 +16,68 @@ class DummyClassObserver
             return;
         }
         
-        $modelData = print_r($model->toArray(), true);
+        $modelData = print_r(is_array($model)?$model:$model->toArray(), true);
         $modelData = str_replace("\n", '', $modelData);
         Log::info("$method: $modelData");
     }
 
-    public function retrieved(Model $model)
+    public static function storing(array $data) :array
     {
-        $this->_logging(__METHOD__, $model);
+        $this->_logging(__METHOD__, $data);
+        return $data;
     }
 
-    public function creating(Model $model)
+    public static function stored(Model $model, array $data) :Model
     {
         $this->_logging(__METHOD__, $model);
+        return $model;
     }
 
-    public function created(Model $model)
+    public static function updating(Model $model, array $data) :Model
     {
         $this->_logging(__METHOD__, $model);
+        return $model;
     }
 
-    public function updating(Model $model)
+    public static function updated(Model $model, array $data) :Model
     {
         $this->_logging(__METHOD__, $model);
+        return $model;
     }
 
-    public function updated(Model $model)
+    public static function deleting(Model $model) :Model
     {
         $this->_logging(__METHOD__, $model);
+        return $model;
     }
 
-    public function saving(Model $model)
+    public static function deleted(Model $model) :Model
     {
         $this->_logging(__METHOD__, $model);
+        return $model;
     }
 
-    public function saved(Model $model)
+    public static function restoring(Model $model) :Model
     {
         $this->_logging(__METHOD__, $model);
+        return $model;
     }
 
-    public function deleting(Model $model)
+    public static function restored(Model $model) :Model
     {
         $this->_logging(__METHOD__, $model);
+        return $model;
     }
 
-    public function deleted(Model $model)
+    public static function purging(Model $model) :Model
     {
         $this->_logging(__METHOD__, $model);
+        return $model;
     }
 
-    public function restoring(Model $model)
+    public static function purged(Model $model) :Model
     {
         $this->_logging(__METHOD__, $model);
-    }
-
-    public function restored(Model $model)
-    {
-        $this->_logging(__METHOD__, $model);
+        return $model;
     }
 }
