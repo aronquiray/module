@@ -7,10 +7,6 @@ use Illuminate\Database\Eloquent\Builder;
 use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 use History;
 
-
-
-
-
 /**
 * DummyClassRepository
 */
@@ -19,6 +15,7 @@ class DummyClassRepository extends Repository
     public function __construct(Model $model)
     {
         parent::__construct($model);
+        $this->setObserver(new DummyClassObserver);
     }
 
     /**
