@@ -9,7 +9,7 @@ use Log;
 class DummyClassObserver extends ObserverContract
 {
 
-    private function _logging($method, $model)
+    private static function _logging($method, $model)
     {
         if(!config('halcyon-laravel.module.save_log'))
         {
@@ -23,61 +23,61 @@ class DummyClassObserver extends ObserverContract
 
     public static function storing(array $data) :array
     {
-        $this->_logging(__METHOD__, $data);
+        self::_logging(__METHOD__, $data);
         return $data;
     }
 
     public static function stored(Model $model, array $data) :Model
     {
-        $this->_logging(__METHOD__, $model);
+        self::_logging(__METHOD__, $model);
         return $model;
     }
 
     public static function updating(Model $model, array $data) :Model
     {
-        $this->_logging(__METHOD__, $model);
+        self::_logging(__METHOD__, $model);
         return $model;
     }
 
     public static function updated(Model $model, array $data) :Model
     {
-        $this->_logging(__METHOD__, $model);
+        self::_logging(__METHOD__, $model);
         return $model;
     }
 
     public static function deleting(Model $model) :Model
     {
-        $this->_logging(__METHOD__, $model);
+        self::_logging(__METHOD__, $model);
         return $model;
     }
 
     public static function deleted(Model $model) :Model
     {
-        $this->_logging(__METHOD__, $model);
+        self::_logging(__METHOD__, $model);
         return $model;
     }
 
     public static function restoring(Model $model) :Model
     {
-        $this->_logging(__METHOD__, $model);
+        self::_logging(__METHOD__, $model);
         return $model;
     }
 
     public static function restored(Model $model) :Model
     {
-        $this->_logging(__METHOD__, $model);
+        self::_logging(__METHOD__, $model);
         return $model;
     }
 
     public static function purging(Model $model) :Model
     {
-        $this->_logging(__METHOD__, $model);
+        self::_logging(__METHOD__, $model);
         return $model;
     }
 
     public static function purged(Model $model) :Model
     {
-        $this->_logging(__METHOD__, $model);
+        self::_logging(__METHOD__, $model);
         return $model;
     }
 }
