@@ -2,7 +2,7 @@
 
 namespace DummyNameSpaceClass\Repositories\Backend\DummyClass;
 
-use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use HalcyonLaravel\Base\Models\Model;
 use HalcyonLaravel\Base\Repository\ObserverContract;
 use Log;
 
