@@ -10,7 +10,7 @@ class DummyClassObserver
 
     private function _logging($method, $model)
     {
-        if(!config('halcyon-laravel.modules.save_log'))
+        if(!config('halcyon-laravel.module.save_log'))
         {
             return;
         }
