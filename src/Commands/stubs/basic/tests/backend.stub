@@ -5,11 +5,6 @@ namespace Tests\Feature\Modules\Backend\DummyClass;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use HalcyonLaravel\Base\Events\BaseStoringEvent;
-use HalcyonLaravel\Base\Events\BaseStoredEvent;
-use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
-use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
-
 use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
 
 
@@ -54,8 +49,6 @@ class DummyClassBreadFeatureBackendTest extends TestCase
     public function testStore()
     {        
 
-        $this->expectsEvents(BaseStoringEvent::class);
-        $this->expectsEvents(BaseStoredEvent::class);
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
@@ -87,8 +80,6 @@ class DummyClassBreadFeatureBackendTest extends TestCase
         ];
 
 
-        $this->expectsEvents(BaseUpdatingEvent::class);
-        $this->expectsEvents(BaseUpdatedEvent::class);
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
