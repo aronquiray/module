@@ -4,7 +4,6 @@ namespace DummyNameSpaceClass\Repositories\Backend\DummyClass;
 
 use HalcyonLaravel\Base\Models\Model;
 use HalcyonLaravel\Base\Repository\ObserverContract;
-use Log;
 use History;
 
 class DummyClassObserver extends ObserverContract
