@@ -3,21 +3,7 @@
 namespace DummyNameSpaceClass\Repositories\Backend\DummyClass;
 
 use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
-use Illuminate\Database\Eloquent\Builder;
 use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
-use History;
-
-
-
-use HalcyonLaravel\Base\Events\BaseStoringEvent;
-use HalcyonLaravel\Base\Events\BaseStoredEvent;
-
-use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
-use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
-
-use HalcyonLaravel\Base\Events\BaseDeletingEvent;
-use HalcyonLaravel\Base\Events\BaseDeletedEvent;
-
 
 /**
 * DummyClassRepository
@@ -27,56 +13,6 @@ class DummyClassRepository extends Repository
     public function __construct(Model $model)
     {
         parent::__construct($model);
-    }
-
-    /**
-     *  Available observers can costumise:
-        'storing', 'stored',
-        'updating', 'updated',
-        'deleting', 'deleted',
-     *
-     * add custome logic on functions
-     *
-     *
-     * You can comment/uncomment one of them,
-     * it will run default bahavior if commented on base class.
-     *
-     * @author lloricode@gmail.com
-     */
-    // protected function storing($data)
-    // {
-    //     event(new BaseStoringEvent);
-    //     // dd($data);
-    //     return $data;
-    // }
-    protected function stored($data, $model) {
-        event(new BaseStoredEvent);
-        History::created($model);
-        // dd($data, $model);
-        return $model;
-    }
-    // protected function updating($data, $model)
-    // {
-    //     event(new BaseUpdatingEvent);
-    //     // dd($data, $model);
-    //     return $model;
-    // }
-    protected function updated($data, $model, $oldModel) {
-        event(new BaseUpdatedEvent);
-        History::updated($model, $oldModel);
-        // dd($data, $model, $oldModel);
-        return $model;
-    }
-    protected function deleting($model)
-    {
-        event(new BaseDeletingEvent);
-        $model->metable()->delete();
-        return $model;
-    }
-    protected function deleted($model) {
-        event(new BaseDeletedEvent);
-        History::deleted($model);
-        // dd($model);
-        return $model;
+        $this->setObserver(new DummyClassObserver);
     }
 }

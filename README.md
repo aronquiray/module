@@ -1,6 +1,8 @@
 # Halcyon Packages Module - 1.0.13
 
 ## Changes Log
+    v1.0.14: new observable for repo.
+    v1.0.13: remove events
     v1.0.13: Set to static in permission access, add history list permission
     v1.0.12: Add Meta.
     v1.0.11: Add Query cache.
