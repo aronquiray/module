@@ -138,6 +138,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
             // repository
             'basic/repo.stub', // inherited from basic
+            // observer
+            'basic/observer.stub', // inherited from basic
             // controllers
             'basic/controllers/resource.stub', // inherited from basic
             // 'softdelete/controllers/deleted.stub',

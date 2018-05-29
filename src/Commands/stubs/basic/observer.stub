@@ -15,7 +15,14 @@ class DummyClassObserver extends ObserverContract
     }
 
     public static function stored(Model $model, array $data) :Model
-    {
+    {   
+        $meta = $data['meta'];
+        $model->metable()->create([
+            'name' => $meta['name'] ?? $model->base('source'),
+            'description' => $meta['description'],
+            'keywords' => $meta['keywords'],
+            'user_id' => auth()->user()->id
+        ]);
         return $model;
     }
 
@@ -31,6 +38,7 @@ class DummyClassObserver extends ObserverContract
 
     public static function deleting(Model $model) :Model
     {
+        $model->metable()->delete();
         return $model;
     }
 
