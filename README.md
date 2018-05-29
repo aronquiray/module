@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.14
+# Halcyon Packages Module - 1.0.15
 
 ## Changes Log
+    v1.0.15: update for meta
     v1.0.14: new observable for repo.
     v1.0.13: remove events
     v1.0.13: Set to static in permission access, add history list permission
