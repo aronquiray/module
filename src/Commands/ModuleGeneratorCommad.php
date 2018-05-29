@@ -49,6 +49,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/controllers/frontend.stub',
             // repository
             'basic/repo.stub',
+            // observer
+            'basic/observer.stub',
             // tests
             'basic/tests/backend.stub',
             'basic/tests/frontend.stub',
@@ -87,6 +89,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/model.stub',
             // repository
             'basic/repo.stub',
+            // observer
+            'basic/observer.stub',
             // routes
             'basic/routes/backend.stub',
             'basic/routes/bread-crumbs.stub',
@@ -100,6 +104,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             // model
             'basic-history/model.stub' => 'app/Models/DummyClass/DummyClass.php',
 
+            // Obserber 
+            'basic-history/observer.stub' => 'app/Repositories/Backend/DummyClass/DummyClassObserver.php',
             // repository replace
             'basic-history/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
 
@@ -132,6 +138,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
             // repository
             'basic/repo.stub', // inherited from basic
+            // observer
+            'basic/observer.stub', // inherited from basic
             // controllers
             'basic/controllers/resource.stub', // inherited from basic
             // 'softdelete/controllers/deleted.stub',
@@ -150,6 +158,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
             // repository replace
             'basic-softdelete-history/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
+
+            // observer replace
+            'basic-softdelete-history/observer.stub' => 'app/Repositories/Backend/DummyClass/DummyClassObserver.php',
 
             // controllers replace
             // 'basic-softdelete-history/controllers/resource.stub' =>  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
@@ -181,6 +192,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
     {
         // stub | direction path
         return [
+            // Obserber 
+            'basic/observer.stub' => 'app/Repositories/Backend/DummyClass/DummyClassObserver.php',
             // repository
             'basic/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
 

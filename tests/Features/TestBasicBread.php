@@ -5,10 +5,6 @@ namespace HalcyonLaravel\Module\Tests\Features;
 use  HalcyonLaravel\Module\Tests\TestCase;
 
 
-use HalcyonLaravel\Base\Events\BaseStoringEvent;
-use HalcyonLaravel\Base\Events\BaseStoredEvent;
-use HalcyonLaravel\Base\Events\BaseUpdatingEvent;
-use HalcyonLaravel\Base\Events\BaseUpdatedEvent;
 use Route;
 use View;
 use App\Models\Core\DummyClass;
@@ -57,8 +53,6 @@ class TestBasicBread extends TestCase
          * ==================================================================================================================
          */
 
-        $this->expectsEvents(BaseStoringEvent::class);
-        $this->expectsEvents(BaseStoredEvent::class);
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
@@ -104,8 +98,6 @@ class TestBasicBread extends TestCase
         ];
 
 
-        $this->expectsEvents(BaseUpdatingEvent::class);
-        $this->expectsEvents(BaseUpdatedEvent::class);
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',

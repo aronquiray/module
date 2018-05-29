@@ -106,7 +106,6 @@ class TestCase extends Orchestra
             // --
 
             "HalcyonLaravel\\Base\\Providers\\BaseServiceProvider",
-            "HalcyonLaravel\\Base\\Providers\\EventServiceProvider",
 
             "Yajra\\DataTables\\DataTablesServiceProvider",
             "Spatie\\Permission\\PermissionServiceProvider",
