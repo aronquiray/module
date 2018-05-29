@@ -49,6 +49,8 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic/controllers/frontend.stub',
             // repository
             'basic/repo.stub',
+            // observer
+            'basic/observer.stub',
             // tests
             'basic/tests/backend.stub',
             'basic/tests/frontend.stub',
@@ -154,6 +156,9 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
             // repository replace
             'basic-softdelete-history/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
+
+            // observer replace
+            'basic-softdelete-history/observer.stub' => 'app/Repositories/Backend/DummyClass/DummyClassObserver.php',
 
             // controllers replace
             // 'basic-softdelete-history/controllers/resource.stub' =>  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
