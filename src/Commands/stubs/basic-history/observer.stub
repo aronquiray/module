@@ -33,6 +33,14 @@ class DummyClassObserver extends ObserverContract
 
     public static function updated(Model $model, array $data, array $oldModel) :Model
     {
+        $meta = $data['meta'];
+        $model->metable()->update([
+            'name' => $meta['name'] ?? $model->name,
+            'description' => $meta['description'],
+            'keywords' => $meta['keywords'],
+            'user_id' => auth()->user()->id
+        ]);
+
         History::updated($model, $oldModel);
         return $model;
     }
