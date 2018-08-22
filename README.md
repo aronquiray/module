@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.16
+# Halcyon Packages Module - 1.0.17
 
 ## Changes Log
+    v1.0.17: HasSlug move in local models
     v1.0.15: update for meta
     v1.0.14: new observable for repo.
     v1.0.13: remove events

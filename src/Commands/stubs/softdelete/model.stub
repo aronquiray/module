@@ -5,6 +5,7 @@ namespace DummyNameSpaceClass\Models\DummyClass;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use HalcyonLaravel\Base\Models\Model as BaseModel;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Sluggable\HasSlug;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 use App\Models\Core\Meta\MetableTrait;
 use Watson\Rememberable\Rememberable;
@@ -21,6 +22,7 @@ class DummyClass extends BaseModel
     use Rememberable,
         MetableTrait,
         SoftDeletes, 
+        HasSlug,
         ModelDefaultTraits,
         DummyClassAttributes,
         DummyClassRegularFunctions,
