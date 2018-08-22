@@ -19,7 +19,7 @@ class ModuleServiceProvider extends ServiceProvider
             ]);
 
             // Publish module Config
-            // $this->publishes([ __DIR__.'/../config/halcyon-laravel/module.php' => config_path('halcyon-laravel/module.php'), ]);       
+            // $this->publishes([ __DIR__.'/../config/halcyon-laravel/module.php' => config_path('halcyon-laravel/module.php'), ]);
         }
     }
        

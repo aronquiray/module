@@ -104,7 +104,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             // model
             'basic-history/model.stub' => 'app/Models/DummyClass/DummyClass.php',
 
-            // Obserber 
+            // Obserber
             'basic-history/observer.stub' => 'app/Repositories/Backend/DummyClass/DummyClassObserver.php',
             // repository replace
             'basic-history/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
@@ -192,7 +192,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
     {
         // stub | direction path
         return [
-            // Obserber 
+            // Obserber
             'basic/observer.stub' => 'app/Repositories/Backend/DummyClass/DummyClassObserver.php',
             // repository
             'basic/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',

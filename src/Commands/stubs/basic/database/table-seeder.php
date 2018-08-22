@@ -12,7 +12,6 @@ use App\Models\Core\Menu\Menu;
  */
 class DummyClassTableSeeder extends Seeder
 {
-
     use DisableForeignKeys;
     
     /**
@@ -25,44 +24,41 @@ class DummyClassTableSeeder extends Seeder
         $this->disableForeignKeys();
         $user = User::skip(1)->first();
 
-        // Page 
+        // Page
         $page = Page::create([
-            'title' => 'Dummy Class', 
-            'slug' => str_slug('dummy class'), 
+            'title' => 'Dummy Class',
+            'slug' => str_slug('dummy class'),
             'type' => 'dummy class',
-            'status' => 'enable', 
+            'status' => 'enable',
             'template' => Model::VIEW_FRONTEND_PATH . '.index'
             ]);
         $page->metable()->create([
-            'name' => 'Dummy Class', 
-            'description' => 'List of all dummy classes', 
-            'keywords' => 'page,dummy-class', 
+            'name' => 'Dummy Class',
+            'description' => 'List of all dummy classes',
+            'keywords' => 'page,dummy-class',
             'user_id' => $user->id,
-            ]);     
+            ]);
         
         $pageCount = Page::count();
          
-        foreach(Menu::all() as $menu)
-        {
+        foreach (Menu::all() as $menu) {
             $page->menuable()->create([
-                'name' => $page->title, 
-                'slug' => $page->slug, 
-                'menu_id' => $menu->id, 
-                'order' => $pageCount++, 
+                'name' => $page->title,
+                'slug' => $page->slug,
+                'menu_id' => $menu->id,
+                'order' => $pageCount++,
                 'options' => '[]'
                 ]);
-
-        }    
+        }
 
         History::created($page, $user);
 
-        foreach(factory(Model::class, 20)->create() as $model)
-        { 
+        foreach (factory(Model::class, 20)->create() as $model) {
             $model->metable()->create([
                 'name' => $model->title,
                 'description' => $model->title,
                 'keywords' => str_replace('-', ',', $model->slug),
-                'user_id' => 2
+                'user_id' => $user->id,
             ]);
             History::created($model, $user);
         }
