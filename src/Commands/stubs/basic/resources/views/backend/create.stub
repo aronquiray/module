@@ -9,7 +9,7 @@
         @slot('form_id', 'dummy-class-form')
         @slot('title', 'Create Dummy Class')
         @slot('secondary_title', 'Dummy Class Management')
-        @slot('fields', 'backend.dummyClass.partials.fields')
+        @slot('fields', $viewPath . '.partials.fields')
         @slot('link_cancel', route('admin.dummy-class.index'))
         @slot('link_submit', 'Submit')
         @slot('link_submit_edit', 'Submit & Edit')

@@ -14,7 +14,7 @@
                         'links' => [
                                 [
                                         'name' => 'Overview',
-                                        'template' => 'backend.dummyClass.partials.overview',
+                                        'template' => $viewPath . '.partials.overview',
                                         'args' => [ 'model' => $model ]
                                 ],
                         ]
