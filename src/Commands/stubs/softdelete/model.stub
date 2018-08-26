@@ -19,16 +19,16 @@ use DummyNameSpaceClass\Models\DummyClass\Traits\DummyClassStaticFunctions;
 
 class DummyClass extends BaseModel
 {
-    use Rememberable,
-        MetableTrait,
-        SoftDeletes, 
-        HasSlug,
-        ModelDefaultTraits,
-        DummyClassAttributes,
-        DummyClassRegularFunctions,
-        DummyClassRelations,
-        DummyClassScopes,
-        DummyClassStaticFunctions;
+    use Rememberable;
+    use MetableTrait;
+    use SoftDeletes;
+    use HasSlug;
+    use ModelDefaultTraits;
+    use DummyClassAttributes;
+    use DummyClassRegularFunctions;
+    use DummyClassRelations;
+    use DummyClassScopes;
+    use DummyClassStaticFunctions;
 
     /**
      * Declared Fillables
