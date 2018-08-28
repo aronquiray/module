@@ -1,26 +1,30 @@
 <?php
 
-Breadcrumbs::register('admin.dummy-class.index', function ($breadcrumbs) {
+$routePath = DummyNameSpaceClass\Models\DummyPath\DummyClass::ROUTE_ADMIN_PATH;
+
+Breadcrumbs::register($routePath . '.index', function ($breadcrumbs) use($routePath){
     $breadcrumbs->parent('admin.dashboard');
-    $breadcrumbs->push('Dummy Class', route('admin.dummy-class.index'));
+    $breadcrumbs->push('Dummy Class', route($routePath . '.index'));
 });
 
-Breadcrumbs::register('admin.dummy-class.create', function ($breadcrumbs) {
-    $breadcrumbs->parent('admin.dummy-class.index');
-    $breadcrumbs->push('Create', route('admin.dummy-class.create'));
+Breadcrumbs::register($routePath . '.create', function ($breadcrumbs) use($routePath){
+    $breadcrumbs->parent($routePath . '.index');
+    $breadcrumbs->push('Create', route($routePath . '.create'));
 });
 
-Breadcrumbs::register('admin.dummy-class.show', function ($breadcrumbs, $model) {
-    $breadcrumbs->parent('admin.dummy-class.index');
-    $breadcrumbs->push('Show', route('admin.dummy-class.show', $model));
+Breadcrumbs::register($routePath . '.show', function ($breadcrumbs, $model) use($routePath){
+    $breadcrumbs->parent($routePath . '.index');
+    $breadcrumbs->push('Show', route($routePath . '.show', $model));
+});
+z
+Breadcrumbs::register($routePath . '.edit', function ($breadcrumbs, $model) use($routePath){
+    $breadcrumbs->parent($routePath . '.show', $model);
+    $breadcrumbs->push('Edit', route($routePath . '.edit', $model));
 });
 
-Breadcrumbs::register('admin.dummy-class.edit', function ($breadcrumbs, $model) {
-    $breadcrumbs->parent('admin.dummy-class.show', $model);
-    $breadcrumbs->push('Edit', route('admin.dummy-class.edit', $model));
+Breadcrumbs::register($routePath . '.deleted', function ($breadcrumbs) use($routePath){
+    $breadcrumbs->parent($routePath . '.index');
+    $breadcrumbs->push('Deleted', route($routePath . '.deleted'));
 });
 
-Breadcrumbs::register('admin.dummy-class.deleted', function ($breadcrumbs) {
-    $breadcrumbs->parent('admin.dummy-class.index');
-    $breadcrumbs->push('Deleted', route('admin.dummy-class.deleted'));
-});
+unset($routePath);

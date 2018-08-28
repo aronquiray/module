@@ -5,7 +5,7 @@
 @section('content')
    @component('backend.includes.widgets.table')
 
-        @slot('url', route('admin.dummy-class.table'))
+        @slot('url', route($routePath . '.table'))
         @slot('form_data', json_encode([ 'trash' => true ]))
         @slot('table_name', 'dummy-class-table')
         @slot('title', 'Dummy Class Deleted List')

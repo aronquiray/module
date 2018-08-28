@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Feature\Modules\Frontend\DummyClass;
+namespace Tests\Feature\Modules\Frontend\DummyPath\DummyClass;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 
 /**
  * Class DummyClassFeatureFrontendTest.

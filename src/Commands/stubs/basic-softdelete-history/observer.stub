@@ -1,6 +1,6 @@
 <?php
 
-namespace DummyNameSpaceClass\Repositories\Backend\DummyClass;
+namespace DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass;
 
 use HalcyonLaravel\Base\Models\Model;
 use HalcyonLaravel\Base\Repository\ObserverContract;
