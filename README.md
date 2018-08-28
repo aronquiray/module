@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.22
+# Halcyon Packages Module - 1.0.23
 
 ## Changes Log
+    v1.0.23: Fix stub
     v1.0.22: Add namespace for categorize logic
     v1.0.21: Validate input
     v1.0.20: Clean use traits
