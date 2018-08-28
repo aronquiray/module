@@ -25,13 +25,13 @@ class DummyClassFeatureFrontendTest extends TestCase
     public function testDummyClassRouteFrontShowExist()
     {        
         $model = Model::first();
-        $this->get(route('frontend.dummy-class.show', $model))
+        $this->get(route(Model::ROUTE_FRONTEND_PATH . '.show', $model))
             ->assertStatus(200); 
     }
 
     public function testDummyClassRouteFrontIndexExist()
     {        
-        $this->get(route('frontend.dummy-class.index'))
+        $this->get(route(Model::ROUTE_FRONTEND_PATH . '.index'))
             ->assertStatus(200); 
     }
 }
