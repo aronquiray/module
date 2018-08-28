@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.10
+# Halcyon Packages Module - 1.0.21
 
 ## Changes Log
+    v1.0.21: Validate input
     v1.0.20: Clean use traits
     v1.0.19: Add view path 
     v1.0.18: Fix UI on dropdown menu of models

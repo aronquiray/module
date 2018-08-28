@@ -42,12 +42,19 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
      */
     protected function getStub()
     {
-        if (empty($this->getNameInput())) {
+        $input = $this->getNameInput();
+        if (empty($input)) {
             $this->error('Aborted!, Please speacify ' . $this->type . ' name.');
             exit();
         }
 
-        $selected = $this->menu('Generate "' .  $this->getNameInput() . '"' . "\n" .
+
+        if (!(preg_match("/[A-Z]/", $input)===0)) {
+            $this->error('Aborted!, Try all lower case, then space for multiple words on ' . $this->type . ' name.');
+            exit();
+        }
+
+        $selected = $this->menu('Generate for model "' .  ucfirst(studly_case($input)) . '"' . "\n" .
             'What type of ' . $this->type . ' want to generate?', [
             'softdelete-history'=>'Softdelete and History',
             'history'=>'History',
