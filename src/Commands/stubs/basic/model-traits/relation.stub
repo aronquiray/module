@@ -1,6 +1,6 @@
 <?php
 
-namespace DummyNameSpaceClass\Models\DummyClass\Traits;
+namespace DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits;
 
 trait DummyClassRelations
 {

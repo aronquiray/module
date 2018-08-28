@@ -1,11 +1,11 @@
 <?php
 
-namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyClass;
+namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 
 use Illuminate\Http\Request;
 use HalcyonLaravel\Base\Controllers\BaseController as Controller;
-use DummyNameSpaceClass\Repositories\Backend\DummyClass\DummyClassRepository as Repository;
-use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass\DummyClassRepository as Repository;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 use DataTables;
 
 /**

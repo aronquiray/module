@@ -1,8 +1,9 @@
 <?php
 
 Route::group([
-    'namespace' => 'DummyClass',
-    'middleware' => 'admin'
+    'namespace' => 'DummyPath\DummyClass',
+    'middleware' => 'admin',
+	'as' => 'dummy-path.',
 ], function () {
 
     Route::group([

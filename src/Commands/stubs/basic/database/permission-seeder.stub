@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use DummyNameSpaceClass\Models\Auth\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 
 /**
  * Class AuthTableSeeder.

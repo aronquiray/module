@@ -1,9 +1,9 @@
 <?php
 
-namespace DummyNameSpaceClass\Http\Controllers\Frontend\DummyClass;
+namespace DummyNameSpaceClass\Http\Controllers\Frontend\DummyPath\DummyClass;
 
 use HalcyonLaravel\Base\Controllers\BaseController as Controller;
-use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use DummyNameSpaceClass\Models\Core\Page\Page;
 
