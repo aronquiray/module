@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.23
+# Halcyon Packages Module - 1.0.24
 
 ## Changes Log
+    v1.0.24: add deleted event on boot for cache
     v1.0.23: Fix stub
     v1.0.22: Add namespace for categorize logic
     v1.0.21: Validate input
