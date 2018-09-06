@@ -18,6 +18,7 @@ class DummyClassBreadFeatureBackendTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+        $this->markTestSkipped('Skipped ' . __METHOD__);
         $this->loginAsAdmin();
         (new \DummyClassPermissionTableSeeder)->run();
         (new \DummyClassTableSeeder)->run();
