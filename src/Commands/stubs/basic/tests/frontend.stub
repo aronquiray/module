@@ -16,6 +16,7 @@ class DummyClassFeatureFrontendTest extends TestCase
      public function setUp()
     {
         parent::setUp();
+        $this->markTestSkipped('Skipped ' . __METHOD__);
         $this->loginAsAdmin(false);
         (new \DummyClassPermissionTableSeeder)->run();
         (new \DummyClassTableSeeder)->run();
