@@ -5,7 +5,7 @@ namespace HalcyonLaravel\Module\Commands;
 
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-// use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputOption;
 use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
 use Illuminate\Console\DetectsApplicationNamespace;
 
@@ -42,12 +42,30 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
      */
     protected function getStub()
     {
-        if (empty($this->getNameInput())) {
+        $input = $this->getNameInput();
+        $inputNamespace = $this->option('namespace');
+
+        if (empty($input)) {
             $this->error('Aborted!, Please speacify ' . $this->type . ' name.');
             exit();
         }
 
-        $selected = $this->menu('Generate "' .  $this->getNameInput() . '"' . "\n" .
+        if(!is_null($inputNamespace))
+        {
+            if (!(preg_match("/[A-Z]/", $inputNamespace)===0)) {
+                $this->error('Aborted!, Try all lower case, then space for multiple words on namespace.');
+                exit();
+            }
+            
+            $this->namespace($inputNamespace);
+        }
+
+        if (!(preg_match("/[A-Z]/", $input)===0)) {
+            $this->error('Aborted!, Try all lower case, then space for multiple words on ' . $this->type . ' name.');
+            exit();
+        }
+
+        $selected = $this->menu('Generate for model "' .  ucfirst(studly_case($input)) . '"' . "\n" .
             'What type of ' . $this->type . ' want to generate?', [
             'softdelete-history'=>'Softdelete and History',
             'history'=>'History',
@@ -127,6 +145,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
             $stub = $this->files->get(__DIR__ .'/stubs/' . $stub);
             $stub = $this->_nameSpaceApp($stub);
             $stub = $this->_replaceName($stub);
+            $stub = $this->_replacePath($stub);
             $path = $this->_replaceName($path);
 
             $path = $this->getStubByEnvironment($path);
@@ -156,6 +175,19 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
         return $path;
     }
 
+    private function _replacePath($stub)
+    {
+        $tmp = $this->option('namespace');
+        if(is_null($tmp))
+        {
+            $stub = str_replace('DummyPath\\', '', $stub); 
+            $stub =  str_replace('dummy-path.', '', $stub); 
+            return str_replace('dummyPath.', '', $stub); 
+        }
+        $stub =  str_replace('DummyPath', ucfirst(studly_case($tmp)), $stub); 
+        $stub =  str_replace('dummy-path', str_slug($tmp), $stub); 
+        return str_replace('dummyPath', camel_case($tmp), $stub); 
+    }
     /**
      * Replace the name for the given stub.
      *
@@ -208,7 +240,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
     protected function getOptions()
     {
         return [
-            // ['softdelete', null, InputOption::VALUE_NONE, 'With Softdeletes.'],
+            ['namespace', null, InputOption::VALUE_OPTIONAL, 'Add Namespace.'],
             // ['history', null, InputOption::VALUE_NONE, 'With History.'],
         ];
     }

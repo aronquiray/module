@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 use DummyNameSpaceClass\Models\Core\Page\Page;
 use HalcyonLaravel\History\Facades\History;
 use App\Models\Auth\User;

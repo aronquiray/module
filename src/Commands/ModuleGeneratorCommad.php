@@ -7,6 +7,17 @@ use Illuminate\Console\GeneratorCommand;
 
 abstract class ModuleGeneratorCommad extends GeneratorCommand
 {
+
+    private $_namespaceCapslock = '';
+    private $_namespaceLower = '';
+
+    public function namespace(string $inputNamespace)
+    {
+        $this->_namespaceCapslock = ucfirst(studly_case($inputNamespace)) . '/';
+        $this->_namespaceLower = camel_case($inputNamespace) . '/';
+    }
+
+    
     private function _databaseMigrationFileName()
     {
         $migrationFileName = now()->format('Y_m_d_hms') . '_create_dummy_classes_table';
@@ -18,27 +29,27 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         // stub | direction path
         $stubs = [
             // controllers
-            'softdelete/controllers/table.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesTableController.php',
-            'softdelete/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',
+            'softdelete/controllers/table.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesTableController.php',
+            'softdelete/controllers/deleted.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesDeletedController.php',
 
             // views
-            'softdelete/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
-            'softdelete/resources/views/backend/deleted.stub' => 'resources/views/backend/dummyClass/deleted.blade.php',
+            'softdelete/resources/views/backend/index.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/index.blade.php',
+            'softdelete/resources/views/backend/deleted.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/deleted.blade.php',
             // views partials
-            'softdelete/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
+            'softdelete/resources/views/backend/partials/links.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/partials/links.blade.php',
 
             // route
-            'softdelete/routes/backend.stub' => 'routes/backend/dummy-class.php',
-            'softdelete/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
+            'softdelete/routes/backend.stub' => 'routes/backend/' . $this->_namespaceLower  . 'dummy-class.php',
+            'softdelete/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/' . $this->_namespaceLower  . 'dummy-class.php',
 
             // model
-            'softdelete/model.stub' => 'app/Models/DummyClass/DummyClass.php',
+            'softdelete/model.stub' => 'app/Models/' . $this->_namespaceCapslock  . 'DummyClass/DummyClass.php',
 
             // database
             'softdelete/database/migration.stub' => $this->_databaseMigrationFileName(),
 
             // test
-            'softdelete/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
+            'softdelete/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
 
         ];
 
@@ -102,27 +113,27 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
         $hiostoryStubs = [
             // model
-            'basic-history/model.stub' => 'app/Models/DummyClass/DummyClass.php',
+            'basic-history/model.stub' => 'app/Models/' . $this->_namespaceCapslock  . 'DummyClass/DummyClass.php',
 
             // Obserber
-            'basic-history/observer.stub' => 'app/Repositories/Backend/DummyClass/DummyClassObserver.php',
+            'basic-history/observer.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassObserver.php',
             // repository replace
-            'basic-history/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
+            'basic-history/repo.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassRepository.php',
 
             // controllers
-            'basic-history/controllers/history.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesHistoryController.php',
-            // 'basic-history/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
+            'basic-history/controllers/history.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesHistoryController.php',
+            // 'basic-history/controllers/resource.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesController.php',
 
             // resources
-            'basic-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
-            'basic-history/resources/views/backend/history.stub' => 'resources/views/backend/dummyClass/history.blade.php',
+            'basic-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/partials/links.blade.php',
+            'basic-history/resources/views/backend/history.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/history.blade.php',
 
             // routes
-            'basic-history/routes/backend.stub' => 'routes/backend/dummy-class.php',
-            'basic-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
+            'basic-history/routes/backend.stub' => 'routes/backend/' . $this->_namespaceLower  . 'dummy-class.php',
+            'basic-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/' . $this->_namespaceLower  . 'dummy-class.php',
 
             // tests
-            'basic-history/tests/history.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassFeatureHistoryTest.php',
+            'basic-history/tests/history.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassFeatureHistoryTest.php',
         ];
 
         return array_merge($stubs, $hiostoryStubs);
@@ -154,24 +165,24 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
 
         $additionalStubs = [
             // model
-            'basic-softdelete-history/model.stub' => 'app/Models/DummyClass/DummyClass.php',
+            'basic-softdelete-history/model.stub' => 'app/Models/' . $this->_namespaceCapslock  . 'DummyClass/DummyClass.php',
 
             // repository replace
-            'basic-softdelete-history/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
+            'basic-softdelete-history/repo.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassRepository.php',
 
             // observer replace
-            'basic-softdelete-history/observer.stub' => 'app/Repositories/Backend/DummyClass/DummyClassObserver.php',
+            'basic-softdelete-history/observer.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassObserver.php',
 
             // controllers replace
-            // 'basic-softdelete-history/controllers/resource.stub' =>  'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
-            // 'basic-softdelete-history/controllers/deleted.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesDeletedController.php',
+            // 'basic-softdelete-history/controllers/resource.stub' =>  'app/Http/Controllers/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesController.php',
+            // 'basic-softdelete-history/controllers/deleted.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesDeletedController.php',
           
             // routes
-            'basic-softdelete-history/routes/backend.stub' => 'routes/backend/dummy-class.php',
-            'basic-softdelete-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
+            'basic-softdelete-history/routes/backend.stub' => 'routes/backend/' . $this->_namespaceLower  . 'dummy-class.php',
+            'basic-softdelete-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/' . $this->_namespaceLower  . 'dummy-class.php',
 
             // resources replace
-            'basic-softdelete-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
+            'basic-softdelete-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/partials/links.blade.php',
       ];
 
         return array_merge(array_merge($softdeleteStubs, $additionalStubs), array_only($this->basic_history(), [
@@ -193,54 +204,54 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
         // stub | direction path
         return [
             // Obserber
-            'basic/observer.stub' => 'app/Repositories/Backend/DummyClass/DummyClassObserver.php',
+            'basic/observer.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassObserver.php',
             // repository
-            'basic/repo.stub' => 'app/Repositories/Backend/DummyClass/DummyClassRepository.php',
+            'basic/repo.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassRepository.php',
 
             // controllers
-            'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesController.php',
-            'basic/controllers/frontend.stub' => 'app/Http/Controllers/Frontend/DummyClass/DummyClassesController.php',
-            'basic/controllers/table.stub' => 'app/Http/Controllers/Backend/DummyClass/DummyClassesTableController.php',
+            'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesController.php',
+            'basic/controllers/frontend.stub' => 'app/Http/Controllers/Frontend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesController.php',
+            'basic/controllers/table.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesTableController.php',
 
             // views backend
-            'basic/resources/views/backend/create.stub' => 'resources/views/backend/dummyClass/create.blade.php',
-            'basic/resources/views/backend/edit.stub' => 'resources/views/backend/dummyClass/edit.blade.php',
-            'basic/resources/views/backend/index.stub' => 'resources/views/backend/dummyClass/index.blade.php',
-            'basic/resources/views/backend/show.stub' => 'resources/views/backend/dummyClass/show.blade.php',
+            'basic/resources/views/backend/create.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/create.blade.php',
+            'basic/resources/views/backend/edit.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/edit.blade.php',
+            'basic/resources/views/backend/index.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/index.blade.php',
+            'basic/resources/views/backend/show.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/show.blade.php',
             // views partials
-            'basic/resources/views/backend/partials/links.stub' => 'resources/views/backend/dummyClass/partials/links.blade.php',
-            'basic/resources/views/backend/partials/fields.stub' => 'resources/views/backend/dummyClass/partials/fields.blade.php',
-            'basic/resources/views/backend/partials/overview.stub' => 'resources/views/backend/dummyClass/partials/overview.blade.php',
+            'basic/resources/views/backend/partials/links.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/partials/links.blade.php',
+            'basic/resources/views/backend/partials/fields.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/partials/fields.blade.php',
+            'basic/resources/views/backend/partials/overview.stub' => 'resources/views/backend/' . $this->_namespaceLower  . 'dummyClass/partials/overview.blade.php',
 
             // views frontend
-            'basic/resources/views/frontend/index.stub' => 'resources/views/frontend/dummyClass/index.blade.php',
-            'basic/resources/views/frontend/show.stub' => 'resources/views/frontend/dummyClass/show.blade.php',
-            'basic/resources/views/frontend/partials/node.stub' => 'resources/views/frontend/dummyClass/partials/node.blade.php',
+            'basic/resources/views/frontend/index.stub' => 'resources/views/frontend/' . $this->_namespaceLower  . 'dummyClass/index.blade.php',
+            'basic/resources/views/frontend/show.stub' => 'resources/views/frontend/' . $this->_namespaceLower  . 'dummyClass/show.blade.php',
+            'basic/resources/views/frontend/partials/node.stub' => 'resources/views/frontend/' . $this->_namespaceLower  . 'dummyClass/partials/node.blade.php',
            
             // route
-            'basic/routes/backend.stub' => 'routes/backend/dummy-class.php',
-            'basic/routes/frontend.stub' => 'routes/frontend/dummy-class.php',
-            'basic/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/dummy-class.php',
+            'basic/routes/backend.stub' => 'routes/backend/' . $this->_namespaceLower  . 'dummy-class.php',
+            'basic/routes/frontend.stub' => 'routes/frontend/' . $this->_namespaceLower  . 'dummy-class.php',
+            'basic/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/' . $this->_namespaceLower  . 'dummy-class.php',
 
             // model
-            'basic/model.stub' => 'app/Models/DummyClass/DummyClass.php',
+            'basic/model.stub' => 'app/Models/' . $this->_namespaceCapslock  . 'DummyClass/DummyClass.php',
             // model traits
-            'basic/model-traits/attribute.stub' => 'app/Models/DummyClass/Traits/DummyClassAttributes.php',
-            'basic/model-traits/regular.stub' => 'app/Models/DummyClass/Traits/DummyClassRegularFunctions.php',
-            'basic/model-traits/relation.stub' => 'app/Models/DummyClass/Traits/DummyClassRelations.php',
-            'basic/model-traits/scope.stub' => 'app/Models/DummyClass/Traits/DummyClassScopes.php',
-            'basic/model-traits/static.stub' => 'app/Models/DummyClass/Traits/DummyClassStaticFunctions.php',
+            'basic/model-traits/attribute.stub' => 'app/Models/' . $this->_namespaceCapslock  . 'DummyClass/Traits/DummyClassAttributes.php',
+            'basic/model-traits/regular.stub' => 'app/Models/' . $this->_namespaceCapslock  . 'DummyClass/Traits/DummyClassRegularFunctions.php',
+            'basic/model-traits/relation.stub' => 'app/Models/' . $this->_namespaceCapslock  . 'DummyClass/Traits/DummyClassRelations.php',
+            'basic/model-traits/scope.stub' => 'app/Models/' . $this->_namespaceCapslock  . 'DummyClass/Traits/DummyClassScopes.php',
+            'basic/model-traits/static.stub' => 'app/Models/' . $this->_namespaceCapslock  . 'DummyClass/Traits/DummyClassStaticFunctions.php',
 
             // database
             'basic/database/migration.stub' => $this->_databaseMigrationFileName(),
-            'basic/database/factory.stub' => "database/factories/DummyClassFactory.php",
-            'basic/database/table-seeder.stub' => "database/seeds/Modules/DummyClassTableSeeder.php",
-            'basic/database/permission-seeder.stub' => "database/seeds/Modules/Permissions/DummyClassPermissionTableSeeder.php",
+            'basic/database/factory.stub' => 'database/factories/' . $this->_namespaceCapslock  . 'DummyClassFactory.php',
+            'basic/database/table-seeder.stub' => 'database/seeds/Modules/' . $this->_namespaceCapslock  . 'DummyClassTableSeeder.php',
+            'basic/database/permission-seeder.stub' => 'database/seeds/Modules/Permissions/' . $this->_namespaceCapslock  . 'DummyClassPermissionTableSeeder.php',
 
             // tests
-            'basic/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
-            'basic/tests/backend.stub' => 'tests/Feature/Modules/Backend/DummyClass/DummyClassBreadFeatureBackendTest.php',
-            'basic/tests/frontend.stub' => 'tests/Feature/Modules/Frontend/DummyClass/DummyClassFeatureFrontendTest.php',
+            'basic/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
+            'basic/tests/backend.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassBreadFeatureBackendTest.php',
+            'basic/tests/frontend.stub' => 'tests/Feature/Modules/Frontend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassFeatureFrontendTest.php',
         ];
     }
 }

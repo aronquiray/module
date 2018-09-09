@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Modules\Backend\DummyClass;
+namespace Tests\Feature\Modules\Backend\DummyPath\DummyClass;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
-use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 
 
 /**
@@ -19,6 +19,7 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+        $this->markTestSkipped('Skipped ' . __METHOD__);
         $this->loginAsAdmin();
         (new \DummyClassPermissionTableSeeder)->run();
         (new \DummyClassTableSeeder)->run();
@@ -35,13 +36,13 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
-        ])->json('DELETE', route('admin.dummy-class.destroy', $model));
+        ])->json('DELETE', route(Model::ROUTE_ADMIN_PATH . '.destroy', $model));
 
        
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been deleted.')
-            ->assertRedirect(route('admin.dummy-class.index'));
+            ->assertRedirect(route(Model::ROUTE_ADMIN_PATH . '.index'));
 
         $this->assertDatabaseMissing((new Model)->getTable(), [
             'id' => $model->id,

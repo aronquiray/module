@@ -1,10 +1,10 @@
 <?php
 
-namespace DummyNameSpaceClass\Repositories\Backend\DummyClass;
+namespace DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass;
 
 use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
 use Illuminate\Database\Eloquent\Builder;
-use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 use History;
 
 /**

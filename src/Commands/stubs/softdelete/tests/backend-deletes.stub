@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Modules\Backend\DummyClass;
+namespace Tests\Feature\Modules\Backend\DummyPath\DummyClass;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
-use DummyNameSpaceClass\Models\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 
 
 /**
@@ -18,6 +18,7 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
 
     public function setUp()
     {
+        $this->markTestSkipped('Skipped ' . __METHOD__);
         parent::setUp();
         $this->loginAsAdmin();
         (new \DummyClassPermissionTableSeeder)->run();
@@ -26,7 +27,7 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
 
     public function testDummyClassDeletedRouteExist()
     {
-        $this->get(route('admin.dummy-class.deleted'))
+        $this->get(route(Model::ROUTE_ADMIN_PATH . '.deleted'))
             ->assertStatus(200);
     }
 
@@ -39,12 +40,12 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
-        ])->json('DELETE', route('admin.dummy-class.destroy', $model));
+        ])->json('DELETE', route(Model::ROUTE_ADMIN_PATH . '.destroy', $model));
        
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been deleted.')
-            ->assertRedirect(route('admin.dummy-class.deleted'));
+            ->assertRedirect(route(Model::ROUTE_ADMIN_PATH . '.deleted'));
 
             $this->assertDatabaseHas((new Model)->getTable(), [
                 'id' => $model->id,
@@ -67,12 +68,12 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
-        ])->json('PATCH', route('admin.dummy-class.restore', $model));
+        ])->json('PATCH', route(Model::ROUTE_ADMIN_PATH . '.restore', $model));
 
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been restored.')
-            ->assertRedirect(route('admin.dummy-class.index'));
+            ->assertRedirect(route(Model::ROUTE_ADMIN_PATH . '.index'));
 
             $this->assertDatabaseHas((new Model)->getTable(), [
                 'id' => $model->id,
@@ -90,12 +91,12 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
 
         $response = $this->withHeaders([
             'X-Header' => 'Value',
-        ])->json('DELETE', route('admin.dummy-class.purge', $model));
+        ])->json('DELETE', route(Model::ROUTE_ADMIN_PATH . '.purge', $model));
        
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been permanently deleted.')
-            ->assertRedirect(route('admin.dummy-class.deleted'));
+            ->assertRedirect(route(Model::ROUTE_ADMIN_PATH . '.deleted'));
 
             $this->assertDatabaseMissing((new Model)->getTable(), [
                 'id' => $model->id,
