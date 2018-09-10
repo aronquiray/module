@@ -3,8 +3,10 @@
 		<div class="form-group row">
             <label class="col-md-2 form-control-label">Title <i class="text-danger">*</i></label>
             <div class="col-md-10">
-                {!! Form::text('title', old('title'), ['class' => 'form-control ' . ($errors->has('title') ? 'is-invalid' : '' ), 
-                        'placeholder' => 'Enter title', 'autofocus' => true]) !!}
+				{!! html()->text('title', old('title'))
+                    ->class('form-control ' . ($errors->has('title') ? 'is-invalid' : '' ))
+                    ->placeholder('Enter title')
+                    ->autofocus(true) !!}
             </div>
         </div>
     </div>
