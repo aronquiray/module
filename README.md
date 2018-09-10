@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.25
+# Halcyon Packages Module - 1.0.27
 
 ## Changes Log
+    v1.0.27: update to html spatie
     v1.0.26: update console menu to support laravel 5.7
     v1.0.25: Skkiped Test
     v1.0.24: add deleted event on boot for cache
