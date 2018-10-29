@@ -8,7 +8,6 @@ use Spatie\Sluggable\SlugOptions;
 use Spatie\Sluggable\HasSlug;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 use App\Models\Core\Meta\MetableTrait;
-use Watson\Rememberable\Rememberable;
 
 // Model Traits
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassAttributes;
@@ -19,7 +18,6 @@ use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassStaticFunct
 
 class DummyClass extends BaseModel
 {
-    use Rememberable;
     use MetableTrait;
     use SoftDeletes;
     use HasSlug;
@@ -45,21 +43,7 @@ class DummyClass extends BaseModel
     public const ROUTE_ADMIN_PATH     = 'admin.dummy-path.dummy-class';
     public const ROUTE_FRONTEND_PATH  = 'frontend.dummy-path.dummy-class';
     
-    /** cache tag reference to delete certaint cache */
-    public const CACHE_TAG  = 'dummy_class_queries';
 
-    public static function boot()
-    {
-        parent::boot();
-        static::saved(function () {
-            /** Delete cache on updates */
-            self::flushCache(self::CACHE_TAG);
-        });
-        static::deleted(function () {
-            /** Delete cache on updates */
-            self::flushCache(self::CACHE_TAG);
-        });
-    }
 
     /**
      * Return the permissions related to this model.
