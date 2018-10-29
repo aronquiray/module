@@ -2,13 +2,12 @@
 
 namespace DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass;
 
-use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
-use Illuminate\Database\Eloquent\Builder;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
+use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
 
 /**
-* DummyClassRepository
-*/
+ * DummyClassRepository
+ */
 class DummyClassRepository extends Repository
 {
     public function __construct(Model $model)
@@ -26,6 +25,7 @@ class DummyClassRepository extends Repository
     public function deleting($model)
     {
         $model->metable()->delete();
+
         return $model;
     }
 }
