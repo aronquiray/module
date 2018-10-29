@@ -1,5 +1,4 @@
 /vendor
-.php_cs.cache
 output.txt
 /report
 .module.cache
