@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.30
+# Halcyon Packages Module - 1.0.31
 
 ## Changes Log
+    v1.0.31: remove test files.
     v1.0.30: compatible with base v2.
     v1.0.29: Fix models.
     v1.0.28: Remove rememberable for latest base.
