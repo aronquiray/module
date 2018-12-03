@@ -1,6 +1,7 @@
-# Halcyon Packages Module - 1.0.29
+# Halcyon Packages Module - 1.0.30
 
 ## Changes Log
+    v1.0.30: compatible with base v2.
     v1.0.29: Fix models.
     v1.0.28: Remove rememberable for latest base.
     v1.0.27: update to html spatie
