@@ -2,30 +2,32 @@
 
 namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 
-use Illuminate\Http\Request;
-use HalcyonLaravel\Base\Controllers\BaseController as Controller;
-use DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass\DummyClassRepository as Repository;
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 use DataTables;
+use DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass\DummyClassRepository;
+use HalcyonLaravel\Base\Controllers\BaseController;
+use HalcyonLaravel\Base\Repository\BaseRepository;
+use Illuminate\Http\Request;
 
 /**
  * Class DummyClassTableController.
  */
-class DummyClassesTableController extends Controller
+class DummyClassesTableController extends BaseController
 {
     /**
      * @var DummyClassRepository
      */
-    protected $repo;
+    protected $dummyClassRepository;
 
     /**
-     * @param DummyClassRepository $repo
+     * DummyClassesTableController constructor.
+     * @param DummyClassRepository $dummyClassRepository
      */
-    public function __construct(Repository $repo)
+    public function __construct(DummyClassRepository $dummyClassRepository)
     {
-        $this->repo = $repo;   
-        
-        $this->middleware('permission:' . Model::permission('index'), ['only' => ['__invoke']]);
+        $this->dummyClassRepository = $dummyClassRepository;
+        $model = resolve($dummyClassRepository->model());
+
+        $this->middleware('permission:' . $model::permission('index'), ['only' => ['__invoke']]);
     }
 
     /**
@@ -37,22 +39,26 @@ class DummyClassesTableController extends Controller
     {
         $trashOnly = false;
         if (isset($request->trash)) {
-            $trashOnly = (bool) $request->trash;
+            $trashOnly = (bool)$request->trash;
         }
 
-        $user = auth()->user();
-        return DataTables::of($this->repo->table([
-                    'trashOnly' => $trashOnly,
-            ]))
+        return DataTables::of($this->repository()->table([
+            'trashOnly' => $trashOnly,
+        ]))
             ->editColumn('updated_at', function ($model) {
                 return $model->updated_at->format('d M, Y h:m A');
             })
             ->addColumn('actions', function ($model) {
-                if($model->trashed()){
+                if ($model->trashed()) {
                     return $model->actions('backend', ['restore', 'purge']);
                 }
                 return $model->actions('backend', ['show', 'edit', 'destroy']);
             })
             ->make(true);
+    }
+
+    public function repository(): BaseRepository
+    {
+        return $this->dummyClassRepository;
     }
 }
