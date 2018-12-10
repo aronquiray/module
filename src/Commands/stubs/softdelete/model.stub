@@ -110,7 +110,7 @@ class DummyClass extends BaseModel
             'frontend' => [
                 'show' => [
                     'type' => 'show',
-                    'url' => route(self::ROUTE_FRONTEND_PATH. '.show', taxonomy()->getRoute($this, $include_model = true) ?? $this)
+                    'url' => route(self::ROUTE_FRONTEND_PATH. '.show', $this)
                 ]
             ],
             'backend' => [
