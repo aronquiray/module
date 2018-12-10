@@ -1,6 +1,6 @@
 <?php
 
-namespace DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass;
+namespace DummyNameSpaceClass\Repositories\DummyPath\DummyClass;
 
 use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;

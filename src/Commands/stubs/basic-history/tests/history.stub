@@ -2,32 +2,27 @@
 
 namespace Tests\Feature\Modules\Backend\DummyPath\DummyClass;
 
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 
 /**
- * Class DummyClassFeatureHistoryTest.
+ * Class DummyClassFeatureHistoryTest
+ * @package Tests\Feature\Modules\Backend\DummyPath\DummyClass
  */
 class DummyClassFeatureHistoryTest extends TestCase
 {
-    use RefreshDatabase;
 
     public function setUp()
     {
         parent::setUp();
-        $this->loginAsAdmin();
-        (new \DummyClassPermissionTableSeeder)->run();
-        (new \DummyClassTableSeeder)->run();
+        $this->loginAsSystem();
     }
 
     /** @test */
     public function testDummyClassHistoryRouteExist()
-    {        
-        $this->get(route(Model::ROUTE_ADMIN_PATH . '.history'))
+    {
+        $this->get(route(DummyClass::ROUTE_ADMIN_PATH . '.history'))
             ->assertStatus(200);
- 
     }
 
 }
