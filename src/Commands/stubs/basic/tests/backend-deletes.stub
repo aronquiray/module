@@ -2,11 +2,8 @@
 
 namespace Tests\Feature\Modules\Backend\DummyPath\DummyClass;
 
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 
 
 /**
@@ -14,39 +11,31 @@ use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
  */
 class DummyClassBreadFeatureDeletesBackendTest extends TestCase
 {
-    use RefreshDatabase;
 
     public function setUp()
     {
         parent::setUp();
-        $this->markTestSkipped('Skipped ' . __METHOD__);
-        $this->loginAsAdmin();
-        (new \DummyClassPermissionTableSeeder)->run();
-        (new \DummyClassTableSeeder)->run();
+        $this->markTestSkipped();
+        $this->loginAsSystem();
     }
 
     public function testDestroy()
     {
-        
-        
-        $model = Model::create([
+
+        $model = DummyClass::create([
             'title' => 'Salliess',
         ]);
 
+        $response = $this->delete(route(DummyClass::ROUTE_ADMIN_PATH . '.destroy', $model));
 
-        $response = $this->withHeaders([
-            'X-Header' => 'Value',
-        ])->json('DELETE', route(Model::ROUTE_ADMIN_PATH . '.destroy', $model));
-
-       
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been deleted.')
-            ->assertRedirect(route(Model::ROUTE_ADMIN_PATH . '.index'));
+            ->assertRedirect(route(DummyClass::ROUTE_ADMIN_PATH . '.index'));
 
-        $this->assertDatabaseMissing((new Model)->getTable(), [
+        $this->assertDatabaseMissing((new DummyClass)->getTable(), [
             'id' => $model->id,
         ]);
- 
+
     }
 }

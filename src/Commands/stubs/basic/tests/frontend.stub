@@ -2,37 +2,33 @@
 
 namespace Tests\Feature\Modules\Frontend\DummyPath\DummyClass;
 
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 
 /**
- * Class DummyClassFeatureFrontendTest.
+ * Class DummyClassFeatureFrontendTest
+ * @package Tests\Feature\Modules\Frontend\DummyPath\DummyClass
  */
 class DummyClassFeatureFrontendTest extends TestCase
 {
-    use RefreshDatabase;
 
-     public function setUp()
+    public function setUp()
     {
         parent::setUp();
-        $this->markTestSkipped('Skipped ' . __METHOD__);
-        $this->loginAsAdmin(false);
-        (new \DummyClassPermissionTableSeeder)->run();
-        (new \DummyClassTableSeeder)->run();
-        $this->prepareMenu(false);
+        $this->markTestSkipped();
+        $this->loginAsSystem();
     }
 
     public function testDummyClassRouteFrontShowExist()
-    {        
-        $model = Model::first();
-        $this->get(route(Model::ROUTE_FRONTEND_PATH . '.show', $model))
-            ->assertStatus(200); 
+    {
+        $model = DummyClass::first();
+        $this->get(route(DummyClass::ROUTE_FRONTEND_PATH . '.show', $model))
+            ->assertStatus(200);
     }
 
     public function testDummyClassRouteFrontIndexExist()
-    {        
-        $this->get(route(Model::ROUTE_FRONTEND_PATH . '.index'))
-            ->assertStatus(200); 
+    {
+        $this->get(route(DummyClass::ROUTE_FRONTEND_PATH . '.index'))
+            ->assertStatus(200);
     }
 }

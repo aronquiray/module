@@ -2,10 +2,8 @@
 
 namespace Tests\Feature\Modules\Backend\DummyPath\DummyClass;
 
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 
 
 /**
@@ -13,66 +11,61 @@ use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
  */
 class DummyClassBreadFeatureBackendTest extends TestCase
 {
-    use RefreshDatabase;
 
     public function setUp()
     {
         parent::setUp();
-        $this->markTestSkipped('Skipped ' . __METHOD__);
-        $this->loginAsAdmin();
-        (new \DummyClassPermissionTableSeeder)->run();
-        (new \DummyClassTableSeeder)->run();
+        $this->markTestSkipped();
+        $this->loginAsSystem();
     }
 
     public function testDummyClassCreateRouteExist()
     {
-        $this->get(route(Model::ROUTE_ADMIN_PATH . '.create'))
+        $this->get(route(DummyClass::ROUTE_ADMIN_PATH . '.create'))
             ->assertStatus(200);
     }
 
 
     public function testDummyClassShowRouteExist()
     {
-        $model = Model::first();
+        $model = DummyClass::first();
 
-        $this->get(route(Model::ROUTE_ADMIN_PATH . '.show', $model))
+        $this->get(route(DummyClass::ROUTE_ADMIN_PATH . '.show', $model))
             ->assertStatus(200);
     }
 
     public function testDummyClassEditRouteExist()
     {
-        $model = Model::first();
+        $model = DummyClass::first();
 
-        $this->get(route(Model::ROUTE_ADMIN_PATH . '.edit', $model))
+        $this->get(route(DummyClass::ROUTE_ADMIN_PATH . '.edit', $model))
             ->assertStatus(200);
     }
 
     public function testStore()
-    {        
+    {
 
 
-        $response = $this->withHeaders([
-            'X-Header' => 'Value',
-        ])->json('POST', route(Model::ROUTE_ADMIN_PATH . '.store'), [
+        $response = $this->post(route(DummyClass::ROUTE_ADMIN_PATH . '.store'), [
             'title' => 'Salliess',
         ]);
 
-        $model =  Model::orderBy('id', 'desc')->first();
-       
+        $model = DummyClass::orderBy('id', 'desc')->first();
+
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been created.')
-            ->assertRedirect(route(Model::ROUTE_ADMIN_PATH . '.show', $model));
+            ->assertRedirect(route(DummyClass::ROUTE_ADMIN_PATH . '.show', $model));
 
-        $this->assertDatabaseHas((new Model)->getTable(), [
+        $this->assertDatabaseHas((new DummyClass)->getTable(), [
             'title' => 'Salliess',
         ]);
- 
+
     }
 
     public function testUpdate()
     {
-        $model = Model::create([
+        $model = DummyClass::create([
             'title' => 'old Salliess',
         ]);
 
@@ -80,20 +73,16 @@ class DummyClassBreadFeatureBackendTest extends TestCase
             'title' => 'new Salliess',
         ];
 
+        $response = $this->put(route(DummyClass::ROUTE_ADMIN_PATH . '.update', $model), $dataNew);
 
-
-        $response = $this->withHeaders([
-            'X-Header' => 'Value',
-        ])->json('PUT', route(Model::ROUTE_ADMIN_PATH . '.update', $model), $dataNew);
-       
         // get the updated data
-        $model = Model::find($model->id);
+        $model = DummyClass::find($model->id);
 
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'new Salliess has been updated.')
-            ->assertRedirect(route(Model::ROUTE_ADMIN_PATH . '.show', $model));
+            ->assertRedirect(route(DummyClass::ROUTE_ADMIN_PATH . '.show', $model));
 
-        $this->assertDatabaseHas((new Model)->getTable(), $dataNew);
+        $this->assertDatabaseHas((new DummyClass)->getTable(), $dataNew);
     }
 }
