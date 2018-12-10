@@ -102,7 +102,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'softdelete/database/migration.stub' => $this->_databaseMigrationFileName(),
 
             // test
-            'softdelete/tests/backend-deletes.stub' => 'tests/Feature/modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
+            'softdelete/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
 
         ];
 
