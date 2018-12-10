@@ -49,7 +49,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic-softdelete-history/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
 
             // observer replace
-            'basic-softdelete-history/observer.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
+            'basic-softdelete-history/observer.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
 
             // controllers replace
             // 'basic-softdelete-history/controllers/resource.stub' =>  'app/Http/Controllers/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesController.php',
@@ -230,8 +230,8 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             // model
             'basic-history/model.stub' => 'app/Models/' . $this->_namespaceCapslock . 'DummyClass/DummyClass.php',
 
-            // Obserber
-            'basic-history/observer.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
+            // Observer
+            'basic-history/observer.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
             // repository replace
             'basic-history/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
 
