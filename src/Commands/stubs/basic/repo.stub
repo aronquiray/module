@@ -21,17 +21,6 @@ class DummyClassRepository extends BaseRepository
     }
 
     /**
-     * @param $model
-     * @return mixed
-     */
-    public function deleting($model)
-    {
-        $model->metable()->delete();
-
-        return $model;
-    }
-
-    /**
      * Specify Model class name
      *
      * @return string
