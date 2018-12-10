@@ -10,7 +10,8 @@
   "require": {
     "halcyon-laravel/base": ">=1",
     "spatie/laravel-permission": "^2.9",
-    "nunomaduro/laravel-console-menu": "^2.0"
+    "nunomaduro/laravel-console-menu": "^2.0",
+    "ext-json": "*"
   },
   "require-dev": {
   },

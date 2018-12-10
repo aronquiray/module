@@ -2,10 +2,11 @@
 
 namespace HalcyonLaravel\Module\Commands;
 
-use Illuminate\Console\GeneratorCommand;
-// use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
+use Illuminate\Console\GeneratorCommand;
+use Symfony\Component\Console\Input\InputArgument;
+
+// use Symfony\Component\Console\Input\InputOption;
 
 class ModuleStatusCommand extends GeneratorCommand
 {
@@ -47,7 +48,7 @@ class ModuleStatusCommand extends GeneratorCommand
                 $this->error("{$this->type} '{$this->getNameInput()}' not exist!");
                 return;
             }
-           
+
             $this->_tableFiles($module->datas);
         } else {
             $this->_tableAll($this->getBackupFile());
@@ -57,7 +58,7 @@ class ModuleStatusCommand extends GeneratorCommand
     private function _tableFiles($module)
     {
         $datas = [];
-        $inc   = 1;
+        $inc = 1;
 
         foreach ($module as $file) {
             $datas[] = [
@@ -69,7 +70,7 @@ class ModuleStatusCommand extends GeneratorCommand
         $this->table([
             '#',
             'File',
-                ], $datas);
+        ], $datas);
     }
 
     private function _tableAll($modules)
@@ -83,11 +84,11 @@ class ModuleStatusCommand extends GeneratorCommand
             'updated at',
             'deleted at',
         ];
-        $datas  = [];
+        $datas = [];
 
         foreach ($modules as $module => $value) {
             $countFile = count($value->datas);
-            $datas[]   = [
+            $datas[] = [
                 $module,
                 implode(',', $value->types),
                 $value->status,

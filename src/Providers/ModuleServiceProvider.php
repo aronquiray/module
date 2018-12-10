@@ -2,10 +2,10 @@
 
 namespace HalcyonLaravel\Module\Providers;
 
+use HalcyonLaravel\Module\Commands\ModuleCreateCommand;
+use HalcyonLaravel\Module\Commands\ModuleDeleteCommand;
+use HalcyonLaravel\Module\Commands\ModuleStatusCommand;
 use Illuminate\Support\ServiceProvider;
-use  HalcyonLaravel\Module\Commands\ModuleCreateCommand;
-use  HalcyonLaravel\Module\Commands\ModuleStatusCommand;
-use  HalcyonLaravel\Module\Commands\ModuleDeleteCommand;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -22,12 +22,12 @@ class ModuleServiceProvider extends ServiceProvider
             // $this->publishes([ __DIR__.'/../config/halcyon-laravel/module.php' => config_path('halcyon-laravel/module.php'), ]);
         }
     }
-       
+
     /**
-    * Register the application services.
-    *
-    * @return void
-    */
+     * Register the application services.
+     *
+     * @return void
+     */
     public function register()
     {
         // Merge module Config

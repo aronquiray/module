@@ -2,8 +2,8 @@
 
 namespace HalcyonLaravel\Module\Commands;
 
-use Illuminate\Console\GeneratorCommand;
 use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
+use Illuminate\Console\GeneratorCommand;
 
 class ModuleDeleteCommand extends GeneratorCommand
 {
@@ -51,14 +51,9 @@ class ModuleDeleteCommand extends GeneratorCommand
 
         $this->_deletingFiles($datas->datas);
 
-        $this->line("" . '<bg=green>Module "' .  $this->getNameInput() . '" deleted successfully.</>');
-   
-        shell_exec('composer clear-all');
-    }
+        $this->line("" . '<bg=green>Module "' . $this->getNameInput() . '" deleted successfully.</>');
 
-    private function _checkFile()
-    {
-        $this->line("checking {$this->type} '{$this->_getCamelCaseModuleInput()}' ...");
+        shell_exec('composer clear-all');
     }
 
     private function _deletingFiles($datas)
@@ -73,11 +68,6 @@ class ModuleDeleteCommand extends GeneratorCommand
         $this->udpateDeleteData($this->getNameInput());
     }
 
-    private function _getCamelCaseModuleInput()
-    {
-        return camel_case($this->getNameInput());
-    }
-
     /**
      * Get the stub file for the generator.
      *
@@ -86,5 +76,15 @@ class ModuleDeleteCommand extends GeneratorCommand
     protected function getStub()
     {
         return $this->currentStub;
+    }
+
+    private function _checkFile()
+    {
+        $this->line("checking {$this->type} '{$this->_getCamelCaseModuleInput()}' ...");
+    }
+
+    private function _getCamelCaseModuleInput()
+    {
+        return camel_case($this->getNameInput());
     }
 }
