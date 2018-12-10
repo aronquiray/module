@@ -23,6 +23,7 @@ class DummyClassesController extends CRUDController
     public function __construct(DummyClassRepository $dummyClassRepository)
     {
         $this->dummyClassRepository = $dummyClassRepository;
+        parent::__construct();
 
         $model = resolve($dummyClassRepository->model());
         

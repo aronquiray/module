@@ -2,17 +2,21 @@
 
 namespace DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass;
 
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
-use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
+use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
- * DummyClassRepository
+ * Class DummyClassRepository
+ * @package DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass
  */
-class DummyClassRepository extends Repository
+class DummyClassRepository extends BaseRepository
 {
-    public function __construct(Model $model)
+    /**
+     * DummyClassRepository constructor.
+     */
+    public function __construct()
     {
-        parent::__construct($model);
+        parent::__construct();
         $this->setObserver(new DummyClassObserver);
     }
 
@@ -27,5 +31,15 @@ class DummyClassRepository extends Repository
         $model->metable()->delete();
 
         return $model;
+    }
+
+    /**
+     * Specify Model class name
+     *
+     * @return string
+     */
+    public function model()
+    {
+        return DummyClass::class;
     }
 }
