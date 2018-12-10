@@ -154,8 +154,8 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
     {
         // stub | direction path
         return [
-            // Obserber
-            'basic/observer.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
+            // Observer
+            'basic/observer.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
             // repository
             'basic/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
 
