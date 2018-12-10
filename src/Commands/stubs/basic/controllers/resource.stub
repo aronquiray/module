@@ -59,7 +59,7 @@ class DummyClassesController extends CRUDController
      */
     public function crudRules(Request $request, IlluminateModel $model = null) : BaseableOptions
     {
-        $table = $model->getTable();
+        $table = resolve($this->repository()->model())->getTable();
 
         return BaseableOptions::create()
             ->storeRules([
