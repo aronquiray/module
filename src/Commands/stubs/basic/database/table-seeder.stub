@@ -4,7 +4,6 @@ use DummyNameSpaceClass\Models\Auth\User;
 use DummyNameSpaceClass\Models\Core\Menu\Menu;
 use DummyNameSpaceClass\Models\Core\Page\Page;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
-use History;
 use Illuminate\Database\Seeder;
 
 /**
