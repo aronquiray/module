@@ -2,6 +2,7 @@
 
 use DummyNameSpaceClass\Models\Auth\User;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
+use HalcyonLaravel\Base\Database\Traits\SeederHelper;
 use Illuminate\Database\Seeder;
 
 /**
