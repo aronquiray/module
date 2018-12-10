@@ -200,9 +200,9 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic/database/permission-seeder.stub' => 'database/seeds/modules/Permissions/' . $this->_namespaceCapslock . 'DummyClassPermissionTableSeeder.php',
 
             // tests
-            'basic/tests/backend-deletes.stub' => 'tests/Feature/modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
-            'basic/tests/backend.stub' => 'tests/Feature/modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureBackendTest.php',
-            'basic/tests/frontend.stub' => 'tests/Feature/modules/Frontend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassFeatureFrontendTest.php',
+            'basic/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
+            'basic/tests/backend.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureBackendTest.php',
+            'basic/tests/frontend.stub' => 'tests/Feature/Modules/Frontend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassFeatureFrontendTest.php',
         ];
     }
 
