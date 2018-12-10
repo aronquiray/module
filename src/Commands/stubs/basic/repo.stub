@@ -21,10 +21,8 @@ class DummyClassRepository extends BaseRepository
     }
 
     /**
-     * @param Model $model
-     *
-     * @throws \Exception
-     * @return $model
+     * @param $model
+     * @return mixed
      */
     public function deleting($model)
     {
