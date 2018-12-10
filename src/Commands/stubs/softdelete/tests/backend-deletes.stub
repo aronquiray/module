@@ -2,104 +2,88 @@
 
 namespace Tests\Feature\Modules\Backend\DummyPath\DummyClass;
 
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
-
 
 /**
  * Class DummyClassBreadFeatureDeletesBackendTest.
  */
 class DummyClassBreadFeatureDeletesBackendTest extends TestCase
 {
-    use RefreshDatabase;
 
     public function setUp()
     {
-        $this->markTestSkipped('Skipped ' . __METHOD__);
         parent::setUp();
-        $this->loginAsAdmin();
-        (new \DummyClassPermissionTableSeeder)->run();
-        (new \DummyClassTableSeeder)->run();
+        // $this->markTestSkipped();
+        $this->loginAsSystem();
     }
 
     public function testDummyClassDeletedRouteExist()
     {
-        $this->get(route(Model::ROUTE_ADMIN_PATH . '.deleted'))
+        $this->get(route(DummyClass::ROUTE_ADMIN_PATH . '.deleted'))
             ->assertStatus(200);
     }
 
     public function testDestroy()
-    {      
-        
-        $model = Model::create([
+    {
+        $model = DummyClass::create([
             'title' => 'Salliess',
         ]);
 
-        $response = $this->withHeaders([
-            'X-Header' => 'Value',
-        ])->json('DELETE', route(Model::ROUTE_ADMIN_PATH . '.destroy', $model));
-       
+        $response = $this->delete(route(DummyClass::ROUTE_ADMIN_PATH . '.destroy', $model));
+
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been deleted.')
-            ->assertRedirect(route(Model::ROUTE_ADMIN_PATH . '.deleted'));
+            ->assertRedirect(route(DummyClass::ROUTE_ADMIN_PATH . '.deleted'));
 
-            $this->assertDatabaseHas((new Model)->getTable(), [
-                'id' => $model->id,
-            ]);
+        $this->assertDatabaseHas((new DummyClass)->getTable(), [
+            'id' => $model->id,
+        ]);
 
-            $this->assertDatabaseMissing((new Model)->getTable(), [
-                'id' => $model->id,
-                'deleted_at' => null,
-            ]);
- 
+        $this->assertDatabaseMissing((new DummyClass)->getTable(), [
+            'id' => $model->id,
+            'deleted_at' => null,
+        ]);
+
     }
 
     public function testRestore()
-    {      
-        
-        $model = new Model;
+    {
+        $model = new DummyClass;
         $model->title = 'Salliess';
         $model->deleted_at = now();
         $model->save();
 
-        $response = $this->withHeaders([
-            'X-Header' => 'Value',
-        ])->json('PATCH', route(Model::ROUTE_ADMIN_PATH . '.restore', $model));
+        $response = $this->patch(route(DummyClass::ROUTE_ADMIN_PATH . '.restore', $model));
 
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been restored.')
-            ->assertRedirect(route(Model::ROUTE_ADMIN_PATH . '.index'));
+            ->assertRedirect(route(DummyClass::ROUTE_ADMIN_PATH . '.index'));
 
-            $this->assertDatabaseHas((new Model)->getTable(), [
-                'id' => $model->id,
-                'deleted_at' => null,
-            ]); 
+        $this->assertDatabaseHas((new DummyClass)->getTable(), [
+            'id' => $model->id,
+            'deleted_at' => null,
+        ]);
     }
 
     public function testPurge()
     {
-                
         $model = new Model;
         $model->title = 'Salliess';
         $model->deleted_at = now();
         $model->save();
 
-        $response = $this->withHeaders([
-            'X-Header' => 'Value',
-        ])->json('DELETE', route(Model::ROUTE_ADMIN_PATH . '.purge', $model));
-       
+        $response = $this->delete(route(DummyClass::ROUTE_ADMIN_PATH . '.purge', $model));
+
         $response
             ->assertStatus(302)
             ->assertSessionHas('flash_success', 'Salliess has been permanently deleted.')
-            ->assertRedirect(route(Model::ROUTE_ADMIN_PATH . '.deleted'));
+            ->assertRedirect(route(DummyClass::ROUTE_ADMIN_PATH . '.deleted'));
 
-            $this->assertDatabaseMissing((new Model)->getTable(), [
-                'id' => $model->id,
-            ]); 
+        $this->assertDatabaseMissing((new DummyClass)->getTable(), [
+            'id' => $model->id,
+        ]);
     }
 }

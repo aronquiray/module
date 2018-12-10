@@ -14,8 +14,6 @@ use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-// Model Traits
-
 class DummyClass extends Model implements BaseModel
 {
     use MetableTrait;

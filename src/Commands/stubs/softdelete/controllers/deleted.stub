@@ -2,38 +2,39 @@
 
 namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 
-use Illuminate\Http\Request;
-use HalcyonLaravel\Base\Controllers\Backend\DeletedController as Controller;
-use DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass\DummyClassRepository as Repository;
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository;
+use HalcyonLaravel\Base\Controllers\Backend\DeletedController;
+use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
  * Class DummyClassesDeletedController.
  */
-class DummyClassesDeletedController extends Controller
+class DummyClassesDeletedController extends DeletedController
 {
     /**
-     * DummyClassesDeletedController Constructor
+     * @var DummyClassRepository 
      */
-    public function __construct(Model $model, Repository $repo)
-    {
-        $this->model = $model;
-        $this->repo = $repo;
-        $this->route_path = Model::ROUTE_ADMIN_PATH;
-        $this->view_path = Model::VIEW_BACKEND_PATH;
-
-        $this->middleware('permission:' . Model::permission('deleted list'), ['only' => ['deleted']]);
-        $this->middleware('permission:' . Model::permission('restore'), ['only' => ['restore']]);
-        $this->middleware('permission:' . Model::permission('purge'), ['only' => ['purge']]);
-    }
+    protected $dummyClassRepository;
 
     /**
-     * Specify Model class name.
-     *
-     * @return mixed
+     * DummyClassesDeletedController constructor.
+     * @param DummyClassRepository $dummyClassRepository
      */
-    public function model()
+    public function __construct(DummyClassRepository $dummyClassRepository)
     {
-        return Model::class;
+        $this->dummyClassRepository = $dummyClassRepository;
+
+        $model = resolve($dummyClassRepository->model());
+        $this->route_path = $model::ROUTE_ADMIN_PATH;
+        $this->view_path = $model::VIEW_BACKEND_PATH;
+
+        $this->middleware('permission:' . $model::permission('deleted list'), ['only' => ['deleted']]);
+        $this->middleware('permission:' . $model::permission('restore'), ['only' => ['restore']]);
+        $this->middleware('permission:' . $model::permission('purge'), ['only' => ['purge']]);
+    }
+
+    public function repository(): BaseRepository
+    {
+        return $this->dummyClassRepository;
     }
 }
