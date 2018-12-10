@@ -248,7 +248,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/' . $this->_namespaceLower . 'dummy-class.php',
 
             // tests
-            'basic-history/tests/history.stub' => 'tests/Feature/modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassFeatureHistoryTest.php',
+            'basic-history/tests/history.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassFeatureHistoryTest.php',
         ];
 
         return array_merge($stubs, $hiostoryStubs);
