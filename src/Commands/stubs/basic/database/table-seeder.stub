@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\Auth\User;
+use DummyNameSpaceClass\Models\Core\Menu\Menu;
 use DummyNameSpaceClass\Models\Core\Page\Page;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 use History;
-use App\Models\Auth\User;
-use App\Models\Core\Menu\Menu;
+use Illuminate\Database\Seeder;
 
 /**
  * Class AuthTableSeeder.
@@ -13,7 +13,7 @@ use App\Models\Core\Menu\Menu;
 class DummyClassTableSeeder extends Seeder
 {
     use DisableForeignKeys;
-    
+
     /**
      * Run the database seeds.
      *
@@ -25,22 +25,23 @@ class DummyClassTableSeeder extends Seeder
         $user = User::skip(1)->first();
 
         // Page
-        $page = Page::create([
+        $arr = [
             'title' => 'Dummy Class',
             'slug' => str_slug('dummy class'),
             'type' => 'dummy class',
             'status' => 'enable',
             'template' => Model::VIEW_FRONTEND_PATH . '.index'
-            ]);
+        ];
+        $page = Page::create($arr);
         $page->metable()->create([
             'name' => 'Dummy Class',
             'description' => 'List of all dummy classes',
             'keywords' => 'page,dummy-class',
             'user_id' => $user->id,
-            ]);
-        
+        ]);
+
         $pageCount = Page::count();
-         
+
         foreach (Menu::all() as $menu) {
             $page->menuable()->create([
                 'name' => $page->title,
@@ -48,7 +49,7 @@ class DummyClassTableSeeder extends Seeder
                 'menu_id' => $menu->id,
                 'order' => $pageCount++,
                 'options' => '[]'
-                ]);
+            ]);
         }
 
         History::created($page, $user);
