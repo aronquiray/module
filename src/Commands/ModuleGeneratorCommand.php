@@ -5,7 +5,7 @@ namespace HalcyonLaravel\Module\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-abstract class ModuleGeneratorCommad extends GeneratorCommand
+abstract class ModuleGeneratorCommand extends GeneratorCommand
 {
 
     private $_namespaceCapslock = '';
@@ -102,7 +102,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'softdelete/database/migration.stub' => $this->_databaseMigrationFileName(),
 
             // test
-            'softdelete/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
+            'softdelete/tests/backend-deletes.stub' => 'tests/Feature/modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
 
         ];
 
@@ -196,13 +196,13 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             // database
             'basic/database/migration.stub' => $this->_databaseMigrationFileName(),
             'basic/database/factory.stub' => 'database/factories/' . $this->_namespaceCapslock . 'DummyClassFactory.php',
-            'basic/database/table-seeder.stub' => 'database/seeds/Modules/' . $this->_namespaceCapslock . 'DummyClassTableSeeder.php',
-            'basic/database/permission-seeder.stub' => 'database/seeds/Modules/Permissions/' . $this->_namespaceCapslock . 'DummyClassPermissionTableSeeder.php',
+            'basic/database/table-seeder.stub' => 'database/seeds/modules/' . $this->_namespaceCapslock . 'DummyClassTableSeeder.php',
+            'basic/database/permission-seeder.stub' => 'database/seeds/modules/Permissions/' . $this->_namespaceCapslock . 'DummyClassPermissionTableSeeder.php',
 
             // tests
-            'basic/tests/backend-deletes.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
-            'basic/tests/backend.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureBackendTest.php',
-            'basic/tests/frontend.stub' => 'tests/Feature/Modules/Frontend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassFeatureFrontendTest.php',
+            'basic/tests/backend-deletes.stub' => 'tests/Feature/modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureDeletesBackendTest.php',
+            'basic/tests/backend.stub' => 'tests/Feature/modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassBreadFeatureBackendTest.php',
+            'basic/tests/frontend.stub' => 'tests/Feature/modules/Frontend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassFeatureFrontendTest.php',
         ];
     }
 
@@ -248,7 +248,7 @@ abstract class ModuleGeneratorCommad extends GeneratorCommand
             'basic-history/routes/bread-crumbs.stub' => 'routes/breadcrumbs/backend/' . $this->_namespaceLower . 'dummy-class.php',
 
             // tests
-            'basic-history/tests/history.stub' => 'tests/Feature/Modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassFeatureHistoryTest.php',
+            'basic-history/tests/history.stub' => 'tests/Feature/modules/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassFeatureHistoryTest.php',
         ];
 
         return array_merge($stubs, $hiostoryStubs);

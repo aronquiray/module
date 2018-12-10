@@ -34,7 +34,7 @@ class ModuleDeleteCommand extends GeneratorCommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return bool|void|null
      */
     public function handle()
     {

@@ -7,7 +7,7 @@ use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
 use Illuminate\Console\DetectsApplicationNamespace;
 use Symfony\Component\Console\Input\InputOption;
 
-class ModuleCreateCommand extends ModuleGeneratorCommad
+class ModuleCreateCommand extends ModuleGeneratorCommand
 {
     use BackUpTraits, DetectsApplicationNamespace;
     /**
@@ -33,6 +33,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
 
 
     protected $options;
+    protected $generatedFiles;
 
     public function handle()
     {
@@ -85,9 +86,8 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
     /**
      * Replace the name for the given stub.
      *
-     * @param  string $stub
-     * @param  string $name
-     * @return string
+     * @param $stub
+     * @return mixed
      */
     private function _replaceName($stub)
     {
@@ -96,11 +96,13 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
         // Small case
         $stub = str_replace('dummy classes', str_replace('-', ' ', str_slug(str_plural($name))),
             $stub); // llorics | lloric codes
-        $stub = str_replace('dummy class', str_replace('-', ' ', str_slug($name)), $stub); // lloric | lloric code
+        $stub = str_replace('dummy class',
+            str_replace('-', ' ', str_slug($name)), $stub); // lloric | lloric code
 
         $stub = str_replace('dummyclasses', str_replace('-', '', str_slug(str_plural($name))),
             $stub); // llorics | lloriccodes
-        $stub = str_replace('dummyclass', str_replace('-', '', str_slug($name)), $stub); // lloric | lloriccode
+        $stub = str_replace('dummyclass',
+            str_replace('-', '', str_slug($name)), $stub); // lloric | lloriccode
 
         $stub = str_replace('dummy_classes', snake_case(str_plural($name)), $stub); // llorics | lloric_codes
         $stub = str_replace('dummy_class', snake_case($name), $stub); // lloric | lloric_code
@@ -108,9 +110,10 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
         $stub = str_replace('dummy-classes', str_slug(str_plural($name)), $stub); // llorics | lloric-codes
         $stub = str_replace('dummy-class', str_slug($name), $stub); // lloric | lloric-code
 
-        $stub = str_replace('dummy.classes', str_replace('-', '.', str_slug(str_plural($name))),
-            $stub); // llorics | lloric.codes
-        $stub = str_replace('dummy.class', str_replace('-', '.', str_slug($name)), $stub); // lloric | lloric.code
+        $stub = str_replace('dummy.classes',
+            str_replace('-', '.', str_slug(str_plural($name))), $stub); // llorics | lloric.codes
+        $stub = str_replace('dummy.class',
+            str_replace('-', '.', str_slug($name)), $stub); // lloric | lloric.code
 
         $stub = str_replace('dummyClasses', camel_case(str_plural($name)), $stub); // llorics | lloricCodes
         $stub = str_replace('dummyClass', camel_case($name), $stub); // lloric | lloricCode
@@ -163,7 +166,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommad
         $inputNamespace = $this->option('namespace');
 
         if (empty($input)) {
-            $this->error('Aborted!, Please speacify ' . $this->type . ' name.');
+            $this->error('Aborted!, Please specify ' . $this->type . ' name.');
             exit();
         }
 
