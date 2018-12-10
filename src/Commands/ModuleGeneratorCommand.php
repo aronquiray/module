@@ -46,7 +46,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic-softdelete-history/model.stub' => 'app/Models/' . $this->_namespaceCapslock . 'DummyClass/DummyClass.php',
 
             // repository replace
-            'basic-softdelete-history/repo.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
+            'basic-softdelete-history/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
 
             // observer replace
             'basic-softdelete-history/observer.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
@@ -157,7 +157,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             // Obserber
             'basic/observer.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
             // repository
-            'basic/repo.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
+            'basic/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
 
             // controllers
             'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassesController.php',
@@ -233,7 +233,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             // Obserber
             'basic-history/observer.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
             // repository replace
-            'basic-history/repo.stub' => 'app/Repositories/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
+            'basic-history/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
 
             // controllers
             'basic-history/controllers/history.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassesHistoryController.php',

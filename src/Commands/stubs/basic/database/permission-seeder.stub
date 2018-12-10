@@ -1,17 +1,16 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use DummyNameSpaceClass\Models\Auth\User;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
+use Illuminate\Database\Seeder;
 
 /**
  * Class AuthTableSeeder.
  */
 class DummyClassPermissionTableSeeder extends Seeder
 {
-    use DisableForeignKeys; 
+    use DisableForeignKeys;
+    use SeederHelper;
 
     /**
      * Run the database seeds.
@@ -19,39 +18,12 @@ class DummyClassPermissionTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {     
+    {
         $this->disableForeignKeys();
 
-        $user = User::create([
-            'first_name'        => 'Dummy Class User',
-            'last_name'         => 'Manager',
-            'email'             => 'dummy-class@system.com',
-            'password'          => Hash::make('1234'),
-            'confirmation_code' => md5(uniqid(mt_rand(), true)),
-            'confirmed'         => true,
-        ]);
+        $this->seederPermission(DummyClass::permissions());
 
-        // Create Roles
-        $role = Role::create(['name' => 'dummy class manager']);
-        $role->givePermissionTo($this->_permissions());
-        $role->givePermissionTo('view backend');
-
-        $user->assignRole($role);
-        
-        User::find(1)->assignRole($role);
-        User::find(2)->assignRole($role);
         $this->enableForeignKeys();
     }
 
-    private function _permissions() :array
-    {
-        $permissions = (new Model)->permissions();
-
-        foreach($permissions as $p){
-            // Create Permissions
-            Permission::create(['name' =>  $p]);
-        }
-
-        return $permissions;
-    }
 }

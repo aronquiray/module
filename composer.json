@@ -8,10 +8,11 @@
     }
   ],
   "require": {
-    "halcyon-laravel/base": ">=1",
+    "halcyon-laravel/base": "^2.0",
     "spatie/laravel-permission": "^2.9",
     "nunomaduro/laravel-console-menu": "^2.0",
-    "ext-json": "*"
+    "ext-json": "*",
+    "spatie/laravel-sluggable": "^2.1"
   },
   "require-dev": {
   },

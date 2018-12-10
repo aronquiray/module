@@ -2,67 +2,66 @@
 
 namespace DummyNameSpaceClass\Http\Controllers\Frontend\DummyPath\DummyClass;
 
-use DummyNameSpaceClass\Models\Core\Page\Page;
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
-use DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass as Repo;
+use DummyNameSpaceClass\Repositories\Core\Page\PageRepository;
+use DummyNameSpaceClass\Repositories\DummyPath\DummyClassRepository;
 use HalcyonLaravel\Base\Controllers\BaseController as Controller;
+use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
  * Class DummyClassesController.
  */
 class DummyClassesController extends Controller
 {
-    private $_page;
+    private $dummyClassesRepository;
 
-    private $_repo;
+    private $pageRepository;
+    private $viewFrontendPath;
 
     /**
      * DummyClassesController constructor.
-     *
-     * @param \DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass $model
-     * @param \DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass $repo
+     * @param DummyClassRepository $dummyClassesRepository
+     * @param PageRepository $pageRepository
      */
-    public function __construct(Model $model, Repo $repo)
+    public function __construct(DummyClassRepository $dummyClassesRepository, PageRepository $pageRepository)
     {
-        $this->model = $model;
-        $this->viewFrontendPath = $this->model::VIEW_FRONTEND_PATH;
-        $this->_repo = $repo;
+        $model = resolve($dummyClassesRepository->model());
+        $this->middleware('page_status:' . $model::MODULE_NAME);
 
-        // ignore when running console to prevent 404
-        if (! app()->runningInConsole()) {
-            $this->_page = Page::where('type', $this->model::MODULE_NAME)->where('status', 'enable')->with([
-                'images',
-                'menuable',
-                'metable',
-            ])->firstOrFail();
-        }
+        $this->dummyClassesRepository = $dummyClassesRepository;
+        $this->pageRepository = $pageRepository;
+        $this->viewFrontendPath = $model::VIEW_FRONTEND_PATH;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $page = $this->_page;
-        $Model = new Model;
-        $page = Page::where('type', $this->model::MODULE_NAME)->where('status', 'enable')->with([
-            'images',
-            'menuable',
-            'metable',
-        ])->firstOrFail();
+        $model = resolve($this->repository()->model());
+        $page = $this->pageRepository->indexPage($model::MODULE_NAME);
+        $Model = $model;
 
-        $models = $this->_repo->paginate(12);
 
-        return view("$this->viewFrontendPath.index", compact('page', 'models', 'Model'));
+        $models = $this->repository()->paginate(12);
+
+        return view("{$this->viewFrontendPath}.index", compact('page', 'models', 'Model'));
+    }
+
+    public function repository(): BaseRepository
+    {
+        return $this->dummyClassesRepository;
     }
 
     /**
      * Returns the view of the page if existing and is enabled
      *
      * @param string $routeKeyName
-     * @return View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(string $routeKeyName)
     {
         $page = $model = $this->getModel($routeKeyName, false);
 
-        return view($this->viewFrontendPath.'.show', compact('model', 'page'));
+        return view("{$this->viewFrontendPath}.show", compact('model', 'page'));
     }
 }
