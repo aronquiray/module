@@ -3,7 +3,7 @@
 namespace DummyNameSpaceClass\Http\Controllers\Frontend\DummyPath\DummyClass;
 
 use DummyNameSpaceClass\Repositories\Core\Page\PageRepository;
-use DummyNameSpaceClass\Repositories\DummyPath\DummyClassRepository;
+use DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository;
 use HalcyonLaravel\Base\Controllers\BaseController as Controller;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 
