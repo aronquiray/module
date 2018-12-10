@@ -1,37 +1,39 @@
 {
-        "name": "halcyon-laravel/module",
-        "description": "Module.",
-        "repositories": [{
-            "type": "vcs",
-             "url": "git@bitbucket.org:halcyonlaravel/base.git"
-        }],
-        "require": {
-            "halcyon-laravel/base":   ">=1",
-                "spatie/laravel-permission": "^2.9",
-                "nunomaduro/laravel-console-menu": "^2.0"
-        },
-        "require-dev": {
-        },
-        "autoload": {
-            "psr-4": {
-                "HalcyonLaravel\\Module\\": "src/"
-            }
-        },
-        "autoload-dev": {
-            "psr-4": {
-            }
-        },
-        "extra": {
-            "laravel": {
-                "providers": [
-                    "HalcyonLaravel\\Module\\Providers\\ModuleServiceProvider"
-                ]
-            }
-        },
-        "scripts": { 
-            "phpunit": [
-                    "./vendor/bin/phpunit --verbose > output.txt -d memory_limit=2048M"
-            ],
-            "test": "./vendor/bin/phpunit --verbose"
-        }
+  "name": "halcyon-laravel/module",
+  "description": "Module.",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@bitbucket.org:halcyonlaravel/base.git"
     }
+  ],
+  "require": {
+    "halcyon-laravel/base": ">=1",
+    "spatie/laravel-permission": "^2.9",
+    "nunomaduro/laravel-console-menu": "^2.0"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "HalcyonLaravel\\Module\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "HalcyonLaravel\\Module\\Providers\\ModuleServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "phpunit": [
+      "./vendor/bin/phpunit --verbose > output.txt -d memory_limit=2048M"
+    ],
+    "test": "./vendor/bin/phpunit --verbose"
+  }
+}
