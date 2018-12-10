@@ -22,7 +22,7 @@ class DummyClassPermissionTableSeeder extends Seeder
     {
         $this->disableForeignKeys();
 
-        $this->seederPermission(DummyClass::permissions());
+        $this->seederPermission(new DummyClass);
 
         $this->enableForeignKeys();
     }
