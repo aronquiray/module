@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
 use DummyNameSpaceClass\Models\Core\Page\Page;
-use HalcyonLaravel\History\Facades\History;
+use History;
 use App\Models\Auth\User;
 use App\Models\Core\Menu\Menu;
 
