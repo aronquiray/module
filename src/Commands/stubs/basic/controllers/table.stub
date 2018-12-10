@@ -28,9 +28,10 @@ class DummyClassesTableController extends BaseController
     }
 
     /**
-     * @param Request $request
-     * @return mixed
-     */
+      * @param Request $request
+      * @return mixed
+      * @throws \Exception
+      */
     public function __invoke(Request $request)
     {
         return DataTables::of($this->repository()->table())
