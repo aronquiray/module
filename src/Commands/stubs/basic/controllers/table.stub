@@ -3,15 +3,15 @@
 namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 
 use DataTables;
-use DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass\DummyClassRepository;
-use HalcyonLaravel\Base\Controllers\BaseController as Controller;
+use DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository;
+use HalcyonLaravel\Base\Controllers\BaseController;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 use Illuminate\Http\Request;
 
 /**
  * Class DummyClassTableController.
  */
-class DummyClassesTableController extends Controller
+class DummyClassesTableController extends BaseController
 {
     protected $dummyClassRepository;
 
