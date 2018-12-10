@@ -6,6 +6,10 @@ use HalcyonLaravel\Base\Models\Contracts\BaseModel;
 use HalcyonLaravel\Base\Repository\ObserverContract;
 use History;
 
+/**
+ * Class DummyClassObserver
+ * @package DummyNameSpaceClass\Repositories\DummyPath\DummyClass
+ */
 class DummyClassObserver extends ObserverContract
 {
     /**
