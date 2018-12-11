@@ -7,7 +7,8 @@ use Tests\TestCase;
 
 
 /**
- * Class DummyClassBreadFeatureBackendTest.
+ * Class DummyClassBreadFeatureBackendTest
+ * @package Tests\Feature\Modules\Backend\DummyPath\DummyClass
  */
 class DummyClassBreadFeatureBackendTest extends TestCase
 {
@@ -15,18 +16,23 @@ class DummyClassBreadFeatureBackendTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        // $this->markTestSkipped();
+//        $this->markTestSkipped();
         $this->loginAsSystem();
     }
 
-    public function testDummyClassCreateRouteExist()
+    /**
+     * @test
+     */
+    public function dummyClassCreateRouteExist()
     {
         $this->get(route(DummyClass::ROUTE_ADMIN_PATH . '.create'))
             ->assertStatus(200);
     }
 
-
-    public function testDummyClassShowRouteExist()
+    /**
+     * @test
+     */
+    public function dummyClassShowRouteExist()
     {
         $model = DummyClass::first();
 
@@ -34,7 +40,10 @@ class DummyClassBreadFeatureBackendTest extends TestCase
             ->assertStatus(200);
     }
 
-    public function testDummyClassEditRouteExist()
+    /**
+     * @test
+     */
+    public function dummyClassEditRouteExist()
     {
         $model = DummyClass::first();
 
@@ -42,10 +51,11 @@ class DummyClassBreadFeatureBackendTest extends TestCase
             ->assertStatus(200);
     }
 
-    public function testStore()
+    /**
+     * @test
+     */
+    public function dummyClassStore()
     {
-
-
         $response = $this->post(route(DummyClass::ROUTE_ADMIN_PATH . '.store'), [
             'title' => 'Salliess',
         ]);
@@ -60,10 +70,12 @@ class DummyClassBreadFeatureBackendTest extends TestCase
         $this->assertDatabaseHas((new DummyClass)->getTable(), [
             'title' => 'Salliess',
         ]);
-
     }
 
-    public function testUpdate()
+    /**
+     * @test
+     */
+    public function dummyClassUpdate()
     {
         $model = DummyClass::create([
             'title' => 'old Salliess',

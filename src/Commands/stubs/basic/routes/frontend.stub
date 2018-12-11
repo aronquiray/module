@@ -4,9 +4,9 @@
  * All route names are prefixed with 'frontend.dummy-class'.
  */
 Route::group([
-    'namespace'  => 'DummyPath\DummyClass',
-	'prefix' => 'dummy-class',
-	'as' => 'dummy-path.dummy-class.',
+    'namespace' => 'DummyPath\DummyClass',
+    'prefix' => 'dummy-class',
+    'as' => 'dummy-path.dummy-class.',
 ], function () {
     Route::get('', 'DummyClassesController@index')->name('index');
     Route::get('/{dummy_class}', 'DummyClassesController@show')->where('dummy-class', '.+')->name('show');

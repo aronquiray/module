@@ -3,11 +3,11 @@
 use DummyNameSpaceClass\Models\Auth\User;
 use DummyNameSpaceClass\Models\Core\Menu\Menu;
 use DummyNameSpaceClass\Models\Core\Page\Page;
-use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass as Model;
+use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 use Illuminate\Database\Seeder;
 
 /**
- * Class AuthTableSeeder.
+ * Class DummyClassTableSeeder
  */
 class DummyClassTableSeeder extends Seeder
 {
@@ -29,7 +29,7 @@ class DummyClassTableSeeder extends Seeder
             'slug' => str_slug('dummy class'),
             'type' => 'dummy class',
             'status' => 'enable',
-            'template' => Model::VIEW_FRONTEND_PATH . '.index'
+            'template' => DummyClass::VIEW_FRONTEND_PATH . '.index'
         ];
         $page = Page::create($arr);
         $page->metable()->create([
@@ -53,7 +53,7 @@ class DummyClassTableSeeder extends Seeder
 
         History::created($page, $user);
 
-        foreach (factory(Model::class, 20)->create() as $model) {
+        foreach (factory(DummyClass::class, 20)->create() as $model) {
             $model->metable()->create([
                 'name' => $model->title,
                 'description' => $model->title,

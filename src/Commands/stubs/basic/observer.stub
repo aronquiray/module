@@ -5,6 +5,10 @@ namespace DummyNameSpaceClass\Repositories\DummyPath\DummyClass;
 use HalcyonLaravel\Base\Models\Contracts\BaseModel;
 use HalcyonLaravel\Base\Repository\ObserverContract;
 
+/**
+ * Class DummyClassObserver
+ * @package DummyNameSpaceClass\Repositories\DummyPath\DummyClass
+ */
 class DummyClassObserver extends ObserverContract
 {
 

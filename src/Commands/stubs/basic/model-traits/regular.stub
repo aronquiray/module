@@ -2,6 +2,10 @@
 
 namespace DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits;
 
+/**
+ * Trait DummyClassRegularFunctions
+ * @package DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits
+ */
 trait DummyClassRegularFunctions
 {
 }

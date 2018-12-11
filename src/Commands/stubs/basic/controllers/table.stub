@@ -9,10 +9,14 @@ use HalcyonLaravel\Base\Repository\BaseRepository;
 use Illuminate\Http\Request;
 
 /**
- * Class DummyClassTableController.
+ * Class DummyClassesTableController
+ * @package DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass
  */
 class DummyClassesTableController extends BaseController
 {
+    /**
+     * @var DummyClassRepository
+     */
     protected $dummyClassRepository;
 
     /**
@@ -28,10 +32,9 @@ class DummyClassesTableController extends BaseController
     }
 
     /**
-      * @param Request $request
-      * @return mixed
-      * @throws \Exception
-      */
+     * @param Request $request
+     * @return mixed
+     */
     public function __invoke(Request $request)
     {
         return DataTables::of($this->repository()->table())
@@ -44,6 +47,9 @@ class DummyClassesTableController extends BaseController
             ->make(true);
     }
 
+    /**
+     * @return BaseRepository
+     */
     public function repository(): BaseRepository
     {
         return $this->dummyClassRepository;

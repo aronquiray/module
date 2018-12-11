@@ -1,10 +1,10 @@
 <?php
 
 Route::group([
-        'namespace' => 'DummyPath\DummyClass',
-        'middleware' => 'admin',
-	'as' => 'dummy-path.',
+    'namespace' => 'DummyPath\DummyClass',
+    'middleware' => 'admin',
+    'as' => 'dummy-path.',
 ], function () {
-        Route::post('dummy-class/table', 'DummyClassesTableController')->name('dummy-class.table');
-        Route::resource('dummy-class', 'DummyClassesController');
+    Route::post('dummy-class/table', 'DummyClassesTableController')->name('dummy-class.table');
+    Route::resource('dummy-class', 'DummyClassesController');
 });

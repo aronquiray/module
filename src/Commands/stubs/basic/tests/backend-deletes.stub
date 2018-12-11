@@ -7,7 +7,8 @@ use Tests\TestCase;
 
 
 /**
- * Class DummyClassBreadFeatureDeletesBackendTest.
+ * Class DummyClassBreadFeatureDeletesBackendTest
+ * @package Tests\Feature\Modules\Backend\DummyPath\DummyClass
  */
 class DummyClassBreadFeatureDeletesBackendTest extends TestCase
 {
@@ -19,9 +20,11 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
         $this->loginAsSystem();
     }
 
-    public function testDestroy()
+    /**
+     * @test
+     */
+    public function dummyClassDestroy()
     {
-
         $model = DummyClass::create([
             'title' => 'Salliess',
         ]);
@@ -36,6 +39,5 @@ class DummyClassBreadFeatureDeletesBackendTest extends TestCase
         $this->assertDatabaseMissing((new DummyClass)->getTable(), [
             'id' => $model->id,
         ]);
-
     }
 }

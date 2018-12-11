@@ -7,7 +7,7 @@ use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
  * Class DummyClassRepository
- * @package DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass
+ * @package DummyNameSpaceClass\Repositories\DummyPath\DummyClass
  */
 class DummyClassRepository extends BaseRepository
 {

@@ -6,7 +6,7 @@ use HalcyonLaravel\Base\Database\Traits\SeederHelper;
 use Illuminate\Database\Seeder;
 
 /**
- * Class AuthTableSeeder.
+ * Class DummyClassPermissionTableSeeder
  */
 class DummyClassPermissionTableSeeder extends Seeder
 {

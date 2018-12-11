@@ -19,14 +19,20 @@ class DummyClassFeatureFrontendTest extends TestCase
         $this->loginAsSystem();
     }
 
-    public function testDummyClassRouteFrontShowExist()
+    /**
+     * @test
+     */
+    public function dummyClassRouteFrontShowExist()
     {
         $model = DummyClass::first();
         $this->get(route(DummyClass::ROUTE_FRONTEND_PATH . '.show', $model))
             ->assertStatus(200);
     }
 
-    public function testDummyClassRouteFrontIndexExist()
+    /**
+     * @test
+     */
+    public function dummyClassRouteFrontIndexExist()
     {
         $this->get(route(DummyClass::ROUTE_FRONTEND_PATH . '.index'))
             ->assertStatus(200);

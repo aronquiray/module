@@ -8,10 +8,14 @@ use HalcyonLaravel\Base\Controllers\BaseController as Controller;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
- * Class DummyClassesController.
+ * Class DummyClassesController
+ * @package DummyNameSpaceClass\Http\Controllers\Frontend\DummyPath\DummyClass
  */
 class DummyClassesController extends Controller
 {
+    /**
+     * @var DummyClassRepository
+     */
     private $dummyClassesRepository;
 
     private $pageRepository;
@@ -47,6 +51,9 @@ class DummyClassesController extends Controller
         return view("{$this->viewFrontendPath}.index", compact('page', 'models', 'Model'));
     }
 
+    /**
+     * @return BaseRepository
+     */
     public function repository(): BaseRepository
     {
         return $this->dummyClassesRepository;

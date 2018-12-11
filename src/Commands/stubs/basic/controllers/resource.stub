@@ -2,18 +2,22 @@
 
 namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 
-use HalcyonLaravel\Base\Repository\BaseRepository;
-use Illuminate\Http\Request;
-use HalcyonLaravel\Base\Controllers\Backend\CRUDController;
 use DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository;
 use HalcyonLaravel\Base\BaseableOptions;
+use HalcyonLaravel\Base\Controllers\Backend\CRUDController;
+use HalcyonLaravel\Base\Repository\BaseRepository;
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
+use Illuminate\Http\Request;
 
 /**
- * Class DummyClassesController.
+ * Class DummyClassesController
+ * @package DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass
  */
 class DummyClassesController extends CRUDController
 {
+    /**
+     * @var DummyClassRepository
+     */
     protected $dummyClassRepository;
 
     /**
@@ -26,7 +30,7 @@ class DummyClassesController extends CRUDController
         parent::__construct();
 
         $model = resolve($dummyClassRepository->model());
-        
+
         $this->middleware('permission:' . $model::permission('index'), ['only' => ['index']]);
         $this->middleware('permission:' . $model::permission('show'), ['only' => ['show']]);
         $this->middleware('permission:' . $model::permission('create'), ['only' => ['create', 'store']]);
@@ -38,7 +42,7 @@ class DummyClassesController extends CRUDController
      * @param Request $request
      * @return array
      */
-    public function generateStub(Request $request) : array
+    public function generateStub(Request $request): array
     {
         $data = [
             'meta' => $request->meta,
@@ -46,8 +50,16 @@ class DummyClassesController extends CRUDController
 
 
         $model = resolve($this->repository()->model());
-        
+
         return array_merge($request->only($model->getFillable()), $data);
+    }
+
+    /**
+     * @return BaseRepository
+     */
+    public function repository(): BaseRepository
+    {
+        return $this->dummyClassRepository;
     }
 
     /**
@@ -57,7 +69,7 @@ class DummyClassesController extends CRUDController
      * @param IlluminateModel|null $model
      * @return BaseableOptions
      */
-    public function crudRules(Request $request, IlluminateModel $model = null) : BaseableOptions
+    public function crudRules(Request $request, IlluminateModel $model = null): BaseableOptions
     {
         $table = resolve($this->repository()->model())->getTable();
 
@@ -74,10 +86,5 @@ class DummyClassesController extends CRUDController
             ->updateRuleMessages([
                 'title.required' => 'The title field is required.',
             ]);
-    }
-
-    public function repository(): BaseRepository
-    {
-        return $this->dummyClassRepository;
     }
 }

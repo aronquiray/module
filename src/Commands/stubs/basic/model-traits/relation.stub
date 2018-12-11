@@ -2,6 +2,10 @@
 
 namespace DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits;
 
+/**
+ * Trait DummyClassRelations
+ * @package DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits
+ */
 trait DummyClassRelations
 {
 }
