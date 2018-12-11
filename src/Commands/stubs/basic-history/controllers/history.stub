@@ -5,19 +5,24 @@ namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 use DummyNameSpaceClass\Http\Controllers\Controller;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 
+/**
+ * Class DummyClassesHistoryController
+ * @package DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass
+ */
 class DummyClassesHistoryController extends Controller
 {
     /**
      * DummyClassesHistoryController constructor.
      */
     public function __construct()
-    {        
+    {
         $this->middleware('permission:' . DummyClass::permission('history list'), ['only' => ['__invoke']]);
     }
 
-    public function __invoke(){
+    public function __invoke()
+    {
         return view(DummyClass::VIEW_BACKEND_PATH . '.history')->with([
-            'classModel'=> DummyClass::class
+            'classModel' => DummyClass::class
         ]);
     }
 }

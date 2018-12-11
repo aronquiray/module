@@ -18,8 +18,10 @@ class DummyClassFeatureHistoryTest extends TestCase
         $this->loginAsSystem();
     }
 
-    /** @test */
-    public function testDummyClassHistoryRouteExist()
+    /**
+     * @test
+     */
+    public function dummyClassHistoryRouteExist()
     {
         $this->get(route(DummyClass::ROUTE_ADMIN_PATH . '.history'))
             ->assertStatus(200);

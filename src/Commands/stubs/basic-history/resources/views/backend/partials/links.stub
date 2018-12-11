@@ -1,9 +1,9 @@
 <li class="dropdown-item">
-	<a href="{{ route($routePath . '.index') }}" ><i class="fa fa-list"></i> Dummy Classs</a>
+    <a href="{{ route($routePath . '.index') }}"><i class="fa fa-list"></i> Dummy Classs</a>
 </li>
 <li class="dropdown-item">
-	<a href="{{ route($routePath . '.create') }}" class="text-success"><i class="fa fa-plus"></i> Add Dummy Class</a>
+    <a href="{{ route($routePath . '.create') }}" class="text-success"><i class="fa fa-plus"></i> Add Dummy Class</a>
 </li>
 <li class="dropdown-item">
-	<a href="{{ route($routePath . '.history') }}"><i class="fa fa-history"></i> History List</a>
+    <a href="{{ route($routePath . '.history') }}"><i class="fa fa-history"></i> History List</a>
 </li>

@@ -6,7 +6,8 @@ use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
- * DummyClassRepository
+ * Class DummyClassRepository
+ * @package DummyNameSpaceClass\Repositories\DummyPath\DummyClass
  */
 class DummyClassRepository extends BaseRepository
 {
