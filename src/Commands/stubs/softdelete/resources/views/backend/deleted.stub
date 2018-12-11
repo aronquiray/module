@@ -3,21 +3,21 @@
 @section ('title', 'Dummy Class Management | ' . app_name())
 
 @section('content')
-   @component('backend.includes.widgets.table')
+    @component('backend.includes.widgets.table')
 
         @slot('url', route($routePath . '.table'))
         @slot('form_data', json_encode([ 'trash' => true ]))
         @slot('table_name', 'dummy-class-table')
         @slot('title', 'Dummy Class Deleted List')
         @slot('secondary_title', 'Dummy Class Management')
-        
+
         @slot('links')
             @include($viewPath . '.partials.links')
         @endslot
         @slot('headers')
-        	<td>Title</td>
-        	<td>Last Modified</td>
-        	<td>Action</td>
+            <td>Title</td>
+            <td>Last Modified</td>
+            <td>Action</td>
         @endslot
         @slot('columns', json_encode([
         	[ 'data' => 'title' ],

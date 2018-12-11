@@ -7,12 +7,13 @@ use HalcyonLaravel\Base\Controllers\Backend\DeletedController;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
- * Class DummyClassesDeletedController.
+ * Class DummyClassesDeletedController
+ * @package DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass
  */
 class DummyClassesDeletedController extends DeletedController
 {
     /**
-     * @var DummyClassRepository 
+     * @var DummyClassRepository
      */
     protected $dummyClassRepository;
 
@@ -33,6 +34,9 @@ class DummyClassesDeletedController extends DeletedController
         $this->middleware('permission:' . $model::permission('purge'), ['only' => ['purge']]);
     }
 
+    /**
+     * @return BaseRepository
+     */
     public function repository(): BaseRepository
     {
         return $this->dummyClassRepository;
