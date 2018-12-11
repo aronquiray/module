@@ -3,7 +3,7 @@
 Route::group([
     'namespace' => 'DummyPath\DummyClass',
     'middleware' => 'admin',
-	'as' => 'dummy-path.',
+    'as' => 'dummy-path.',
 ], function () {
 
     Route::group([

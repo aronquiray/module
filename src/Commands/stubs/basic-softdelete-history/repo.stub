@@ -3,12 +3,13 @@
 namespace DummyNameSpaceClass\Repositories\DummyPath\DummyClass;
 
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
-use HalcyonLaravel\Base\Repository\BaseRepository as Repository;
+use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
- * DummyClassRepository
+ * Class DummyClassRepository
+ * @package DummyNameSpaceClass\Repositories\DummyPath\DummyClass
  */
-class DummyClassRepository extends Repository
+class DummyClassRepository extends BaseRepository
 {
     public function __construct()
     {
