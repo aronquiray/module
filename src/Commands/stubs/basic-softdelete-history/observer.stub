@@ -8,12 +8,14 @@ use History;
 
 /**
  * Class DummyClassObserver
+ *
  * @package DummyNameSpaceClass\Repositories\DummyPath\DummyClass
  */
 class DummyClassObserver extends ObserverContract
 {
     /**
      * @param array $data
+     *
      * @return array
      */
     public static function storing(array $data): array
@@ -22,11 +24,12 @@ class DummyClassObserver extends ObserverContract
     }
 
     /**
-     * @param BaseModel $model
+     * @param       $model
      * @param array $data
-     * @return BaseModel
+     *
+     * @return mixed
      */
-    public static function stored(BaseModel $model, array $data): BaseModel
+    public static function stored($model, array $data)
     {
         $meta = $data['meta'];
         $model->metable()->create([
@@ -40,22 +43,24 @@ class DummyClassObserver extends ObserverContract
     }
 
     /**
-     * @param BaseModel $model
+     * @param       $model
      * @param array $data
-     * @return BaseModel
+     *
+     * @return mixed
      */
-    public static function updating(BaseModel $model, array $data): BaseModel
+    public static function updating($model, array $data)
     {
         return $model;
     }
 
     /**
-     * @param BaseModel $model
+     * @param       $model
      * @param array $data
      * @param array $oldModel
-     * @return BaseModel
+     *
+     * @return mixed
      */
-    public static function updated(BaseModel $model, array $data, array $oldModel): BaseModel
+    public static function updated($model, array $data, array $oldModel)
     {
         $meta = $data['meta'];
         $model->metable()->update([
@@ -70,10 +75,11 @@ class DummyClassObserver extends ObserverContract
     }
 
     /**
-     * @param BaseModel $model
-     * @return BaseModel
+     * @param $model
+     *
+     * @return mixed
      */
-    public static function deleting(BaseModel $model): BaseModel
+    public static function deleting($model)
     {
         $model->metable()->delete();
         return $model;
@@ -81,47 +87,52 @@ class DummyClassObserver extends ObserverContract
 
     /**
      * @param BaseModel $model
+     *
      * @return BaseModel
      */
-    public static function deleted(BaseModel $model): BaseModel
+    public static function deleted($model)
     {
         History::deleted($model);
         return $model;
     }
 
     /**
-     * @param BaseModel $model
-     * @return BaseModel
+     * @param $model
+     *
+     * @return mixed
      */
-    public static function restoring(BaseModel $model): BaseModel
+    public static function restoring($model)
     {
         return $model;
     }
 
     /**
-     * @param BaseModel $model
-     * @return BaseModel
+     * @param $model
+     *
+     * @return mixed
      */
-    public static function restored(BaseModel $model): BaseModel
+    public static function restored($model)
     {
         History::restored($model);
         return $model;
     }
 
     /**
-     * @param BaseModel $model
-     * @return BaseModel
+     * @param $model
+     *
+     * @return mixed
      */
-    public static function purging(BaseModel $model): BaseModel
+    public static function purging($model)
     {
         return $model;
     }
 
     /**
-     * @param BaseModel $model
-     * @return BaseModel
+     * @param $model
+     *
+     * @return mixed
      */
-    public static function purged(BaseModel $model): BaseModel
+    public static function purged($model)
     {
         History::purged($model);
         return $model;
