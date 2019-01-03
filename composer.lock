@@ -519,11 +519,11 @@
       },
       {
             "name": "halcyon-laravel/base",
-        "version": "v2.0.6",
+        "version": "v2.0.16",
             "source": {
                 "type": "git",
                 "url": "git@bitbucket.org:halcyonlaravel/base.git",
-              "reference": "45b6d8daa585e21ba953b828063e1f902b554849"
+              "reference": "8bb9a599704878c83753f6a6c5eb1d87a54c7253"
             },
             "require": {
               "php": ">=7.1",
@@ -550,7 +550,10 @@
             "autoload": {
                 "psr-4": {
                     "HalcyonLaravel\\Base\\": "src/"
-                }
+                },
+              "files": [
+                "src/helpers.php"
+              ]
             },
             "autoload-dev": {
                 "psr-4": {
@@ -566,20 +569,20 @@
                 ]
             },
             "description": "Base",
-        "time": "2018-12-10T02:44:46+00:00"
+        "time": "2019-01-03T02:20:54+00:00"
         },
         {
             "name": "laravel/framework",
-          "version": "v5.7.16",
+          "version": "v5.7.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-              "reference": "9acea9e0a356cba7e6a13f8784d5532a82fee92a"
+              "reference": "5c1d1ec7e8563ea31826fd5eb3f6791acf01160c"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/laravel/framework/zipball/9acea9e0a356cba7e6a13f8784d5532a82fee92a",
-              "reference": "9acea9e0a356cba7e6a13f8784d5532a82fee92a",
+              "url": "https://api.github.com/repos/laravel/framework/zipball/5c1d1ec7e8563ea31826fd5eb3f6791acf01160c",
+              "reference": "5c1d1ec7e8563ea31826fd5eb3f6791acf01160c",
                 "shasum": ""
             },
             "require": {
@@ -712,7 +715,7 @@
                 "framework",
                 "laravel"
             ],
-          "time": "2018-12-05T14:36:24+00:00"
+          "time": "2018-12-18T14:00:38+00:00"
         },
       {
         "name": "laravel/nexmo-notification-channel",
@@ -773,16 +776,16 @@
       },
       {
         "name": "laravel/slack-notification-channel",
-        "version": "v1.0.2",
+        "version": "v1.0.3",
         "source": {
           "type": "git",
           "url": "https://github.com/laravel/slack-notification-channel.git",
-          "reference": "0ede60acbbf5f91be2e45d0c0b4d95e2f3837252"
+          "reference": "6e164293b754a95f246faf50ab2bbea3e4923cc9"
         },
         "dist": {
           "type": "zip",
-          "url": "https://api.github.com/repos/laravel/slack-notification-channel/zipball/0ede60acbbf5f91be2e45d0c0b4d95e2f3837252",
-          "reference": "0ede60acbbf5f91be2e45d0c0b4d95e2f3837252",
+          "url": "https://api.github.com/repos/laravel/slack-notification-channel/zipball/6e164293b754a95f246faf50ab2bbea3e4923cc9",
+          "reference": "6e164293b754a95f246faf50ab2bbea3e4923cc9",
           "shasum": ""
         },
         "require": {
@@ -826,7 +829,7 @@
           "notifications",
           "slack"
         ],
-        "time": "2018-12-04T12:58:59+00:00"
+        "time": "2018-12-12T13:12:06+00:00"
       },
       {
         "name": "lcobucci/jwt",
@@ -1050,16 +1053,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.36.1",
+          "version": "1.36.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "63da8cdf89d7a5efe43aabc794365f6e7b7b8983"
+              "reference": "cd324b98bc30290f233dd0e75e6ce49f7ab2a6c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/63da8cdf89d7a5efe43aabc794365f6e7b7b8983",
-                "reference": "63da8cdf89d7a5efe43aabc794365f6e7b7b8983",
+              "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/cd324b98bc30290f233dd0e75e6ce49f7ab2a6c9",
+              "reference": "cd324b98bc30290f233dd0e75e6ce49f7ab2a6c9",
                 "shasum": ""
             },
             "require": {
@@ -1104,20 +1107,20 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-11-22T18:23:02+00:00"
+          "time": "2018-12-28T10:07:33+00:00"
         },
         {
           "name": "nexmo/client",
-          "version": "1.5.2",
+          "version": "1.6.0",
           "source": {
             "type": "git",
             "url": "https://github.com/Nexmo/nexmo-php.git",
-            "reference": "f192c84ec3cc3e2657fc754e0da1a17e39ac5542"
+            "reference": "01809cc1e17a5af275913c49bb5d444eb6cc06d4"
           },
           "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Nexmo/nexmo-php/zipball/f192c84ec3cc3e2657fc754e0da1a17e39ac5542",
-            "reference": "f192c84ec3cc3e2657fc754e0da1a17e39ac5542",
+            "url": "https://api.github.com/repos/Nexmo/nexmo-php/zipball/01809cc1e17a5af275913c49bb5d444eb6cc06d4",
+            "reference": "01809cc1e17a5af275913c49bb5d444eb6cc06d4",
             "shasum": ""
           },
           "require": {
@@ -1152,7 +1155,7 @@
             }
           ],
           "description": "PHP Client for using Nexmo's API.",
-          "time": "2018-11-14T14:12:22+00:00"
+          "time": "2018-12-17T10:47:50+00:00"
         },
       {
             "name": "nunomaduro/laravel-console-menu",
@@ -1212,16 +1215,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.1.1",
+          "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "d3209e46ad6c69a969b705df0738fd0dbe26ef9e"
+              "reference": "de00c69a2328d3ee5baa71fc584dc643222a574c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/d3209e46ad6c69a969b705df0738fd0dbe26ef9e",
-                "reference": "d3209e46ad6c69a969b705df0738fd0dbe26ef9e",
+              "url": "https://api.github.com/repos/opis/closure/zipball/de00c69a2328d3ee5baa71fc584dc643222a574c",
+              "reference": "de00c69a2328d3ee5baa71fc584dc643222a574c",
                 "shasum": ""
             },
             "require": {
@@ -1229,7 +1232,7 @@
             },
             "require-dev": {
                 "jeremeamia/superclosure": "^2.0",
-                "phpunit/phpunit": "^4.0"
+              "phpunit/phpunit": "^4.0|^5.0|^6.0|^7.0"
             },
             "type": "library",
             "extra": {
@@ -1269,7 +1272,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2018-10-02T13:36:53+00:00"
+          "time": "2018-12-16T21:48:23+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2012,16 +2015,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-          "version": "2.28.1",
+          "version": "2.29.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-              "reference": "1b5a0631f77d72f06a8949b9e065ba0804ec93a3"
+              "reference": "7f308806ca051fca42685e4a97a282139a6a7982"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/1b5a0631f77d72f06a8949b9e065ba0804ec93a3",
-              "reference": "1b5a0631f77d72f06a8949b9e065ba0804ec93a3",
+              "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/7f308806ca051fca42685e4a97a282139a6a7982",
+              "reference": "7f308806ca051fca42685e4a97a282139a6a7982",
                 "shasum": ""
             },
             "require": {
@@ -2073,7 +2076,7 @@
                 "security",
                 "spatie"
             ],
-          "time": "2018-12-07T16:59:39+00:00"
+          "time": "2018-12-16T00:49:22+00:00"
         },
       {
         "name": "spatie/laravel-sluggable",
@@ -3252,16 +3255,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v2.5.1",
+          "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e"
+              "reference": "cfd5dc225767ca154853752abc93aeec040fcf36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e",
-                "reference": "8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e",
+              "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/cfd5dc225767ca154853752abc93aeec040fcf36",
+              "reference": "cfd5dc225767ca154853752abc93aeec040fcf36",
                 "shasum": ""
             },
             "require": {
@@ -3298,7 +3301,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2018-07-29T20:33:41+00:00"
+          "time": "2018-10-30T17:29:25+00:00"
         },
         {
             "name": "yajra/laravel-datatables-oracle",
