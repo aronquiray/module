@@ -1,6 +1,7 @@
-# Halcyon Packages Module - v2.0.0
+# Halcyon Packages Module - v2.0.1
 
 ## Changes Log
+    v2.0.1: Fix for base update 
     v2.0.0: Compatible for Base v2
     v1.0.31: remove test files.
     v1.0.30: compatible with base v2.
