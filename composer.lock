@@ -519,11 +519,11 @@
       },
       {
             "name": "halcyon-laravel/base",
-        "version": "v2.0.16",
+        "version": "v2.0.18",
             "source": {
                 "type": "git",
                 "url": "git@bitbucket.org:halcyonlaravel/base.git",
-              "reference": "8bb9a599704878c83753f6a6c5eb1d87a54c7253"
+              "reference": "fd165e1d07c6ab127557c063dd6fb991eb178cc1"
             },
             "require": {
               "php": ">=7.1",
@@ -562,14 +562,20 @@
             },
             "scripts": {
                 "phpunit": [
-                    "./vendor/bin/phpunit --verbose > output.txt -d memory_limit=2048M"
+                  "./vendor/bin/phpunit --verbose > phpunit.txt -d memory_limit=2048M"
+                ],
+              "coverage": [
+                "./vendor/bin/phpunit --coverage-html ./coverage"
+              ],
+              "coverage-txt": [
+                "./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover"
                 ],
                 "test": [
                     "./vendor/bin/phpunit --verbose"
                 ]
             },
             "description": "Base",
-        "time": "2019-01-03T02:20:54+00:00"
+        "time": "2019-01-03T22:51:34+00:00"
         },
         {
             "name": "laravel/framework",

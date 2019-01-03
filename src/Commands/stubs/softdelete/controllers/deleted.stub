@@ -25,9 +25,9 @@ class DummyClassesDeletedController extends DeletedController
     {
         $this->dummyClassRepository = $dummyClassRepository;
 
-        $model = resolve($dummyClassRepository->model());
-        $this->route_path = $model::ROUTE_ADMIN_PATH;
-        $this->view_path = $model::VIEW_BACKEND_PATH;
+        $model = $dummyClassRepository->makeModel();
+        $this->routePath = $model::ROUTE_ADMIN_PATH;
+        $this->viewPath = $model::VIEW_BACKEND_PATH;
 
         $this->middleware('permission:' . $model::permission('deleted list'), ['only' => ['deleted']]);
         $this->middleware('permission:' . $model::permission('restore'), ['only' => ['restore']]);

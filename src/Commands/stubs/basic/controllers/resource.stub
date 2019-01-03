@@ -29,7 +29,7 @@ class DummyClassesController extends CRUDController
         $this->dummyClassRepository = $dummyClassRepository;
         parent::__construct();
 
-        $model = resolve($dummyClassRepository->model());
+        $model = $dummyClassRepository->makeModel();
 
         $this->middleware('permission:' . $model::permission('index'), ['only' => ['index']]);
         $this->middleware('permission:' . $model::permission('show'), ['only' => ['show']]);
@@ -71,7 +71,7 @@ class DummyClassesController extends CRUDController
      */
     public function crudRules(Request $request, IlluminateModel $model = null): BaseableOptions
     {
-        $table = resolve($this->repository()->model())->getTable();
+        $table = $this->repository()->makeModel()->getTable();
 
         return BaseableOptions::create()
             ->storeRules([

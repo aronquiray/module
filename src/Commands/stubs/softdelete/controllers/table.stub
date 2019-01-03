@@ -26,7 +26,7 @@ class DummyClassesTableController extends BaseController
     public function __construct(DummyClassRepository $dummyClassRepository)
     {
         $this->dummyClassRepository = $dummyClassRepository;
-        $model = resolve($dummyClassRepository->model());
+        $model = $dummyClassRepository->makeModel();
 
         $this->middleware('permission:' . $model::permission('index'), ['only' => ['__invoke']]);
     }

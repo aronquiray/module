@@ -23,12 +23,13 @@ class DummyClassesController extends Controller
 
     /**
      * DummyClassesController constructor.
-     * @param DummyClassRepository $dummyClassesRepository
-     * @param PageRepository $pageRepository
+     *
+     * @param \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository $dummyClassesRepository
+     * @param \DummyNameSpaceClass\Repositories\Core\Page\PageRepository                  $pageRepository
      */
     public function __construct(DummyClassRepository $dummyClassesRepository, PageRepository $pageRepository)
     {
-        $model = resolve($dummyClassesRepository->model());
+        $model = $dummyClassesRepository->makeModel();
         $this->middleware('page_status:' . $model::MODULE_NAME);
 
         $this->dummyClassesRepository = $dummyClassesRepository;
