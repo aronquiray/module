@@ -1,6 +1,7 @@
-# Halcyon Packages Module - v2.0.1
+# Halcyon Packages Module - v2.0.2
 
 ## Changes Log
+    v2.0.2: Fix repo namespace.
     v2.0.1: Fix for base update 
     v2.0.0: Compatible for Base v2
     v1.0.31: remove test files.

@@ -3,25 +3,27 @@
 namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 
 use DataTables;
-use DummyNameSpaceClass\Repositories\Backend\DummyPath\DummyClass\DummyClassRepository;
+use DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository;
 use HalcyonLaravel\Base\Controllers\BaseController;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 use Illuminate\Http\Request;
 
 /**
  * Class DummyClassesTableController
+ *
  * @package DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass
  */
 class DummyClassesTableController extends BaseController
 {
     /**
-     * @var DummyClassRepository
+     * @var \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository 
      */
     protected $dummyClassRepository;
 
     /**
      * DummyClassesTableController constructor.
-     * @param DummyClassRepository $dummyClassRepository
+     *
+     * @param \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository $dummyClassRepository
      */
     public function __construct(DummyClassRepository $dummyClassRepository)
     {
@@ -32,8 +34,10 @@ class DummyClassesTableController extends BaseController
     }
 
     /**
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return mixed
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function __invoke(Request $request)
     {
