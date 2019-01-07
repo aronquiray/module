@@ -8,13 +8,14 @@ use HalcyonLaravel\Base\Controllers\BaseController as Controller;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
- * Class DummyClassesController
+ * Class DummyClassController
+ *
  * @package DummyNameSpaceClass\Http\Controllers\Frontend\DummyPath\DummyClass
  */
-class DummyClassesController extends Controller
+class DummyClassController extends Controller
 {
     /**
-     * @var DummyClassRepository
+     * @var \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository
      */
     private $dummyClassesRepository;
 
@@ -22,7 +23,7 @@ class DummyClassesController extends Controller
     private $viewFrontendPath;
 
     /**
-     * DummyClassesController constructor.
+     * DummyClassController constructor.
      *
      * @param \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository $dummyClassesRepository
      * @param \DummyNameSpaceClass\Repositories\Core\Page\PageRepository                  $pageRepository

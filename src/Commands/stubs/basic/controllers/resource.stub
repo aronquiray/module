@@ -10,19 +10,23 @@ use Illuminate\Database\Eloquent\Model as IlluminateModel;
 use Illuminate\Http\Request;
 
 /**
- * Class DummyClassesController
+ * Class DummyClassController
+ *
  * @package DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass
  */
-class DummyClassesController extends CRUDController
+class DummyClassController extends CRUDController
 {
     /**
-     * @var DummyClassRepository
+     * @var \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository
      */
     protected $dummyClassRepository;
 
     /**
-     * DummyClassesController constructor.
-     * @param DummyClassRepository $dummyClassRepository
+     * DummyClassController constructor.
+     *
+     * @param \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository $dummyClassRepository
+     *
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function __construct(DummyClassRepository $dummyClassRepository)
     {

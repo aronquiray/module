@@ -9,11 +9,11 @@ use HalcyonLaravel\Base\Repository\BaseRepository;
 use Illuminate\Http\Request;
 
 /**
- * Class DummyClassesTableController
+ * Class DummyClassTableController
  *
  * @package DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass
  */
-class DummyClassesTableController extends BaseController
+class DummyClassTableController extends BaseController
 {
     /**
      * @var \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository 
@@ -21,7 +21,7 @@ class DummyClassesTableController extends BaseController
     protected $dummyClassRepository;
 
     /**
-     * DummyClassesTableController constructor.
+     * DummyClassTableController constructor.
      *
      * @param \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository $dummyClassRepository
      */

@@ -7,19 +7,21 @@ use HalcyonLaravel\Base\Controllers\Backend\DeletedController;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
- * Class DummyClassesDeletedController
+ * Class DummyClassDeletedController
+ *
  * @package DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass
  */
-class DummyClassesDeletedController extends DeletedController
+class DummyClassDeletedController extends DeletedController
 {
     /**
-     * @var DummyClassRepository
+     * @var \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository 
      */
     protected $dummyClassRepository;
 
     /**
-     * DummyClassesDeletedController constructor.
-     * @param DummyClassRepository $dummyClassRepository
+     * DummyClassDeletedController constructor.
+     *
+     * @param \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository $dummyClassRepository
      */
     public function __construct(DummyClassRepository $dummyClassRepository)
     {

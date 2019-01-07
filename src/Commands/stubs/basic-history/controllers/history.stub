@@ -6,13 +6,14 @@ use DummyNameSpaceClass\Http\Controllers\Controller;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 
 /**
- * Class DummyClassesHistoryController
+ * Class DummyClassHistoryController
+ *
  * @package DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass
  */
-class DummyClassesHistoryController extends Controller
+class DummyClassHistoryController extends Controller
 {
     /**
-     * DummyClassesHistoryController constructor.
+     * DummyClassHistoryController constructor.
      */
     public function __construct()
     {
