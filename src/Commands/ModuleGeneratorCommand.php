@@ -82,8 +82,8 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
         // stub | direction path
         $stubs = [
             // controllers
-            'softdelete/controllers/table.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassesTableController.php',
-            'softdelete/controllers/deleted.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassesDeletedController.php',
+            'softdelete/controllers/table.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassTableController.php',
+            'softdelete/controllers/deleted.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassDeletedController.php',
 
             // views
             'softdelete/resources/views/backend/index.stub' => 'resources/views/backend/' . $this->_namespaceLower . 'dummyClass/index.blade.php',
@@ -160,9 +160,9 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
 
             // controllers
-            'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassesController.php',
-            'basic/controllers/frontend.stub' => 'app/Http/Controllers/Frontend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassesController.php',
-            'basic/controllers/table.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassesTableController.php',
+            'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassController.php',
+            'basic/controllers/frontend.stub' => 'app/Http/Controllers/Frontend/' . $this->_namespaceCapslock . 'DummyClass/DDummyClassController.php',
+            'basic/controllers/table.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassTableController.php',
 
             // views backend
             'basic/resources/views/backend/create.stub' => 'resources/views/backend/' . $this->_namespaceLower . 'dummyClass/create.blade.php',
@@ -236,7 +236,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic-history/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
 
             // controllers
-            'basic-history/controllers/history.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassesHistoryController.php',
+            'basic-history/controllers/history.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassHistoryController.php',
             // 'basic-history/controllers/resource.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock  . 'DummyClass/DummyClassesController.php',
 
             // resources
