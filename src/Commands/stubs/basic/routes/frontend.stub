@@ -8,6 +8,6 @@ Route::group([
     'prefix' => 'dummy-class',
     'as' => 'dummy-path.dummy-class.',
 ], function () {
-    Route::get('', 'DummyClassesController@index')->name('index');
-    Route::get('/{dummy_class}', 'DummyClassesController@show')->where('dummy-class', '.+')->name('show');
+    Route::get('', 'DummyClassController@index')->name('index');
+    Route::get('/{dummy_class}', 'DummyClassController@show')->where('dummy-class', '.+')->name('show');
 });

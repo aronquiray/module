@@ -11,10 +11,10 @@ Route::group([
         'as' => 'dummy-class.',
     ], function () {
 
-        Route::post('table', 'DummyClassesTableController')->name('table');
-        Route::get('history', 'DummyClassesHistoryController')->name('history');
+        Route::post('table', 'DummyClassTableController')->name('table');
+        Route::get('history', 'DummyClassHistoryController')->name('history');
 
     });
 
-    Route::resource('dummy-class', 'DummyClassesController');
+    Route::resource('dummy-class', 'DummyClassController');
 });

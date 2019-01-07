@@ -11,12 +11,12 @@ Route::group([
         'as' => 'dummy-class.',
     ], function () {
 
-        Route::get('deleted', 'DummyClassesDeletedController@deleted')->name('deleted');
-        Route::delete('{deletedDummyClass}/delete', 'DummyClassesDeletedController@purge')->name('purge');
-        Route::patch('{deletedDummyClass}/restore', 'DummyClassesDeletedController@restore')->name('restore');
-        Route::post('table', 'DummyClassesTableController')->name('table');
+        Route::get('deleted', 'DummyClassDeletedController@deleted')->name('deleted');
+        Route::delete('{deletedDummyClass}/delete', 'DummyClassDeletedController@purge')->name('purge');
+        Route::patch('{deletedDummyClass}/restore', 'DummyClassDeletedController@restore')->name('restore');
+        Route::post('table', 'DummyClassTableController')->name('table');
 
     });
 
-    Route::resource('dummy-class', 'DummyClassesController');
+    Route::resource('dummy-class', 'DummyClassController');
 });
