@@ -161,7 +161,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
 
             // controllers
             'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassController.php',
-            'basic/controllers/frontend.stub' => 'app/Http/Controllers/Frontend/' . $this->_namespaceCapslock . 'DummyClass/DDummyClassController.php',
+            'basic/controllers/frontend.stub' => 'app/Http/Controllers/Frontend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassController.php',
             'basic/controllers/table.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassTableController.php',
 
             // views backend

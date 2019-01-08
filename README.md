@@ -1,6 +1,7 @@
-# Halcyon Packages Module - v2.0.3
+# Halcyon Packages Module - v2.0.4
 
 ## Changes Log
+    v2.0.4: Typo
     v2.0.3: Plural to singular controllers
     v2.0.2: Fix repo namespace.
     v2.0.1: Fix for base update 
