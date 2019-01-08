@@ -1,6 +1,7 @@
-# Halcyon Packages Module - v2.0.4
+# Halcyon Packages Module - v2.0.5
 
 ## Changes Log
+    v2.0.5: Migration slug make unique.
     v2.0.4: Typo
     v2.0.3: Plural to singular controllers
     v2.0.2: Fix repo namespace.
