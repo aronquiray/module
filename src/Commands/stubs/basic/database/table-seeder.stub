@@ -24,14 +24,12 @@ class DummyClassTableSeeder extends Seeder
         $user = User::skip(1)->first();
 
         // Page
-        $arr = [
+        $page = Page::create([
             'title' => 'Dummy Class',
-            'slug' => str_slug('dummy class'),
             'type' => 'dummy class',
             'status' => 'enable',
             'template' => DummyClass::VIEW_FRONTEND_PATH . '.index'
-        ];
-        $page = Page::create($arr);
+        ]);
         $page->metable()->create([
             'name' => 'Dummy Class',
             'description' => 'List of all dummy classes',
@@ -44,7 +42,6 @@ class DummyClassTableSeeder extends Seeder
         foreach (Menu::all() as $menu) {
             $page->menuable()->create([
                 'name' => $page->title,
-                'slug' => $page->slug,
                 'menu_id' => $menu->id,
                 'order' => $pageCount++,
                 'options' => '[]'
