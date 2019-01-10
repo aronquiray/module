@@ -14,6 +14,7 @@ use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Fomvasss\LaravelMetaTags\Traits\Metatagable;
 
 /**
  * Class DummyClass
@@ -21,6 +22,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class DummyClass extends Model implements BaseModel
 {
+    use Metatagable;
     use MetableTrait;
     use HasSlug;
     use SoftDeletes;

@@ -30,11 +30,10 @@ class DummyClassTableSeeder extends Seeder
             'status' => 'enable',
             'template' => DummyClass::VIEW_FRONTEND_PATH . '.index'
         ]);
-        $page->metable()->create([
-            'name' => 'Dummy Class',
+        $page->metaTag()->create([
+            'title' => 'Dummy Class',
             'description' => 'List of all dummy classes',
             'keywords' => 'page,dummy-class',
-            'user_id' => $user->id,
         ]);
 
         $pageCount = Page::count();
@@ -51,11 +50,10 @@ class DummyClassTableSeeder extends Seeder
         History::created($page, $user);
 
         foreach (factory(DummyClass::class, 20)->create() as $model) {
-            $model->metable()->create([
-                'name' => $model->title,
+            $model->metaTag()->create([
+                'title' => $model->title,
                 'description' => $model->title,
                 'keywords' => str_replace('-', ',', $model->slug),
-                'user_id' => $user->id,
             ]);
             History::created($model, $user);
         }

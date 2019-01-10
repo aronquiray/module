@@ -1,6 +1,7 @@
-# Halcyon Packages Module - v2.0.7
+# Halcyon Packages Module - v2.0.8
 
 ## Changes Log
+    v2.0.8: Update for meta
     v2.0.7: Add format on dates.
     v2.0.6: Exclude slug on seeding.
     v2.0.5: Migration slug make unique.

@@ -8,6 +8,7 @@
         <li><a href="{{ $page->actions('backend', 'edit', true) }}">Edit Page</a></li>
     @endcan
 @endsection
+
 @section('page-body')
     @if(count($models))
         <div class="row">

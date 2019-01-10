@@ -31,11 +31,10 @@ class DummyClassObserver extends ObserverContract
     public static function stored($model, array $data)
     {
         $meta = $data['meta'];
-        $model->metable()->create([
-            'name' => $meta['name'] ?? $model->base('source'),
+        $model->metaTag()->create([
+            'title' => $meta['title'] ?? $model->base('source'),
             'description' => $meta['description'],
             'keywords' => $meta['keywords'],
-            'user_id' => auth()->user()->id
         ]);
         History::created($model);
         return $model;
@@ -62,11 +61,10 @@ class DummyClassObserver extends ObserverContract
     public static function updated($model, array $data, array $oldModel)
     {
         $meta = $data['meta'];
-        $model->metable()->update([
-            'name' => $meta['name'] ?? $model->name,
+        $model->metaTag()->update([
+            'title' => $meta['title'] ?? $model->base('source'),
             'description' => $meta['description'],
             'keywords' => $meta['keywords'],
-            'user_id' => auth()->user()->id
         ]);
 
         History::updated($model, $oldModel);
@@ -80,7 +78,7 @@ class DummyClassObserver extends ObserverContract
      */
     public static function deleting($model)
     {
-        $model->metable()->delete();
+        $model->metaTag()->delete();
         return $model;
     }
 

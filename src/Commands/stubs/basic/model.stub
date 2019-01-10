@@ -2,7 +2,6 @@
 
 namespace DummyNameSpaceClass\Models\DummyPath\DummyClass;
 
-use DummyNameSpaceClass\Models\Core\Meta\MetableTrait;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassAttributes;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassRegularFunctions;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassRelations;
@@ -13,6 +12,7 @@ use HalcyonLaravel\Base\Models\Model;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Fomvasss\LaravelMetaTags\Traits\Metatagable;
 
 /**
  * Class DummyClass
@@ -20,7 +20,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class DummyClass extends Model implements BaseModel
 {
-    use MetableTrait;
+    use Metatagable;
     use HasSlug;
     use ModelDefaultTraits;
     use DummyClassAttributes;
