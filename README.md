@@ -1,6 +1,7 @@
-# Halcyon Packages Module - v2.0.8
+# Halcyon Packages Module - v2.0.9
 
 ## Changes Log
+    v2.0.9: Add Default on show item.
     v2.0.8: Update for meta
     v2.0.7: Add format on dates.
     v2.0.6: Exclude slug on seeding.

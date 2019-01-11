@@ -6,6 +6,7 @@ use DummyNameSpaceClass\Repositories\Core\Page\PageRepository;
 use DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository;
 use HalcyonLaravel\Base\Controllers\BaseController as Controller;
 use HalcyonLaravel\Base\Repository\BaseRepository;
+use MetaTag;
 
 /**
  * Class DummyClassController
@@ -62,14 +63,16 @@ class DummyClassController extends Controller
     }
 
     /**
-     * Returns the view of the page if existing and is enabled
-     *
      * @param string $routeKeyName
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function show(string $routeKeyName)
     {
         $page = $model = $this->getModel($routeKeyName, false);
+
+        MetaTag::setEntity($model);
 
         return view("{$this->viewFrontendPath}.show", compact('model', 'page'));
     }
