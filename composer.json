@@ -8,6 +8,7 @@
     }
   ],
   "require": {
+    "php": ">=7",
     "halcyon-laravel/base": "^2.0",
     "spatie/laravel-permission": "^2.9",
     "nunomaduro/laravel-console-menu": "^2.0",

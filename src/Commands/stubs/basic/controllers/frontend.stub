@@ -44,10 +44,11 @@ class DummyClassController extends Controller
      */
     public function index()
     {
-        $model = resolve($this->repository()->model());
+        $model = $this->repository()->makeModel();
         $page = $this->pageRepository->indexPage($model::MODULE_NAME);
         $Model = $model;
 
+        MetaTag::setEntity($page);
 
         $models = $this->repository()->paginate(12);
 
