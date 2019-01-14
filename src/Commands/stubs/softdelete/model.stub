@@ -2,7 +2,6 @@
 
 namespace DummyNameSpaceClass\Models\DummyPath\DummyClass;
 
-use DummyNameSpaceClass\Models\Core\Meta\MetableTrait;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassAttributes;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassRegularFunctions;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassRelations;
@@ -22,7 +21,6 @@ use Fomvasss\LaravelMetaTags\Traits\Metatagable;
 class DummyClass extends BaseModel
 {
     use Metatagable;
-    use MetableTrait;
     use SoftDeletes;
     use HasSlug;
     use ModelDefaultTraits;
