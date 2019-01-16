@@ -7,8 +7,8 @@ Route::group([
 ], function () {
 
     Route::group([
-        'prefix' => 'dummy-class',
-        'as' => 'dummy-class.',
+        'prefix' => 'dummy-classes',
+        'as' => 'dummy-classes.',
     ], function () {
 
         Route::post('table', 'DummyClassTableController')->name('table');
@@ -16,5 +16,5 @@ Route::group([
 
     });
 
-    Route::resource('dummy-class', 'DummyClassController');
+    Route::resource('dummy-classes', 'DummyClassController');
 });

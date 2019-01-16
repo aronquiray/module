@@ -5,8 +5,8 @@
  */
 Route::group([
     'namespace' => 'DummyPath\DummyClass',
-    'prefix' => 'dummy-class',
-    'as' => 'dummy-path.dummy-class.',
+    'prefix' => 'dummy-classes',
+    'as' => 'dummy-path.dummy-classes.',
 ], function () {
     Route::get('', 'DummyClassController@index')->name('index');
     Route::get('/{dummy_class}', 'DummyClassController@show')->where('dummy-class', '.+')->name('show');

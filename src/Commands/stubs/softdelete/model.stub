@@ -33,8 +33,8 @@ class DummyClass extends BaseModel
     public const MODULE_NAME = 'dummy class';
     public const VIEW_BACKEND_PATH = 'backend.dummyPath.dummyClass';
     public const VIEW_FRONTEND_PATH = 'frontend.dummyPath.dummyClass';
-    public const ROUTE_ADMIN_PATH = 'admin.dummy-path.dummy-class';
-    public const ROUTE_FRONTEND_PATH = 'frontend.dummy-path.dummy-class';
+    public const ROUTE_ADMIN_PATH = 'admin.dummy-path.dummy-classes';
+    public const ROUTE_FRONTEND_PATH = 'frontend.dummy-path.dummy-classes';
 
     /**
      * Declared Fillables

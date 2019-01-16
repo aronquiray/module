@@ -1,6 +1,7 @@
-# Halcyon Packages Module - v2.0.11
+# Halcyon Packages Module - v2.0.12
 
 ## Changes Log
+    v2.0.12: Singular to plural on routes
     v2.0.11: Fix forgotten deleted trait, use config setting
     v2.0.10: Add meta on frontend index.
     v2.0.9: Add Default on show item.
