@@ -1,6 +1,6 @@
 <?php
 
-$routePath = DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass::ROUTE_ADMIN_PATH;
+$routePath = app(DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass::class)::ROUTE_ADMIN_PATH;
 
 Breadcrumbs::register($routePath . '.index', function ($breadcrumbs) use ($routePath) {
     $breadcrumbs->parent('admin.dashboard');
