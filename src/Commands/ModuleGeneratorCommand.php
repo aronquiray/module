@@ -195,7 +195,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
 
             // database
             'basic/database/migration.stub' => $this->_databaseMigrationFileName(),
-            'basic/database/factory.stub' => 'database/factories/' . $this->_namespaceCapslock . 'DummyClassFactory.php',
+            'basic/database/factory.stub' => 'database/factories/' . $this->_namespaceCapslock . 'dummy-class-factory.php',
             'basic/database/table-seeder.stub' => 'database/seeds/modules/' . $this->_namespaceCapslock . 'DummyClassTableSeeder.php',
             'basic/database/permission-seeder.stub' => 'database/seeds/modules/Permissions/' . $this->_namespaceCapslock . 'DummyClassPermissionTableSeeder.php',
 
