@@ -23,7 +23,7 @@ class DummyClassTableSeeder extends Seeder
         $this->disableForeignKeys();
 
         $page = $this->modelPageSeeder(new DummyClass);
-        $this->seedToDomainables($page);
+        $this->seedToDomainables($page, 'main');
 
         foreach (factory(DummyClass::class, 20)->create() as $model) {
             $model->metaTag()->create([
