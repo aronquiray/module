@@ -1,8 +1,5 @@
 <?php
 
-use DummyNameSpaceClass\Models\Auth\User;
-use DummyNameSpaceClass\Models\Core\Menu\Menu;
-use DummyNameSpaceClass\Models\Core\Page\Page;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 use Illuminate\Database\Seeder;
 use HalcyonLaravel\Base\Database\Traits\SeederHelper;
@@ -19,7 +16,7 @@ class DummyClassTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
+     * @throws \ReflectionException
      */
     public function run()
     {
