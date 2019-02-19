@@ -1,6 +1,7 @@
-# Halcyon Packages Module - v2.0.16
+# Halcyon Packages Module - v2.0.17
 
 ## Changes Log
+    v2.0.17: Update for latest base
     v2.0.16: Fix datatime resources
     v2.0.15: Datetime format on table controllers
     v2.0.14: Use lower case on factories
