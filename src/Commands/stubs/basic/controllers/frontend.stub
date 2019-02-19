@@ -28,6 +28,8 @@ class DummyClassController extends Controller
      *
      * @param \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository $dummyClassesRepository
      * @param \DummyNameSpaceClass\Repositories\Core\Page\PageRepository                  $pageRepository
+     *
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function __construct(DummyClassRepository $dummyClassesRepository, PageRepository $pageRepository)
     {
