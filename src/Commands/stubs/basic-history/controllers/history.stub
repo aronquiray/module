@@ -4,6 +4,7 @@ namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 
 use DummyNameSpaceClass\Http\Controllers\Controller;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
+use MetaTag;
 
 /**
  * Class DummyClassHistoryController
@@ -17,11 +18,18 @@ class DummyClassHistoryController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:' . DummyClass::permission('history list'), ['only' => ['__invoke']]);
+        $this->middleware('permission:' . DummyClass::permission('history list'));
     }
 
-    public function __invoke()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
     {
+        MetaTag::setTags([
+            'title' => 'History ' . ucwords(DummyClass::MODULE_NAME),
+        ]);
+
         return view(DummyClass::VIEW_BACKEND_PATH . '.history')->with([
             'classModel' => DummyClass::class
         ]);

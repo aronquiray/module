@@ -32,7 +32,7 @@ class DummyClassController extends Controller
     public function __construct(DummyClassRepository $dummyClassesRepository, PageRepository $pageRepository)
     {
         $model = $dummyClassesRepository->makeModel();
-        $this->middleware('page_status:' . $model::MODULE_NAME);
+        $this->middleware('page_status:' . get_class($model));
 
         $this->dummyClassesRepository = $dummyClassesRepository;
         $this->pageRepository = $pageRepository;

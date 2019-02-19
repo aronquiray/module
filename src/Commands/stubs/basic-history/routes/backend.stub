@@ -12,7 +12,7 @@ Route::group([
     ], function () {
 
         Route::post('table', 'DummyClassTableController')->name('table');
-        Route::get('history', 'DummyClassHistoryController')->name('history');
+        Route::get('history', 'DummyClassHistoryController@index')->name('history');
 
     });
 
