@@ -10,7 +10,5 @@
 @endsection
 
 @section('page-body')
-    <p>
-        Static Data Sample
-    </p>
+    <h2>{{ $model->title }}</h2>
 @endsection

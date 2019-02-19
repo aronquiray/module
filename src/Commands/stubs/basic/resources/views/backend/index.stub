@@ -1,7 +1,5 @@
 @extends('backend.layouts.app')
 
-@section ('title', 'Dummy Class Management | ' . app_name())
-
 @section('content')
     @component('backend.includes.widgets.table')
 

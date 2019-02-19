@@ -1,7 +1,5 @@
 @extends('backend.layouts.app')
 
-@section ('title', 'Dummy Class History Management | ' . app_name())
-
 @section('content')
 
     {!! history()->buildClass($classModel)->render(10) !!}
