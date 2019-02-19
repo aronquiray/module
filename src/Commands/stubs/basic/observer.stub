@@ -9,7 +9,7 @@ use App\Repositories\BaseObserverContract;
  *
  * @package DummyNameSpaceClass\Repositories\DummyPath\DummyClass
  */
-class DummyClassObserver extends ObserverContract
+class DummyClassObserver extends BaseObserverContract
 {
 
     /**
