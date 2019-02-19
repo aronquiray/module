@@ -48,7 +48,7 @@ class DummyClassController extends Controller
     public function index()
     {
         $model = $this->repository()->makeModel();
-        $page = $this->pageRepository->indexPage($model::MODULE_NAME);
+        $page = $this->pageRepository->indexPage($this->repository()->model());
         $Model = $model;
 
         MetaTag::setEntity($page);
