@@ -5,6 +5,7 @@ use DummyNameSpaceClass\Models\Core\Menu\Menu;
 use DummyNameSpaceClass\Models\Core\Page\Page;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 use Illuminate\Database\Seeder;
+use HalcyonLaravel\Base\Database\Traits\SeederHelper;
 
 /**
  * Class DummyClassTableSeeder
@@ -12,6 +13,8 @@ use Illuminate\Database\Seeder;
 class DummyClassTableSeeder extends Seeder
 {
     use DisableForeignKeys;
+    use SeederHelper;
+    use DomainSeederHelper;
 
     /**
      * Run the database seeds.
@@ -21,33 +24,9 @@ class DummyClassTableSeeder extends Seeder
     public function run()
     {
         $this->disableForeignKeys();
-        $user = User::skip(1)->first();
 
-        // Page
-        $page = Page::create([
-            'title' => 'Dummy Class',
-            'type' => 'dummy class',
-            'status' => 'enable',
-            'template' => DummyClass::VIEW_FRONTEND_PATH . '.index'
-        ]);
-        $page->metaTag()->create([
-            'title' => 'Dummy Class',
-            'description' => 'List of all dummy classes',
-            'keywords' => 'page,dummy-class',
-        ]);
-
-        $pageCount = Page::count();
-
-        foreach (Menu::all() as $menu) {
-            $page->menuable()->create([
-                'name' => $page->title,
-                'menu_id' => $menu->id,
-                'order' => $pageCount++,
-                'options' => '[]'
-            ]);
-        }
-
-        History::created($page, $user);
+        $page = $this->modelPageSeeder(new DummyClass);
+        $this->seedToDomainables($page);
 
         foreach (factory(DummyClass::class, 20)->create() as $model) {
             $model->metaTag()->create([
@@ -55,7 +34,6 @@ class DummyClassTableSeeder extends Seeder
                 'description' => $model->title,
                 'keywords' => str_replace('-', ',', $model->slug),
             ]);
-            History::created($model, $user);
         }
 
         $this->enableForeignKeys();

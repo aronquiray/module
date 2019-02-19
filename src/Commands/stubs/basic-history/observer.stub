@@ -2,7 +2,7 @@
 
 namespace DummyNameSpaceClass\Repositories\DummyPath\DummyClass;
 
-use HalcyonLaravel\Base\Repository\ObserverContract;
+use App\Repositories\BaseObserverContract;
 use History;
 
 /**
@@ -10,7 +10,7 @@ use History;
  *
  * @package DummyNameSpaceClass\Repositories\DummyPath\DummyClass
  */
-class DummyClassObserver extends ObserverContract
+class DummyClassObserver extends BaseObserverContract
 {
     /**
      * @param array $data
@@ -30,12 +30,7 @@ class DummyClassObserver extends ObserverContract
      */
     public static function stored($model, array $data)
     {
-        $meta = $data['meta'];
-        $model->metaTag()->create([
-            'title' => $meta['title'] ?? $model->base('source'),
-            'description' => $meta['description'],
-            'keywords' => $meta['keywords'],
-        ]);
+        self::meta('create', $model, $data);
         History::created($model);
         return $model;
     }
@@ -60,13 +55,7 @@ class DummyClassObserver extends ObserverContract
      */
     public static function updated($model, array $data, array $oldModel)
     {
-        $meta = $data['meta'];
-        $model->metaTag()->update([
-            'title' => $meta['title'] ?? $model->base('source'),
-            'description' => $meta['description'],
-            'keywords' => $meta['keywords'],
-        ]);
-
+        self::meta('update', $model, $data);
         History::updated($model, $oldModel);
         return $model;
     }

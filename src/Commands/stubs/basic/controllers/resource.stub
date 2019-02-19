@@ -52,8 +52,7 @@ class DummyClassController extends CRUDController
             'meta' => $request->meta,
         ];
 
-
-        $model = resolve($this->repository()->model());
+        $model = $this->repository()->makeModel();
 
         return array_merge($request->only($model->getFillable()), $data);
     }
