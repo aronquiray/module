@@ -7,7 +7,6 @@ use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassRegularFunc
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassRelations;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassScopes;
 use DummyNameSpaceClass\Models\DummyPath\DummyClass\Traits\DummyClassStaticFunctions;
-use HalcyonLaravel\Base\Models\Contracts\BaseModel;
 use HalcyonLaravel\Base\Models\Model;
 use HalcyonLaravel\Base\Models\Traits\ModelDefaultTraits;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,7 +18,7 @@ use Fomvasss\LaravelMetaTags\Traits\Metatagable;
  * Class DummyClass
  * @package DummyNameSpaceClass\Models\DummyPath\DummyClass
  */
-class DummyClass extends Model implements BaseModel
+class DummyClass extends Model
 {
     use Metatagable;
     use HasSlug;
