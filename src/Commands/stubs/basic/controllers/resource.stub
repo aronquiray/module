@@ -43,10 +43,13 @@ class DummyClassController extends CRUDController
     }
 
     /**
-     * @param Request $request
+     * @param \Illuminate\Http\Request                 $request
+     * @param \Illuminate\Database\Eloquent\Model|null $model
+     *
      * @return array
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
-    public function generateStub(Request $request): array
+    public function generateStub(Request $request, IlluminateModel $model = null): array
     {
         $data = [
             'meta' => $request->meta,
@@ -58,7 +61,7 @@ class DummyClassController extends CRUDController
     }
 
     /**
-     * @return BaseRepository
+     * @return \HalcyonLaravel\Base\Repository\BaseRepository
      */
     public function repository(): BaseRepository
     {
@@ -68,9 +71,11 @@ class DummyClassController extends CRUDController
     /**
      * Validate input on store/update
      *
-     * @param Request $request
-     * @param IlluminateModel|null $model
-     * @return BaseableOptions
+     * @param \Illuminate\Http\Request                 $request
+     * @param \Illuminate\Database\Eloquent\Model|null $model
+     *
+     * @return \HalcyonLaravel\Base\BaseableOptions
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function crudRules(Request $request, IlluminateModel $model = null): BaseableOptions
     {
