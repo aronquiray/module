@@ -9,8 +9,8 @@
         @slot('secondary_title', 'Dummy Class Management')
         @slot('fields', $viewPath . '.partials.fields')
         @slot('link_cancel', route($routePath . '.index'))
-        @slot('link_submit', 'Submit')
-        @slot('link_submit_edit', 'Submit & Edit')
+        @slot('link_submit', 'Save')
+        @slot('link_submit_edit', 'Save & Edit')
 
         @slot('custom')
             @include('backend.includes.widgets.tab-actions', [ 
