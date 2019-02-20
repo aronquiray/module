@@ -24,6 +24,8 @@ class DummyClassTableController extends BaseController
      * DummyClassTableController constructor.
      *
      * @param \DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository $dummyClassRepository
+     *
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function __construct(DummyClassRepository $dummyClassRepository)
     {
@@ -34,8 +36,10 @@ class DummyClassTableController extends BaseController
     }
 
     /**
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return mixed
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function __invoke(Request $request)
     {
