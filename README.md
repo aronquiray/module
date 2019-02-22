@@ -1,6 +1,7 @@
-# Halcyon Packages Module - v2.0.19
+# Halcyon Packages Module - v2.0.20
 
 ## Changes Log
+    v2.0.20: Int not String for slugsShouldBeNoLongerThan
     v2.0.19: Submit to Save
     v2.0.18: Docs, add limit on slug
     v2.0.17: Update for latest base

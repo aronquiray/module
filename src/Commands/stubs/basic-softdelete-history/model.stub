@@ -97,7 +97,7 @@ class DummyClass extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug')
-            ->slugsShouldBeNoLongerThan(is_latest_mysql_version() ? '250' : '191');
+            ->slugsShouldBeNoLongerThan(is_latest_mysql_version() ? 250 : 191);
     }
 
     /**
