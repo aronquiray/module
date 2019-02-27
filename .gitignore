@@ -3,3 +3,4 @@ output.txt
 /report
 .module.cache
 /.idea
+composer.lock
