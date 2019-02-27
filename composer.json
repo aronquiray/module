@@ -9,8 +9,8 @@
   ],
   "require": {
     "php": ">=7.1",
-    "halcyon-laravel/base": "^2.0",
-    "spatie/laravel-permission": "^2.9",
+    "halcyon-laravel/base": "^3.0",
+    "spatie/laravel-permission": "^2.23",
     "nunomaduro/laravel-console-menu": "^2.0",
     "ext-json": "*",
     "spatie/laravel-sluggable": "^2.1"
