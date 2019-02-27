@@ -13,7 +13,7 @@ use Tests\TestCase;
 class DummyClassBreadFeatureDeletesBackendTest extends TestCase
 {
 
-    public function setUp()
+    protected function setUp():void
     {
         parent::setUp();
         $this->markTestSkipped();

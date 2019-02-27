@@ -12,7 +12,7 @@ use Tests\TestCase;
 class DummyClassFeatureFrontendTest extends TestCase
 {
 
-    public function setUp()
+    protected function setUp():void
     {
         parent::setUp();
         $this->markTestSkipped();
