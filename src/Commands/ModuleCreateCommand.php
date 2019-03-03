@@ -50,6 +50,10 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
 
         $this->info("Done Generating {$this->type} '" . $this->getNameInput() . '\'.');
 
+        $this->call('make:bindings', [
+            'name' => studly_case($this->getNameInput()) . '\\' . studly_case($this->getNameInput()),
+        ]);
+
         if (app()->environment() != 'testing') {
             shell_exec('composer clear-all');
         }
@@ -87,6 +91,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
      * Replace the name for the given stub.
      *
      * @param $stub
+     *
      * @return mixed
      */
     private function _replaceName($stub)
