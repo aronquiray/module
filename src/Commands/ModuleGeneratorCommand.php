@@ -27,6 +27,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
 
                      // repository
                      'basic/repo.stub', // inherited from basic
+                     'basic/repo-interface.stub', // inherited from basic
                      // observer
                      'basic/observer.stub', // inherited from basic
                      // controllers
@@ -46,7 +47,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic-softdelete-history/model.stub' => 'app/Models/' . $this->_namespaceCapslock . 'DummyClass/DummyClass.php',
 
             // repository replace
-            'basic-softdelete-history/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
+            'basic-softdelete-history/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepositoryEloquent.php',
 
             // observer replace
             'basic-softdelete-history/observer.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
@@ -113,6 +114,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic/controllers/frontend.stub',
             // repository
             'basic/repo.stub',
+            'basic/repo-interface.stub',
             // observer
             'basic/observer.stub',
             // tests
@@ -157,7 +159,8 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             // Observer
             'basic/observer.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
             // repository
-            'basic/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
+            'basic/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepositoryEloquent.php',
+            'basic/repo-interface.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
 
             // controllers
             'basic/controllers/resource.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassController.php',
@@ -215,6 +218,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
                      'basic/model.stub',
                      // repository
                      'basic/repo.stub',
+                     'basic/repo-interface.stub',
                      // observer
                      'basic/observer.stub',
                      // routes
@@ -233,7 +237,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             // Observer
             'basic-history/observer.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassObserver.php',
             // repository replace
-            'basic-history/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepository.php',
+            'basic-history/repo.stub' => 'app/Repositories/' . $this->_namespaceCapslock . 'DummyClass/DummyClassRepositoryEloquent.php',
 
             // controllers
             'basic-history/controllers/history.stub' => 'app/Http/Controllers/Backend/' . $this->_namespaceCapslock . 'DummyClass/DummyClassHistoryController.php',

@@ -6,10 +6,11 @@ use DummyNameSpaceClass\Models\DummyPath\DummyClass\DummyClass;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 
 /**
- * Class DummyClassRepository
+ * Class DummyClassRepositoryEloquent
+ *
  * @package DummyNameSpaceClass\Repositories\DummyPath\DummyClass
  */
-class DummyClassRepository extends BaseRepository
+class DummyClassRepositoryEloquent extends BaseRepository
 {
     public function __construct()
     {
