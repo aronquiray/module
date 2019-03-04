@@ -27,7 +27,6 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
 
                      // repository
                      'basic/repo.stub', // inherited from basic
-                     'basic/repo-interface.stub', // inherited from basic
                      // observer
                      'basic/observer.stub', // inherited from basic
                      // controllers
