@@ -22,7 +22,6 @@ class DummyClassBreadFeatureBackendTest extends TestCase
 
     /**
      * @test
-     * @group
      */
     public function dummyClassCreateRouteExist()
     {
