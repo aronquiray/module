@@ -217,7 +217,6 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
                      'basic/model.stub',
                      // repository
                      'basic/repo.stub',
-                     'basic/repo-interface.stub',
                      // observer
                      'basic/observer.stub',
                      // routes
