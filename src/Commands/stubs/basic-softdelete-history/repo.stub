@@ -10,7 +10,7 @@ use HalcyonLaravel\Base\Repository\BaseRepository;
  *
  * @package DummyNameSpaceClass\Repositories\DummyPath\DummyClass
  */
-class DummyClassRepositoryEloquent extends BaseRepository implement DummyClassRepository
+class DummyClassRepositoryEloquent extends BaseRepository implements DummyClassRepository
 {
     public function __construct()
     {
