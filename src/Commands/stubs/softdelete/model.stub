@@ -110,7 +110,7 @@ class DummyClass extends BaseModel
             'frontend' => [
                 'show' => [
                     'type' => 'show',
-                    'url' => route(self::ROUTE_FRONTEND_PATH . '.show', $this)
+                    'url' => [self::ROUTE_FRONTEND_PATH . '.show', $this],
                 ]
             ],
             'backend' => [
@@ -118,38 +118,38 @@ class DummyClass extends BaseModel
                     'type' => 'custom',
                     'label' => 'Dummy Classes',
                     'permission' => self::permission('index'),
-                    'url' => route(self::ROUTE_ADMIN_PATH . '.index')
+                    'url' => [self::ROUTE_ADMIN_PATH . '.index'],
                 ],
                 'show' => [
                     'type' => 'show',
                     'permission' => self::permission('show'),
-                    'url' => route(self::ROUTE_ADMIN_PATH . '.show', $this)
+                    'url' => [self::ROUTE_ADMIN_PATH . '.show', $this],
                 ],
                 'edit' => [
                     'type' => 'edit',
                     'permission' => self::permission('edit'),
-                    'url' => route(self::ROUTE_ADMIN_PATH . '.edit', $this)
+                    'url' => [self::ROUTE_ADMIN_PATH . '.edit', $this],
                 ],
                 'destroy' => [
                     'type' => 'destroy',
                     'permission' => self::permission('destroy'),
-                    'url' => route(self::ROUTE_ADMIN_PATH . '.destroy', $this),
+                    'url' => [self::ROUTE_ADMIN_PATH . '.destroy', $this],
                     'group' => 'more',
-                    'redirect' => route(self::ROUTE_ADMIN_PATH . '.index')
+                    'redirect' => [self::ROUTE_ADMIN_PATH . '.index'],
                 ],
                 'restore' => [
                     'type' => 'restore',
-                    'perminssion' => self::permission('restore'),
-                    'url' => route(self::ROUTE_ADMIN_PATH . '.restore', $this),
+                    'permission' => self::permission('restore'),
+                    'url' => [self::ROUTE_ADMIN_PATH . '.restore', $this],
                     // 'group' => 'more',
-                    'redirect' => route(self::ROUTE_ADMIN_PATH . '.index')
+                    'redirect' => [self::ROUTE_ADMIN_PATH . '.index'],
                 ],
                 'purge' => [
                     'type' => 'purge',
-                    'perminssion' => self::permission('purge'),
-                    'url' => route(self::ROUTE_ADMIN_PATH . '.purge', $this),
+                    'permission' => self::permission('purge'),
+                    'url' => [self::ROUTE_ADMIN_PATH . '.purge', $this],
                     // 'group' => 'more',
-                    'redirect' => route(self::ROUTE_ADMIN_PATH . '.index')
+                    'redirect' => [self::ROUTE_ADMIN_PATH . '.index'],
                 ],
             ]
         ];
