@@ -50,7 +50,7 @@ class DummyClassTableController extends BaseController
             'trashOnly' => $trashOnly,
         ]))
             ->editColumn('updated_at', function ($model) {
-                return $model->updated_at->format(config('core.setting.formats.datetime_12'));
+                return $model->updated_at->timezone(get_user_timezone())->format(config('core.setting.formats.datetime_12'));
             })
             ->addColumn('actions', function ($model) {
                 if ($model->trashed()) {

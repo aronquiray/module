@@ -2,6 +2,7 @@
 
 
 ## Changes Log 
+    v3.1.2: Fix timezone
     v3.1.1: Update on links typo, parallel to base
     v3.1.0: Add interface on repo
     v3.0.1: PHPunit compatible
