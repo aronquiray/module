@@ -75,7 +75,6 @@ class DummyClassObserver extends BaseObserverContract
      */
     public static function deleted($model)
     {
-        History::deleted($model);
         return $model;
     }
 
