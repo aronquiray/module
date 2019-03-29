@@ -70,7 +70,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic/controllers/resource.stub', // inherited
 
             // resources
-            'basic-history/resources/views/backend/history.stub',
+//            'basic-history/resources/views/backend/history.stub',
 
             // tests
             'basic-history/tests/history.stub',
@@ -243,7 +243,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
 
             // resources
             'basic-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/' . $this->_namespaceLower . 'dummyClass/partials/links.blade.php',
-            'basic-history/resources/views/backend/history.stub' => 'resources/views/backend/' . $this->_namespaceLower . 'dummyClass/history.blade.php',
+//            'basic-history/resources/views/backend/history.stub' => 'resources/views/backend/' . $this->_namespaceLower . 'dummyClass/history.blade.php',
 
             // routes
             'basic-history/routes/backend.stub' => 'routes/backend/' . $this->_namespaceLower . 'dummy-class.php',

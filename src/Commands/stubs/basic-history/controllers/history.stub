@@ -30,7 +30,7 @@ class DummyClassHistoryController extends Controller
             'title' => 'History ' . ucwords(DummyClass::MODULE_NAME),
         ]);
 
-        return view(DummyClass::VIEW_BACKEND_PATH . '.history')->with([
+        return view('backend.includes.widgets.history', [
             'classModel' => DummyClass::class
         ]);
     }

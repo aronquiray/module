@@ -1,7 +1,0 @@
-@extends('backend.layouts.app')
-
-@section('content')
-
-    {!! history()->buildClass($classModel)->render(10) !!}
-
-@endsection
