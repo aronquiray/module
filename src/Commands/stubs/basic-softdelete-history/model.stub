@@ -13,12 +13,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Fomvasss\LaravelMetaTags\Traits\Metatagable;
+use HalcyonLaravel\AuditHistory\Models\Contracts\AuditHistoryInterface;
+use HalcyonLaravel\AuditHistory\Models\Traits\AuditHistoryTrait;
 
 /**
  * Class DummyClass
  * @package DummyNameSpaceClass\Models\DummyPath\DummyClass
  */
-class DummyClass extends Model
+class DummyClass extends Model implements AuditHistoryInterface
 {
     use Metatagable;
     use HasSlug;
@@ -29,6 +31,7 @@ class DummyClass extends Model
     use DummyClassRelations;
     use DummyClassScopes;
     use DummyClassStaticFunctions;
+    use AuditHistoryTrait;
 
     public const MODULE_NAME = 'dummy class';
     public const VIEW_BACKEND_PATH = 'backend.dummyPath.dummyClass';
