@@ -45,6 +45,14 @@ class DummyClass extends Model implements AuditHistoryInterface
     ];
 
     /**
+     * @return string
+     */
+    public function getHistoryLabelAttribute()
+    {
+        return $this->title;
+    }
+
+    /**
      * Return the permissions related to this model.
      *
      * @return array
