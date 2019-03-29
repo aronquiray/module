@@ -64,7 +64,9 @@ class DummyClassObserver extends BaseObserverContract
      */
     public static function deleting($model)
     {
-        $model->metaTag()->delete();
+        self::checkBeforeDelete('destroy', $model, function () use ($model) {
+            $model->metaTag()->delete();
+        });
         return $model;
     }
 
@@ -105,6 +107,9 @@ class DummyClassObserver extends BaseObserverContract
      */
     public static function purging($model)
     {
+        self::checkBeforeDelete('purge', $model, function () use ($model) {
+            $model->metaTag()->delete();
+        });
         return $model;
     }
 
