@@ -3,7 +3,6 @@
 namespace DummyNameSpaceClass\Repositories\DummyPath\DummyClass;
 
 use App\Repositories\BaseObserverContract;
-use History;
 
 /**
  * Class DummyClassObserver
@@ -31,7 +30,6 @@ class DummyClassObserver extends BaseObserverContract
     public static function stored($model, array $data)
     {
         self::meta('create', $model, $data);
-        History::created($model);
         return $model;
     }
 
@@ -56,7 +54,6 @@ class DummyClassObserver extends BaseObserverContract
     public static function updated($model, array $data, array $oldModel)
     {
         self::meta('update', $model, $data);
-        History::updated($model, $oldModel);
         return $model;
     }
 
@@ -78,7 +75,6 @@ class DummyClassObserver extends BaseObserverContract
      */
     public static function deleted($model)
     {
-        History::deleted($model);
         return $model;
     }
 
@@ -99,7 +95,6 @@ class DummyClassObserver extends BaseObserverContract
      */
     public static function restored($model)
     {
-        History::restored($model);
         return $model;
     }
 
@@ -120,7 +115,6 @@ class DummyClassObserver extends BaseObserverContract
      */
     public static function purged($model)
     {
-        History::purged($model);
         return $model;
     }
 }
