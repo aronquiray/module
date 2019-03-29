@@ -8,6 +8,7 @@ use HalcyonLaravel\Base\Controllers\Backend\CRUDController;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
 use Illuminate\Http\Request;
+use HalcyonLaravel\Base\Repository\BaseRepositoryInterface;
 
 /**
  * Class DummyClassController
@@ -61,9 +62,9 @@ class DummyClassController extends CRUDController
     }
 
     /**
-     * @return \HalcyonLaravel\Base\Repository\BaseRepository
+     * @return \HalcyonLaravel\Base\Repository\BaseRepositoryInterface
      */
-    public function repository(): BaseRepository
+    public function repository(): BaseRepositoryInterface
     {
         return $this->dummyClassRepository;
     }
