@@ -31,7 +31,7 @@ class DummyClassHistoryController extends Controller
         ]);
 
         return view('backend.includes.widgets.history', [
-            'classModel' => DummyClass::class
+            'className' => DummyClass::class
         ]);
     }
 }
