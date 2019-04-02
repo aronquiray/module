@@ -4,7 +4,7 @@ namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 
 use DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository;
 use HalcyonLaravel\Base\Controllers\Backend\DeletedController;
-use HalcyonLaravel\Base\Repository\BaseRepository;
+use HalcyonLaravel\Base\Repository\BaseRepositoryInterface;
 
 /**
  * Class DummyClassDeletedController
@@ -37,9 +37,9 @@ class DummyClassDeletedController extends DeletedController
     }
 
     /**
-     * @return BaseRepository
+     * @return \HalcyonLaravel\Base\Repository\BaseRepositoryInterface
      */
-    public function repository(): BaseRepository
+    public function repository(): BaseRepositoryInterface
     {
         return $this->dummyClassRepository;
     }
