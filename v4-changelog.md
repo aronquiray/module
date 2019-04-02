@@ -2,6 +2,7 @@
 
 
 ## Changes Log 
+    v4.0.6: Fix frontend controller
     v4.0.5: Fix table controller
     v4.0.4: Use bigIncrements
     v4.0.3: Base version 4
