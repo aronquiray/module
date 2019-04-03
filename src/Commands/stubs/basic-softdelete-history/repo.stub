@@ -12,10 +12,9 @@ use DummyNameSpaceClass\Repositories\BaseEloquent;
  */
 class DummyClassRepositoryEloquent extends BaseEloquent implements DummyClassRepository
 {
-    public function __construct()
+    protected function observer()
     {
-        parent::__construct();
-        $this->setObserver(new DummyClassObserver);
+        return DummyClassObserver::class;
     }
 
     /**
