@@ -51,7 +51,7 @@ class ModuleDeleteCommand extends GeneratorCommand
 
         $this->_deletingFiles($datas->datas);
 
-        $this->line("" . '<bg=green>Module "' . $this->getNameInput() . '" deleted successfully.</>');
+        $this->line("".'<bg=green>Module "'.$this->getNameInput().'" deleted successfully.</>');
 
         shell_exec('composer clear-all');
     }
@@ -60,9 +60,9 @@ class ModuleDeleteCommand extends GeneratorCommand
     {
         foreach ($datas as $file) {
             $file = $this->addProjectDir($file);
-            $this->line('<fg=yellow>Deleting:</>      ' . $file);
+            $this->line('<fg=yellow>Deleting:</>      '.$file);
             $this->files->delete($file);
-            $this->line('<fg=green>Done Deleting:</> ' . $file);
+            $this->line('<fg=green>Done Deleting:</> '.$file);
         }
 
         $this->udpateDeleteData($this->getNameInput());

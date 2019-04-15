@@ -39,19 +39,19 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
     {
         $this->options = null;
         $this->generatedFiles = [];
-        $this->line("<fg=yellow>Generating {$this->type} '" . $this->getNameInput() . '\' ...</>');
+        $this->line("<fg=yellow>Generating {$this->type} '".$this->getNameInput().'\' ...</>');
 
         $this->generate($this->getStub());
 
 
-        $this->line('<fg=yellow>Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
+        $this->line('<fg=yellow>Generating "'.$this->getNameInput().'" '.$this->type.' backup files ...</>');
         $this->generatingFile($this->options);
-        $this->line('<fg=green>Done Generating "' . $this->getNameInput() . '" ' . $this->type . ' backup files ...</>');
+        $this->line('<fg=green>Done Generating "'.$this->getNameInput().'" '.$this->type.' backup files ...</>');
 
-        $this->info("Done Generating {$this->type} '" . $this->getNameInput() . '\'.');
+        $this->info("Done Generating {$this->type} '".$this->getNameInput().'\'.');
 
         $this->call('make:bindings', [
-            'name' => studly_case($this->getNameInput()) . '\\' . studly_case($this->getNameInput()),
+            'name' => studly_case($this->getNameInput()).'\\'.studly_case($this->getNameInput()),
         ]);
 
         if (app()->environment() != 'testing') {
@@ -64,7 +64,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
         foreach ($modules as $stub => $path) {
             $this->line("<fg=yellow>Generating $stub ...</>");
 
-            $stub = $this->files->get(__DIR__ . '/stubs/' . $stub);
+            $stub = $this->files->get(__DIR__.'/stubs/'.$stub);
             $stub = $this->_nameSpaceApp($stub);
             $stub = $this->_replaceName($stub);
             $stub = $this->_replacePath($stub);
@@ -73,12 +73,12 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
             $path = $this->getStubByEnvironment($path);
 
             if ($this->files->exists($path, $stub)) {
-                $this->error($this->type . ' already exists!');
+                $this->error($this->type.' already exists!');
                 exit();
             }
 
             $this->files->put($path, $stub);
-            $this->line('<fg=green>Generated:</> ' . $path);
+            $this->line('<fg=green>Generated:</> '.$path);
         }
     }
 
@@ -155,7 +155,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
             $this->generatedFiles[] = $this->removeProjectDir($path);
         }
 
-        $path = $dir . $path;
+        $path = $dir.$path;
         $this->makeDirectory($path);
         return $path;
     }
@@ -171,7 +171,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
         $inputNamespace = $this->option('namespace');
 
         if (empty($input)) {
-            $this->error('Aborted!, Please specify ' . $this->type . ' name.');
+            $this->error('Aborted!, Please specify '.$this->type.' name.');
             exit();
         }
 
@@ -185,12 +185,12 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
         }
 
         if (!(preg_match("/[A-Z]/", $input) === 0)) {
-            $this->error('Aborted!, Try all lower case, then space for multiple words on ' . $this->type . ' name.');
+            $this->error('Aborted!, Try all lower case, then space for multiple words on '.$this->type.' name.');
             exit();
         }
 
-        $selected = $this->menu('Generate for model "' . ucfirst(studly_case($input)) . '"' . "\n" .
-            'What type of ' . $this->type . ' want to generate?', [
+        $selected = $this->menu('Generate for model "'.ucfirst(studly_case($input)).'"'."\n".
+            'What type of '.$this->type.' want to generate?', [
             'softdelete-history' => 'Softdelete and History',
             'history' => 'History',
             'softdelete' => 'Softdelete',

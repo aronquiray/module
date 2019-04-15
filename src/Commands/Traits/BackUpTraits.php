@@ -29,7 +29,7 @@ trait BackUpTraits
                     ]
             ];
 
-        $this->_writeFile(array_merge((array)$oldData, $newData));
+        $this->_writeFile(array_merge((array) $oldData, $newData));
     }
 
     private function getBackupFile($moduleName = null)
@@ -76,7 +76,7 @@ trait BackUpTraits
             ]
         ];
 
-        $this->_writeFile(array_merge((array)$this->getBackupFile(), $updatedData));
+        $this->_writeFile(array_merge((array) $this->getBackupFile(), $updatedData));
     }
 
     public function removeProjectDir($path)
@@ -91,6 +91,6 @@ trait BackUpTraits
 
     public function addProjectDir($path)
     {
-        return $this->getCurrentProjectDir() . $path;
+        return $this->getCurrentProjectDir().$path;
     }
 }
