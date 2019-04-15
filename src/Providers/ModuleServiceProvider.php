@@ -18,8 +18,6 @@ class ModuleServiceProvider extends ServiceProvider
                 ModuleDeleteCommand::class,
             ]);
 
-            // Publish module Config
-            // $this->publishes([ __DIR__.'/../config/halcyon-laravel/module.php' => config_path('halcyon-laravel/module.php'), ]);
         }
     }
 
@@ -30,7 +28,5 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Merge module Config
-        // $this->mergeConfigFrom(__DIR__.'/../config/halcyon-laravel/module.php', 'halcyon-laravel.module');
     }
 }
