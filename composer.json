@@ -38,5 +38,10 @@
       "./vendor/bin/phpunit --verbose > output.txt -d memory_limit=2048M"
     ],
     "test": "./vendor/bin/phpunit --verbose"
-  }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
