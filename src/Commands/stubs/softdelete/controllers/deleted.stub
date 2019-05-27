@@ -3,7 +3,7 @@
 namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 
 use DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository;
-use HalcyonLaravel\Base\Controllers\Backend\DeletedController;
+use HalcyonLaravel\Base\Http\Controllers\Backend\DeletedController;
 use HalcyonLaravel\Base\Repository\BaseRepositoryInterface;
 
 /**

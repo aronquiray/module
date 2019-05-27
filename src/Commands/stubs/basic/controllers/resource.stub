@@ -4,7 +4,7 @@ namespace DummyNameSpaceClass\Http\Controllers\Backend\DummyPath\DummyClass;
 
 use DummyNameSpaceClass\Repositories\DummyPath\DummyClass\DummyClassRepository;
 use HalcyonLaravel\Base\BaseableOptions;
-use HalcyonLaravel\Base\Controllers\Backend\CRUDController;
+use HalcyonLaravel\Base\Http\Controllers\Backend\CRUDController;
 use HalcyonLaravel\Base\Repository\BaseRepository;
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
 use Illuminate\Http\Request;
