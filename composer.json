@@ -1,6 +1,7 @@
 {
   "name": "halcyon-laravel/module",
-  "description": "Module.",
+  "description": "Stub Generator for Core-Boilerplate",
+  "license": "proprietary",
   "repositories": [
     {
       "type": "vcs",
