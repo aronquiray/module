@@ -14,8 +14,8 @@
   ],
   "require": {
     "php": ">=7.1",
-    "halcyon-laravel/base": "^5.0",
-    "spatie/laravel-permission": "^2.23",
+    "halcyon-laravel/base": "^5.3",
+    "spatie/laravel-permission": "^3.0",
     "nunomaduro/laravel-console-menu": "^2.0",
     "ext-json": "*",
     "spatie/laravel-sluggable": "^2.1"
