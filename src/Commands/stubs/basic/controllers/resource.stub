@@ -52,9 +52,9 @@ class DummyClassController extends CRUDController
      */
     public function generateStub(Request $request, IlluminateModel $model = null): array
     {
-        $data = [
-            'meta' => $request->meta,
-        ];
+        $data = $request->only([
+            'meta',
+        ]);
 
         $model = $this->repository()->makeModel();
 
