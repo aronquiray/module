@@ -10,10 +10,6 @@
     {
       "type": "vcs",
       "url": "git@bitbucket.org:halcyonlaravel/helpers.git"
-    },
-    {
-      "type": "vcs",
-      "url": "git@bitbucket.org:halcyonlaravel/temporary-read-only-laravel-meta-tags-1.git"
     }
   ],
   "require": {
@@ -25,6 +21,7 @@
     "spatie/laravel-sluggable": "^2.1"
   },
   "require-dev": {
+    "orchestra/testbench": "^5.4"
   },
   "autoload": {
     "psr-4": {

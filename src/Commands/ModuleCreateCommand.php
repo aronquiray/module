@@ -4,12 +4,12 @@
 namespace HalcyonLaravel\Module\Commands;
 
 use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
-use Illuminate\Console\DetectsApplicationNamespace;
+use Illuminate\Container\Container;
 use Symfony\Component\Console\Input\InputOption;
 
 class ModuleCreateCommand extends ModuleGeneratorCommand
 {
-    use BackUpTraits, DetectsApplicationNamespace;
+    use BackUpTraits;
     /**
      * The console command name.
      *
@@ -87,6 +87,10 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
         return str_replace('DummyNameSpaceClass\\', $this->getAppNamespace(), $stub);
     }
 
+    private function getAppNamespace()
+    {
+        return Container::getInstance()->getNamespace();
+    }
     /**
      * Replace the name for the given stub.
      *

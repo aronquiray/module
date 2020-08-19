@@ -4,3 +4,4 @@ output.txt
 .module.cache
 /.idea
 composer.lock
+composer.phar
