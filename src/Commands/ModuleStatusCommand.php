@@ -55,6 +55,22 @@ class ModuleStatusCommand extends GeneratorCommand
         }
     }
 
+    protected function getStub()
+    {
+    }
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return [
+            ['name', InputArgument::OPTIONAL, 'Module name.'],
+        ];
+    }
+
     private function _tableFiles($module)
     {
         $datas = [];
@@ -67,10 +83,13 @@ class ModuleStatusCommand extends GeneratorCommand
             ];
         }
 
-        $this->table([
-            '#',
-            'File',
-        ], $datas);
+        $this->table(
+            [
+                '#',
+                'File',
+            ],
+            $datas
+        );
     }
 
     private function _tableAll($modules)
@@ -100,21 +119,5 @@ class ModuleStatusCommand extends GeneratorCommand
         }
 
         $this->table($header, $datas);
-    }
-
-    protected function getStub()
-    {
-    }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return array(
-            ['name', InputArgument::OPTIONAL, 'Module name.'],
-        );
     }
 }

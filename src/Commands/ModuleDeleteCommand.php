@@ -56,6 +56,16 @@ class ModuleDeleteCommand extends GeneratorCommand
         shell_exec('composer clear-all');
     }
 
+    /**
+     * Get the stub file for the generator.
+     *
+     * @return string
+     */
+    protected function getStub()
+    {
+        return $this->currentStub;
+    }
+
     private function _deletingFiles($datas)
     {
         foreach ($datas as $file) {
@@ -66,16 +76,6 @@ class ModuleDeleteCommand extends GeneratorCommand
         }
 
         $this->udpateDeleteData($this->getNameInput());
-    }
-
-    /**
-     * Get the stub file for the generator.
-     *
-     * @return string
-     */
-    protected function getStub()
-    {
-        return $this->currentStub;
     }
 
     private function _checkFile()

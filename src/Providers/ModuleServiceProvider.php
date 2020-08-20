@@ -12,12 +12,13 @@ class ModuleServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            $this->commands([
-                ModuleCreateCommand::class,
-                ModuleStatusCommand::class,
-                ModuleDeleteCommand::class,
-            ]);
-
+            $this->commands(
+                [
+                    ModuleCreateCommand::class,
+                    ModuleStatusCommand::class,
+                    ModuleDeleteCommand::class,
+                ]
+            );
         }
     }
 

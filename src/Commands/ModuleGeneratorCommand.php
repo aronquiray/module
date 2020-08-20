@@ -21,23 +21,25 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
     {
         $softdeleteStubs = $this->softdelete();
 
-        foreach ([
-                     // model
-                     'softdelete/model.stub',
+        foreach (
+            [
+                // model
+                'softdelete/model.stub',
 
-                     // repository
-                     'basic/repo.stub', // inherited from basic
-                     // observer
-                     'basic/observer.stub', // inherited from basic
-                     // controllers
-                     'basic/controllers/resource.stub', // inherited from basic
-                     // 'softdelete/controllers/deleted.stub',
-                     // routes
-                     'softdelete/routes/backend.stub',
-                     'softdelete/routes/bread-crumbs.stub',
-                     // resources
-                     'softdelete/resources/views/backend/partials/links.stub',
-                 ] as $forget) {
+                // repository
+                'basic/repo.stub',                 // inherited from basic
+                // observer
+                'basic/observer.stub',             // inherited from basic
+                // controllers
+                'basic/controllers/resource.stub', // inherited from basic
+                // 'softdelete/controllers/deleted.stub',
+                // routes
+                'softdelete/routes/backend.stub',
+                'softdelete/routes/bread-crumbs.stub',
+                // resources
+                'softdelete/resources/views/backend/partials/links.stub',
+            ] as $forget
+        ) {
             array_forget($softdeleteStubs, $forget);
         }
 
@@ -63,18 +65,24 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic-softdelete-history/resources/views/backend/partials/links.stub' => 'resources/views/backend/'.$this->_namespaceLower.'dummyClass/partials/links.blade.php',
         ];
 
-        return array_merge(array_merge($softdeleteStubs, $additionalStubs), array_only($this->basic_history(), [
-            // controllers
-            'basic-history/controllers/history.stub',
+        return array_merge(
+            array_merge($softdeleteStubs, $additionalStubs),
+            array_only(
+                $this->basic_history(),
+                [
+                    // controllers
+                    'basic-history/controllers/history.stub',
 
-            'basic/controllers/resource.stub', // inherited
+                    'basic/controllers/resource.stub', // inherited
 
-            // resources
+                    // resources
 //            'basic-history/resources/views/backend/history.stub',
 
-            // tests
-            'basic-history/tests/history.stub',
-        ]));
+                    // tests
+                    'basic-history/tests/history.stub',
+                ]
+            )
+        );
     }
 
     protected function softdelete()
@@ -107,48 +115,48 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
         ];
 
         // get only specific stubs in basic
-        return array_merge($stubs, array_only($this->basic(), [
-            // controllers
-            'basic/controllers/resource.stub',
-            'basic/controllers/frontend.stub',
-            // repository
-            'basic/repo.stub',
-            'basic/repo-interface.stub',
-            // observer
-            'basic/observer.stub',
-            // tests
-            'basic/tests/backend.stub',
-            'basic/tests/frontend.stub',
-            // routes
-            'basic/routes/frontend.stub',
-            // database
-            'basic/database/factory.stub',
-            'basic/database/table-seeder.stub',
-            'basic/database/permission-seeder.stub',
-            // resources views backend
-            'basic/resources/views/backend/create.stub',
-            'basic/resources/views/backend/edit.stub',
-            'basic/resources/views/backend/show.stub',
-            // resources view backend partilas
-            'basic/resources/views/backend/partials/fields.stub',
-            'basic/resources/views/backend/partials/overview.stub',
-            // resources view frontend
-            'basic/resources/views/frontend/index.stub',
-            'basic/resources/views/frontend/show.stub',
-            'basic/resources/views/frontend/partials/node.stub',
-            // model traits
-            'basic/model-traits/attribute.stub',
-            'basic/model-traits/regular.stub',
-            'basic/model-traits/relation.stub',
-            'basic/model-traits/scope.stub',
-            'basic/model-traits/static.stub',
-        ]));
-    }
-
-    private function _databaseMigrationFileName()
-    {
-        $migrationFileName = now()->format('Y_m_d_hms').'_create_dummy_classes_table';
-        return "database/migrations/$migrationFileName.php";
+        return array_merge(
+            $stubs,
+            array_only(
+                $this->basic(),
+                [
+                    // controllers
+                    'basic/controllers/resource.stub',
+                    'basic/controllers/frontend.stub',
+                    // repository
+                    'basic/repo.stub',
+                    'basic/repo-interface.stub',
+                    // observer
+                    'basic/observer.stub',
+                    // tests
+                    'basic/tests/backend.stub',
+                    'basic/tests/frontend.stub',
+                    // routes
+                    'basic/routes/frontend.stub',
+                    // database
+                    'basic/database/factory.stub',
+                    'basic/database/table-seeder.stub',
+                    'basic/database/permission-seeder.stub',
+                    // resources views backend
+                    'basic/resources/views/backend/create.stub',
+                    'basic/resources/views/backend/edit.stub',
+                    'basic/resources/views/backend/show.stub',
+                    // resources view backend partilas
+                    'basic/resources/views/backend/partials/fields.stub',
+                    'basic/resources/views/backend/partials/overview.stub',
+                    // resources view frontend
+                    'basic/resources/views/frontend/index.stub',
+                    'basic/resources/views/frontend/show.stub',
+                    'basic/resources/views/frontend/partials/node.stub',
+                    // model traits
+                    'basic/model-traits/attribute.stub',
+                    'basic/model-traits/regular.stub',
+                    'basic/model-traits/relation.stub',
+                    'basic/model-traits/scope.stub',
+                    'basic/model-traits/static.stub',
+                ]
+            )
+        );
     }
 
     protected function basic()
@@ -212,19 +220,21 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
     {
         $stubs = $this->basic();
 
-        foreach ([
-                     // repository
-                     'basic/model.stub',
-                     // repository
-                     'basic/repo.stub',
-                     // observer
-                     'basic/observer.stub',
-                     // routes
-                     'basic/routes/backend.stub',
-                     'basic/routes/bread-crumbs.stub',
-                     // resources
-                     'basic/resources/views/backend/partials/links.stub',
-                 ] as $forget) {
+        foreach (
+            [
+                // repository
+                'basic/model.stub',
+                // repository
+                'basic/repo.stub',
+                // observer
+                'basic/observer.stub',
+                // routes
+                'basic/routes/backend.stub',
+                'basic/routes/bread-crumbs.stub',
+                // resources
+                'basic/resources/views/backend/partials/links.stub',
+            ] as $forget
+        ) {
             array_forget($stubs, $forget);
         }
 
@@ -254,5 +264,11 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
         ];
 
         return array_merge($stubs, $hiostoryStubs);
+    }
+
+    private function _databaseMigrationFileName()
+    {
+        $migrationFileName = now()->format('Y_m_d_hms').'_create_dummy_classes_table';
+        return "database/migrations/$migrationFileName.php";
     }
 }
