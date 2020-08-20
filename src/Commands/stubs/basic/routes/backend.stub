@@ -5,6 +5,6 @@ Route::group([
     'middleware' => 'admin',
     'as' => 'dummy-path.',
 ], function () {
-    Route::post('dummy-classes/table', 'DummyClassTableController')->name('dummy-classes.table');
+    Route::get('dummy-classes/table', 'DummyClassTableController')->name('dummy-classes.table');
     Route::resource('dummy-classes', 'DummyClassController');
 });

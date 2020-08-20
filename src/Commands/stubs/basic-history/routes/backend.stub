@@ -11,7 +11,7 @@ Route::group([
         'as' => 'dummy-classes.',
     ], function () {
 
-        Route::post('table', 'DummyClassTableController')->name('table');
+        Route::get('table', 'DummyClassTableController')->name('table');
         Route::get('history', 'DummyClassHistoryController@index')->name('history');
 
     });
