@@ -4,6 +4,8 @@
 namespace HalcyonLaravel\Module\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 abstract class ModuleGeneratorCommand extends GeneratorCommand
 {
@@ -13,8 +15,8 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
 
     public function namespace(string $inputNamespace)
     {
-        $this->_namespaceCapslock = ucfirst(studly_case($inputNamespace)).'/';
-        $this->_namespaceLower = camel_case($inputNamespace).'/';
+        $this->_namespaceCapslock = ucfirst(Str::studly($inputNamespace)).'/';
+        $this->_namespaceLower = Str::camel($inputNamespace).'/';
     }
 
     protected function basic_softdelete_history()
@@ -40,7 +42,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
                 'softdelete/resources/views/backend/partials/links.stub',
             ] as $forget
         ) {
-            array_forget($softdeleteStubs, $forget);
+            Arr::forget($softdeleteStubs, $forget);
         }
 
         $additionalStubs = [
@@ -67,7 +69,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
 
         return array_merge(
             array_merge($softdeleteStubs, $additionalStubs),
-            array_only(
+            Arr::only(
                 $this->basic_history(),
                 [
                     // controllers
@@ -117,7 +119,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
         // get only specific stubs in basic
         return array_merge(
             $stubs,
-            array_only(
+            Arr::only(
                 $this->basic(),
                 [
                     // controllers
@@ -141,7 +143,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
                     'basic/resources/views/backend/create.stub',
                     'basic/resources/views/backend/edit.stub',
                     'basic/resources/views/backend/show.stub',
-                    // resources view backend partilas
+                    // resources view backend partials
                     'basic/resources/views/backend/partials/fields.stub',
                     'basic/resources/views/backend/partials/overview.stub',
                     // resources view frontend
@@ -235,10 +237,10 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
                 'basic/resources/views/backend/partials/links.stub',
             ] as $forget
         ) {
-            array_forget($stubs, $forget);
+            Arr::forget($stubs, $forget);
         }
 
-        $hiostoryStubs = [
+        $historyStubs = [
             // model
             'basic-history/model.stub' => 'app/Models/'.$this->_namespaceCapslock.'DummyClass/DummyClass.php',
 
@@ -263,7 +265,7 @@ abstract class ModuleGeneratorCommand extends GeneratorCommand
             'basic-history/tests/history.stub' => 'tests/Feature/Modules/Backend/'.$this->_namespaceCapslock.'DummyClass/DummyClassFeatureHistoryTest.php',
         ];
 
-        return array_merge($stubs, $hiostoryStubs);
+        return array_merge($stubs, $historyStubs);
     }
 
     private function _databaseMigrationFileName()
