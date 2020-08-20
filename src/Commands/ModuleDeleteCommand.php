@@ -78,13 +78,13 @@ class ModuleDeleteCommand extends GeneratorCommand
         $this->updateDeleteData($this->getNameInput());
     }
 
-    private function _checkFile()
-    {
-        $this->line("checking {$this->type} '{$this->_getCamelCaseModuleInput()}' ...");
-    }
+//    private function _checkFile()
+//    {
+//        $this->line("checking {$this->type} '{$this->_getCamelCaseModuleInput()}' ...");
+//    }
 
-    private function _getCamelCaseModuleInput()
-    {
-        return camel_case($this->getNameInput());
-    }
+//    private function _getCamelCaseModuleInput()
+//    {
+//        return Str::camel($this->getNameInput());
+//    }
 }

@@ -34,11 +34,6 @@ class ModuleStatusCommand extends GeneratorCommand
     protected $type = 'Module';
 
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
     public function handle()
     {
         if ($this->getNameInput() != '') {

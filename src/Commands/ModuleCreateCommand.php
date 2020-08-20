@@ -5,8 +5,16 @@ namespace HalcyonLaravel\Module\Commands;
 
 use HalcyonLaravel\Module\Commands\Traits\BackUpTraits;
 use Illuminate\Container\Container;
+use Illuminate\Support\Str;
+use NunoMaduro\LaravelConsoleMenu\Menu;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * Class ModuleCreateCommand
+ *
+ * @package HalcyonLaravel\Module\Commands
+ * @method Menu menu(string $string, string[] $array)
+ */
 class ModuleCreateCommand extends ModuleGeneratorCommand
 {
     use BackUpTraits;
@@ -54,7 +62,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
         $this->call(
             'make:bindings',
             [
-                'name' => studly_case($this->getNameInput()).'\\'.studly_case($this->getNameInput()),
+                'name' => Str::studly($this->getNameInput()).'\\'.Str::studly($this->getNameInput()),
             ]
         );
 
@@ -63,11 +71,6 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
         }
     }
 
-    /**
-     * Get the stub file for the generator.
-     *
-     * @return string
-     */
     protected function getStub()
     {
         $input = $this->getNameInput();
@@ -93,7 +96,7 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
         }
 
         $selected = $this->menu(
-            'Generate for model "'.ucfirst(studly_case($input)).'"'."\n".
+            'Generate for model "'.ucfirst(Str::studly($input)).'"'."\n".
             'What type of '.$this->type.' want to generate?',
             [
                 'softdelete-history' => 'Softdelete and History',
@@ -140,7 +143,6 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
             default:
                 $this->error('Argument not found, Aborted ...');
                 exit();
-                break;
         }
 
         return $stubs ?: $this->basic();
@@ -221,55 +223,55 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
         // Small case
         $stub = str_replace(
             'dummy classes',
-            str_replace('-', ' ', str_slug(str_plural($name))),
+            str_replace('-', ' ', Str::slug(Str::plural($name))),
             $stub
         ); // llorics | lloric codes
         $stub = str_replace(
             'dummy class',
-            str_replace('-', ' ', str_slug($name)),
+            str_replace('-', ' ', Str::slug($name)),
             $stub
         ); // lloric | lloric code
 
         $stub = str_replace(
             'dummyclasses',
-            str_replace('-', '', str_slug(str_plural($name))),
+            str_replace('-', '', Str::slug(Str::plural($name))),
             $stub
         ); // llorics | lloriccodes
         $stub = str_replace(
             'dummyclass',
-            str_replace('-', '', str_slug($name)),
+            str_replace('-', '', Str::slug($name)),
             $stub
         ); // lloric | lloriccode
 
-        $stub = str_replace('dummy_classes', snake_case(str_plural($name)), $stub); // llorics | lloric_codes
-        $stub = str_replace('dummy_class', snake_case($name), $stub);               // lloric | lloric_code
+        $stub = str_replace('dummy_classes', Str::snake(Str::plural($name)), $stub); // llorics | lloric_codes
+        $stub = str_replace('dummy_class', Str::snake($name), $stub);                // lloric | lloric_code
 
-        $stub = str_replace('dummy-classes', str_slug(str_plural($name)), $stub); // llorics | lloric-codes
-        $stub = str_replace('dummy-class', str_slug($name), $stub);               // lloric | lloric-code
+        $stub = str_replace('dummy-classes', Str::slug(Str::plural($name)), $stub); // llorics | lloric-codes
+        $stub = str_replace('dummy-class', Str::slug($name), $stub);                // lloric | lloric-code
 
         $stub = str_replace(
             'dummy.classes',
-            str_replace('-', '.', str_slug(str_plural($name))),
+            str_replace('-', '.', Str::slug(Str::plural($name))),
             $stub
         ); // llorics | lloric.codes
         $stub = str_replace(
             'dummy.class',
-            str_replace('-', '.', str_slug($name)),
+            str_replace('-', '.', Str::slug($name)),
             $stub
         ); // lloric | lloric.code
 
-        $stub = str_replace('dummyClasses', camel_case(str_plural($name)), $stub); // llorics | lloricCodes
-        $stub = str_replace('dummyClass', camel_case($name), $stub);               // lloric | lloricCode
+        $stub = str_replace('dummyClasses', Str::camel(Str::plural($name)), $stub); // llorics | lloricCodes
+        $stub = str_replace('dummyClass', Str::camel($name), $stub);                // lloric | lloricCode
         // Big Cases
-        $stub = str_replace('Dummy Classes', ucwords(str_plural($name)), $stub);   // Llorics | Lloric Codes
+        $stub = str_replace('Dummy Classes', ucwords(Str::plural($name)), $stub);   // Llorics | Lloric Codes
         $stub = str_replace(
             'Dummy Class',
-            ucwords(str_replace('-', ' ', str_slug($name))),
+            ucwords(str_replace('-', ' ', Str::slug($name))),
             $stub
         ); // Lloric | Lloric Code
 
-        $stub = str_replace('DummyClasses', ucfirst(studly_case(str_plural($name))), $stub); // Llorics | LloricCodes
-        $stub = str_replace('DummyClass', ucfirst(studly_case($name)), $stub);               // Lloric | LloricCode
+        $stub = str_replace('DummyClasses', ucfirst(Str::studly(Str::plural($name))), $stub); // Llorics | LloricCodes
+        $stub = str_replace('DummyClass', ucfirst(Str::studly($name)), $stub);                // Lloric | LloricCode
         return $stub;
     }
 
@@ -281,8 +283,8 @@ class ModuleCreateCommand extends ModuleGeneratorCommand
             $stub = str_replace('dummy-path.', '', $stub);
             return str_replace('dummyPath.', '', $stub);
         }
-        $stub = str_replace('DummyPath', ucfirst(studly_case($tmp)), $stub);
-        $stub = str_replace('dummy-path', str_slug($tmp), $stub);
-        return str_replace('dummyPath', camel_case($tmp), $stub);
+        $stub = str_replace('DummyPath', ucfirst(Str::studly($tmp)), $stub);
+        $stub = str_replace('dummy-path', Str::slug($tmp), $stub);
+        return str_replace('dummyPath', Str::camel($tmp), $stub);
     }
 }
