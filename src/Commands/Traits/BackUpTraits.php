@@ -32,7 +32,7 @@ trait BackUpTraits
         $this->_writeFile(array_merge((array)$oldData, $newData));
     }
 
-    public function udpateDeleteData($moduleName)
+    public function updateDeleteData($moduleName)
     {
         $oldData = $this->getBackupFile($moduleName);
 

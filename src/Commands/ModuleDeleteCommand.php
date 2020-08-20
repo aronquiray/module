@@ -75,7 +75,7 @@ class ModuleDeleteCommand extends GeneratorCommand
             $this->line('<fg=green>Done Deleting:</> '.$file);
         }
 
-        $this->udpateDeleteData($this->getNameInput());
+        $this->updateDeleteData($this->getNameInput());
     }
 
     private function _checkFile()
