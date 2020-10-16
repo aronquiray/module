@@ -1,20 +1,20 @@
 {
-  "name": "halcyon-laravel/module",
+  "name": "aronquiray/module",
   "description": "Stub Generator for Core-Boilerplate",
   "license": "proprietary",
   "repositories": [
     {
       "type": "vcs",
-      "url": "git@bitbucket.org:halcyonlaravel/base.git"
+      "url": "ggit@github.com:aronquiray/base.git"
     },
     {
       "type": "vcs",
-      "url": "git@bitbucket.org:halcyonlaravel/helpers.git"
+      "url": "git@github.com:aronquiray/helpers.git"
     }
   ],
   "require": {
     "php": ">=7.4",
-    "halcyon-laravel/base": "^7.1",
+    "aronquiray/base": "^7.1",
     "spatie/laravel-permission": "^3.16",
     "nunomaduro/laravel-console-menu": "^3.0",
     "ext-json": "*",
